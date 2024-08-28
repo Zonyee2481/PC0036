@@ -1,0 +1,23 @@
+[ConvIn_Right]
+Station=ConvIn_Right
+EnumErr =InitErr_MagPsntAtLoadStg
+Description = Magazine Detected at Pnp Right Moving Path
+Action=Please Ensure Magazine is Empty at Pnp Right Pick Position
+
+[ConvIn_Right]
+Station=ConvIn_Right
+EnumErr =TravelToPsntPos_TimeOut_TimeOut
+Description = Magazine Travel to Pnp Right Pos Fail
+Action = Ensure the Conveyor Right Path is Clear
+
+[ConvIn_Right]
+Station=ConvIn_Right
+EnumErr =StopperExtFail
+Description = Right Stopper Cylinder Extend Fail
+Action= Ensure the Cylinder is Not Mulfunction
+
+[ConvIn_Right]
+Station=ConvIn_Right
+EnumErr =StopperRetFail
+Description = Right Stopper Cylinder Retract Fail
+Action= Ensure the Cylinder is Not Mulfunction

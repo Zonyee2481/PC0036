@@ -1,0 +1,17 @@
+[OCR_Reader]
+Station=OCR_Reader
+EnumErr = TcpModuleIsNotConnected
+Description = Cognex Module Is Not Connected
+Action=Please Ensure the Cognex Controller is Power On and Reconnecting the Connection
+
+[OCR_Reader]
+Station=OCR_Reader
+EnumErr=SnapTimeOut
+Description = OCR Decode TimeOut
+Action = Ensure the Product OCR is Clear
+
+[OCR_Reader]
+Station=OCR_Reader
+EnumErr=Mismatch
+Description = OCR MisMatch
+Action= Ensure the OCR is Clear to Decode and Product Match with Running Part Model 

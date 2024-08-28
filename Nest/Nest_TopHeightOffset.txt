@@ -1,0 +1,17 @@
+[Nest_Offset]
+Nest_Offset0 = 0
+Nest_Offset1 = 0
+Nest_Offset2 = 0
+Nest_Offset3 = 0
+Nest_Offset4 = 0
+Nest_Offset5 = 0
+Nest_Offset6 = 0
+Nest_Offset7 = 0
+Nest_Offset8 = 0
+Nest_Offset9 = 0
+Nest_Offset10 = 0
+Nest_Offset11 = 0
+Nest_Offset12 = 0
+Nest_Offset13 = 0
+Nest_Offset14 = 0
+Nest_Offset15 = 0

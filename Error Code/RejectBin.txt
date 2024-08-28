@@ -1,0 +1,37 @@
+[RejectBin]
+Station=RejectBin
+EnumErr =BinNotDetected
+Description = Reject Bin is not Detected
+Action=Please Ensure the Reject Bin Is Present
+
+[RejectBin]
+Station=RejectBin
+EnumErr =VacFail
+Description = Reject Vacuum On Fail When Picking Product
+Action = Ensure the Incoming Vacuum is enough
+
+[RejectBin]
+Station=RejectBin
+EnumErr =Pick_TimeOUT
+Description = Reject Station Extend Cylinder Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[RejectBin]
+Station=RejectBin
+EnumErr =Place_TimeOut
+Description = Reject Station Retract Cylinder Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[RejectBin]
+Station=RejectBin
+EnumErr =Up_TimeOut
+Description = Reject Station Up Cylinder Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[RejectBin]
+Station=RejectBin
+EnumErr =Down_TimeOut
+Description = Reject Station Down Cylinder Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+

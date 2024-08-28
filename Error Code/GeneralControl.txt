@@ -1,0 +1,19 @@
+[GeneralControl]
+Station=GeneralControl
+EnumErr =FumeExtractorOnFail
+Description = Fume Extractor Is Not On
+Action=Please Ensure Fume Extractor Is Power On and is Running
+
+[GeneralControl]
+Station=GeneralControl
+EnumErr =PreBlowerAlarm
+Description = Pre Blower Is Not On
+Action=Please Ensure Pre Blower Is Power On and has no Alarm
+
+[GeneralControl]
+Station=GeneralControl
+EnumErr =PostBlowerAlarm
+Description = Post Blower Is Not On
+Action=Please Ensure Post Blower Is Power On and has no Alarm
+
+

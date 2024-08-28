@@ -1,0 +1,43 @@
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =CoverCylCloseFail
+Description = Unloading Station Rotary Cover Cylinder Close Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =CoverCylOpenFail
+Description = Unloading Station Rotary Cover Cylinder Open Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =CoverSafetySenseFail
+Description = Unloading Station Rotary Safety Cover Sensor Not Detected
+Action=Please Ensure Cover is Close Properly
+
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =RMotorHomeFail
+Description = Unloading Station Rotary Motor Home Fail
+Action=Please Ensure Unloading Station Rotary Motor is Servo On
+
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =RMotorMoveFail_0
+Description = Unloading Station Rotary Motor Move 0 Pos Fail
+Action=Please Ensure Unloading Station Rotary Motor is Servo On
+
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =RMotorMoveFail_180
+Description = Unloading Station Rotary Motor Move 180 Pos Fail
+Action=Please Ensure Unloading Station Rotary Motor is Servo On
+
+[UnloadingRtr]
+Station=UnloadingRtr
+EnumErr =UnitFull
+Description = Unloading Station Rotary Product Full at Both Side
+Action=Please Unload The Product and Resume Run
+
+

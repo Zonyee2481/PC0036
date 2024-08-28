@@ -1,0 +1,8 @@
+[GeneralControl]	
+StationName = GeneralControl
+SeqID = 0
+NestID = 0
+IsBypass = False	
+SeqOrder = 1
+SeqNext = 2
+SeqPrev = 0

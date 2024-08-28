@@ -1,0 +1,38 @@
+[TopLaserMark]
+Station=TopLaserMark
+EnumErr =ChillerAlarm
+Description = Top Laser Chiller Alarm
+Action=Please Ensure Chiller Is Power On and is Running
+
+[TopLaserMark]
+Station=TopLaserMark
+EnumErr =TcpModuleIsNotConnected
+Description = Top Laser Module Is Not Connected
+Action=Please Ensure the Top Laser Controller is Power On and Reconnecting the Connection
+
+[TopLaserMark]
+Station=TopLaserMark
+EnumErr =UnitNotSeatedProperly
+Description = Unit Missing/ Unit Not Seated Properly at The Nest 
+Action = Ensure the Laser Station product has seated properly
+
+[TopLaserMark]
+Station=TopLaserMark
+EnumErr =ZMotorHomeFail
+Description = Top Laser Z Motor Home Fail
+Action=Please Ensure Top Laser Z Motor is Servo On
+
+[TopLaserMark]
+Station=TopLaserMark
+EnumErr =ZMotorMoveFailLaserPos
+Description = Top Laser Z Motor Move Laser Pos Fail
+Action=Please Ensure Top Laser Z Motor is Servo On
+
+[TopLaserMark]
+Station=TopLaserMark
+EnumErr =ZMotorMoveOffsetFail
+Description = Top Laser Z Motor Move Offset Fail
+Action=Please Ensure Top Laser Z Motor is Servo On
+
+
+

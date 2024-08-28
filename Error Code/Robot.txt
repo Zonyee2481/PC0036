@@ -1,0 +1,227 @@
+[Robot]
+Station=Robot
+EnumErr =InitErr_UnitPrstAtRobot
+Description = Robot Home Detect Product Present Fail
+Action=Please Ensure Robot Arm is Clear
+
+[Robot]
+Station=Robot
+EnumErr =InitErr_HomePos_Fail
+Description = Robot Home Fail
+Action=Please Ensure Robot Motor is Servo On
+
+[Robot]
+Station=Robot
+EnumErr =InitErr_HomePos_Timeout
+Description = Robot Home TimeOut
+Action=Please Ensure Robot Motor is Servo On
+
+[Robot]
+Station=Robot
+EnumErr =HomePos_Fail
+Description = Robot Home Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =HomePos_Timeout
+Description = Robot Home Timeout
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =OutRotTableSafePos_GripperOpen_Fail
+Description = Robot Moving Output Rotary Safe Pos (Gripper Open) Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =OutRotTableSafePos_GripperOpen_Timeout
+Description = Robot Moving Output Rotary Safe Pos (Gripper Open) TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =OutRotTableSafePos_Fail
+Description = Robot Moving Output Rotary Safe Pos Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =OutRotTableSafePos_Timeout
+Description = Robot Moving Output Rotary Safe Pos TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =PickOutRotTableUnit_Fail
+Description = Robot Moving Pick Output Rotary Product Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =PickOutRotTableUnit_Timeout
+Description = Robot Moving Pick Output Rotary Product Timeout
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcSafePos_GrpOpn_Fail
+Description = Robot Moving Strapping Machine Safe Pos (Gripper Open) Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcSafePos_GrpOpn_Timeout
+Description = Robot Moving Strapping Machine Safe Pos (Gripper Open) TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcSafePos_Fail
+Description = Robot Moving Strapping Machine Safe Pos Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcSafePos_Timeout
+Description = Robot Moving Strapping Machine Safe Pos TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcGrpPos_Fail
+Description = Robot Moving Strapping Machine Gripper Pos Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcGrpPos_Timeout
+Description = Robot Moving Strapping Machine Gripper Pos TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =LoadUnitToStrpMc_Fail
+Description = Robot Moving Load Product to Strapping Machine Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =LoadUnitToStrpMc_Timeout
+Description = Robot Moving Load Product to Strapping Machine TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =PickStrpMcUnit_Fail
+Description = Robot Moving Pick Strapping Machine Product Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =PickStrpMcUnit_Timeout
+Description = Robot Moving Pick Strapping Machine Product TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =UldConvSafePos_GrpOpen_Fail
+Description = Robot Moving Unload Conveyor Safe Pos (Gripper Open) Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =UldConvSafePos_GrpOpen_Timeout
+Description = Robot Moving Unload Conveyor Safe Pos (Gripper Open) TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =UldConvSafePos_Fail
+Description = Robot Moving Unload Conveyor Safe Pos Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =UldConvSafePos_Timeout
+Description = Robot Moving Unload Conveyor Safe Pos TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =UnitPlaceToUldConv_Fail
+Description = Robot Moving Place Product to Unload Conveyor Fail
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =UnitPlaceToUldConv_Timeout
+Description = Robot Moving Place Product to Unload Conveyor TimeOut
+Action=Please Ensure Robot Motor is Servo On Without Error
+
+[Robot]
+Station=Robot
+EnumErr =Rbt_UnitNotPrst
+Description = Product Missing Detected / Product Not Seated Properly at The Robot
+Action=Please Ensure Product Seated Properly at The Robot
+
+[Robot]
+Station=Robot
+EnumErr =Rbt_UnitPrst
+Description = Product Detected / Sensor Detected Something at The Robot
+Action=Please Ensure No Product Present at The Robot
+
+[Robot]
+Station=Robot
+EnumErr =RbtStatusNotReady
+Description = Robot Status is Busy
+Action=Please Ensure The Robot is Not Busy / Moving
+
+[Robot]
+Station=Robot
+EnumErr =Rbt_GrpOpen_Fail
+Description = Robot Gripper Open Fail
+Action=Please Ensure Robot Gripper is Open
+
+[Robot]
+Station=Robot
+EnumErr =Rbt_GrpOpen_Timeout
+Description = Robot Gripper Open TimeOut
+Action=Please Ensure Robot Gripper is Open
+
+[Robot]
+Station=Robot
+EnumErr =Rbt_GrpClose_Fail
+Description = Robot Gripper Close Fail
+Action=Please Ensure Robot Gripper is Open
+
+[Robot]
+Station=Robot
+EnumErr =Rbt_GrpClose_Timeout
+Description = Robot Gripper Close TimeOut
+Action=Please Ensure Robot Gripper is Close
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcGrpOpnExtFail
+Description = Strapping Machine Gripper Open (Exnted) Fail
+Action=Please Ensure Strapping Machine Gripper Open (Exnted)
+
+[Robot]
+Station=Robot
+EnumErr =StrpMcGrpClsRetFail
+Description = Strapping Machine Gripper Close (Retract) Fail
+Action=Please Ensure Strapping Machine Gripper Close (Retract)
+
+[Robot]
+Station=Robot
+EnumErr =StrpMc_UnitNotPrst
+Description = Product Missing Detected / Product Not Seated Properly at The Strapping Machine
+Action=Please Ensure Product Seated Properly at The Strapping Machine
+
+[Robot]
+Station=Robot
+EnumErr =StrpMc_UnitPrst
+Description = Product Detected / Sensor Detected Something at The Strapping Machine
+Action=Please Ensure No Product Present at The Strapping Machine

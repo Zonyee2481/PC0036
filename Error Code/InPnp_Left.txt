@@ -1,0 +1,75 @@
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =Init_ZmotorHomeFail
+Description = InPnp Left Z Motor Home Fail
+Action=Please Ensure InPnp Left Z Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =MagazinePresentBeforePnpMove
+Description = InPnp Left Moving Path is Obstructed
+Action=Ensure the Conveyor InPnp Left X Moving Path is Clear
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =ZMotorMoveFailTo_PickDown
+Description = InPnp Left Z Motor Move Down Pick Fail
+Action=Please Ensure InPnp Left Z Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =ZMotorMoveFailTo_PickUp
+Description = InPnp Left Z Motor Move to Pick Up Fail
+Action=Please Ensure InPnp Left Z Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =ZMotorMoveFailTo_LoadDown
+Description = InPnp Left Z Motor Move Down Load Fail
+Action=Please Ensure InPnp Left Z Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =ZMotorMoveFailTo_UnloadUp
+Description = InPnp Left Z Motor Move Unload Up Fail
+Action=Please Ensure InPnp Left Z Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =ZMotorMoveFailTo_UnloadDown
+Description = InPnp Left Z Motor Move to Down Unload Fail
+Action=Please Ensure InPnp Left Z Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =XMotorMoveFailTo_Standby
+Description = InPnp Left X Motor Move to Pick Pos Fail
+Action=Please Ensure InPnp Left X Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =XMotorMoveFailTo_Load
+Description = InPnp Left X Motor Move to Loading Station Fail
+Action=Please Ensure InPnp Left X Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =XMotorMoveFailTo_Unload
+Description = InPnp Left X Motor Move to Unloading Station Fail
+Action=Please Ensure InPnp Left X Motor is Servo On
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =GripperOpenFail
+Description = InPnp Left Gripper Cylinder Open Fail
+Action=Please Ensure the Left is Not MulFunction
+
+[InPnp_Left]
+Station=InPnp_Left
+EnumErr =GripperCloseFail
+Description = InPnp Left Gripper Cylinder Close Fail
+Action=Please Ensure the Left is Not MulFunction
+
+
+
+

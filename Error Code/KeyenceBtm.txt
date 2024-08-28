@@ -1,0 +1,11 @@
+[KeyenceBtm]
+Station=KeyenceBtm
+EnumErr = TcpModuleIsNotConnected
+Description = Bottom Keyence Module Is Not Connected
+Action=Please Ensure the Bottom Keyence Controller is Power On and Reconnecting the Connection
+
+[KeyenceBtm]
+Station=KeyenceBtm
+EnumErr = SnapTimeOut
+Description = Bottom Keyence Decode TimeOut
+Action = Ensure the Product Bottom Keyence is Clear

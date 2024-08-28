@@ -1,0 +1,75 @@
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =Init_ZmotorHomeFail
+Description = InPnp Right Z Motor Home Fail
+Action=Please Ensure InPnp Right Z Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =MagazinePresentBeforePnpMove
+Description = InPnp Right Moving Path is Obstructed
+Action=Ensure the Conveyor InPnp Right X Moving Path is Clear
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =ZMotorMoveFailTo_PickDown
+Description = InPnp Right Z Motor Move Down Pick Fail
+Action=Please Ensure InPnp Right Z Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =ZMotorMoveFailTo_PickUp
+Description = InPnp Right Z Motor Move to Pick Up Fail
+Action=Please Ensure InPnp Right Z Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =ZMotorMoveFailTo_LoadDown
+Description = InPnp Right Z Motor Move Down Load Fail
+Action=Please Ensure InPnp Right Z Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =ZMotorMoveFailTo_UnloadUp
+Description = InPnp Right Z Motor Move Unload Up Fail
+Action=Please Ensure InPnp Right Z Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =ZMotorMoveFailTo_UnloadDown
+Description = InPnp Right Z Motor Move to Down Unload Fail
+Action=Please Ensure InPnp Right Z Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =XMotorMoveFailTo_Standby
+Description = InPnp Right X Motor Move to Pick Pos Fail
+Action=Please Ensure InPnp Right X Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =XMotorMoveFailTo_Load
+Description = InPnp Right X Motor Move to Loading Station Fail
+Action=Please Ensure InPnp Right X Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =XMotorMoveFailTo_Unload
+Description = InPnp Right X Motor Move to Unloading Station Fail
+Action=Please Ensure InPnp Right X Motor is Servo On
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =GripperOpenFail
+Description = InPnp Right Gripper Cylinder Open Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[InPnp_Right]
+Station=InPnp_Right
+EnumErr =GripperCloseFail
+Description = InPnp Right Gripper Cylinder Close Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+
+
+

@@ -1,0 +1,18 @@
+[TurnTable]
+Station=TurnTable
+EnumErr =RMotorHomeFail
+Description = TurntTable R Motor Homing Fail
+Action=Please Ensure TurntTable R Motor is Servo On
+
+[TurnTable]
+Station=TurnTable
+EnumErr =RMotorMoveStandbyFail
+Description = TurntTable R Motor Move Standby Fail
+Action=Please Ensure TurntTable R Motor is Servo On
+
+[TurnTable]
+Station=TurnTable
+EnumErr =IndexFail
+Description = TurntTable R Motor Index Fail
+Action=Please Ensure TurntTable R Motor is Servo On
+

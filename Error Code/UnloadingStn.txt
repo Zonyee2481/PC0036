@@ -1,0 +1,39 @@
+[UnloadingStn]
+Station=UnloadingStn
+EnumErr =UnitNotSeatedProperlyAtTurnTbl
+Description = Unloading Station Product Not Detected
+Action=Please Ensure the Product is Present and Seated Properly at TurnTable
+
+[UnloadingStn]
+Station=UnloadingStn
+EnumErr =ZHomeFail
+Description = Unloading Station Z Motor Home Fail
+Action=Please Ensure Unloading Station Z Motor is Servo On
+
+[UnloadingStn]
+Station=UnloadingStn
+EnumErr =ZMotorMoveFailTurntblPos
+Description = Unloading Station Z Motor Move TurnTable Pos Fail
+Action=Please Ensure Unloading Station Z Motor is Servo On
+
+[UnloadingStn]
+Station=UnloadingStn
+EnumErr =ZMotorMoveFailMagPos
+Description = Unloading Station Z Motor Move To Magazine Pos Fail
+Action=Please Ensure Unloading Station Z Motor is Servo On
+
+[UnloadingStn]
+Station=UnloadingStn
+EnumErr =ZMotorMoveFailGoDown
+Description = Unloading Station Z Motor Move Down Pos Fail
+Action=Please Ensure Unloading Station Z Motor is Servo On
+
+[UnloadingStn]
+Station=UnloadingStn
+EnumErr =UnitLeftOver
+Description = Unloading Station Product Leftover
+Action=Please Ensure Product Being Unload
+
+
+
+

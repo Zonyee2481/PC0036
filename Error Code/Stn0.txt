@@ -1,0 +1,92 @@
+[Stn0]
+Station=Stn0
+EnumErr =Init_ClrSenseDetected
+Description = [1001]Loading Station Clear Sensor Blocked
+Action=Please Ensure Loading Station is Empty
+
+[Stn0]
+Station=Stn0
+EnumErr =Init_ZmotorHomeFail
+Description = [1002]Loading Station Z Motor Home Fail
+Action=Please Ensure Loading Station Z Motor is Servo On
+
+[Stn0]
+Station=Stn0
+EnumErr =ZMotorMoveFailMagPos
+Description = [1003]Loading Station Z Motor Move To Magazine Pos Fail
+Action=Please Ensure Loading Station Z Motor is Servo On
+
+[Stn0]
+Station=Stn0
+EnumErr =VacFailToON
+Description = [1004]Loading Station Vacuum On Fail When Picking Product
+Action=Please Ensure Loading Station Z Product is picked properly and the Incoming Vacuum is enough
+
+[Stn0]
+Station=Stn0
+EnumErr =ZMotorMoveFailIndex
+Description = [1005]Loading Station Z Motor Move Index Fail
+Action=Please Ensure Loading Station Z Motor is Servo On
+
+[Stn0]
+Station=Stn0
+EnumErr =ZMotorMoveFailTurntblPos
+Description = [1006]Loading Station Z Motor Move to Turntable Pos Fail
+Action=Please Ensure Loading Station Z Motor is Servo On
+
+[Stn0]
+Station=Stn0
+EnumErr =ZMotorMoveFailRestPos
+Description = [1007]Loading Station Z Motor Move to Down Pos Fail
+Action=Please Ensure Loading Station Z Motor is Servo On
+
+[Stn0]
+Station=Stn0
+EnumErr =HolderMagazine_NotPsn
+Description = [1008]Loading Station Magazine Not Present
+Action=Please Ensure the Magazine is Properly Seated at Loading Station
+
+[Stn0]
+Station=Stn0
+EnumErr =HolderMagazine_TightFail
+Description = [1009]Loading Station Magazine Clamp Fail
+Action=Please Ensure the Magazine is Properly Seated and the Cylinder is Not MulFunction
+
+[Stn0]
+Station=Stn0
+EnumErr =HolderMagazine_UnTightFail
+Description = [1010]Loading Station Magazine UnClamp Fail
+Action=Please Ensure the Cylinder is Not MulFunction
+
+[Stn0]
+Station=Stn0
+EnumErr =HolderMagazine_SuppOpenFail
+Description = [1011]Loading Station Magazine Support Cylinder Open Fail
+Action=Please Ensure the Cylinder has No Blockage and is Not MulFunction
+
+[Stn0]
+Station=Stn0
+EnumErr =HolderMagazine_SuppCloseFail
+Description = [1012]Magazine Support Cylinder Close Fail
+Action=Please Ensure the Cylinder has No Blockage and is Not MulFunction
+
+[Stn0]
+Station=Stn0
+EnumErr =HolderMagazine_ItemLeftoverORStucked
+Description = [1013]Loading Station Clear Sensor Detected
+Action=Please Remove the Double Unit Product.
+
+[Stn0]
+Station=Stn0
+EnumErr =UnitNotPsnt
+Description = [1014]Loading Station Product Not Detected
+Action=Please Manually Remove the Magazine and Check the Product Arrangement, Make Sure No Product is Stucked On it and Put the Magazine Back to the Loading Station.
+
+
+
+
+
+
+
+
+

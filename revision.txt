@@ -1,0 +1,3 @@
+1.0.0.0 - Adding support Galil motion card B140
+1.0.0.1 - Adding support ICPDAS io module ET-2254P
+1.0.0.2 - Adding support ViNet io card & module ViE-iD3802-00

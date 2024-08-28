@@ -1,0 +1,5 @@
+[ConvOut_Left]
+Station=ConvOut_Left
+EnumErr =InitErr_MagPsntAtLoadStg
+Description = Magazine Detected at Pnp Left Moving Path
+Action=Please Ensure Magazine is Empty at Pnp Left Output Position

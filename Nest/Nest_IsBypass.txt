@@ -1,0 +1,17 @@
+[Nest_IsBypass]
+Nest_IsBypass0 = False
+Nest_IsBypass1 = False
+Nest_IsBypass2 = False
+Nest_IsBypass3 = False
+Nest_IsBypass4 = False
+Nest_IsBypass5 = False
+Nest_IsBypass6 = False
+Nest_IsBypass7 = False
+Nest_IsBypass8 = False
+Nest_IsBypass9 = False
+Nest_IsBypass10 = False
+Nest_IsBypass11 = False
+Nest_IsBypass12 = False
+Nest_IsBypass13 = False
+Nest_IsBypass14 = False
+Nest_IsBypass15 = False

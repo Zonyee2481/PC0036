@@ -1,0 +1,11 @@
+[KeyenceTop]
+Station=KeyenceTop
+EnumErr = TcpModuleIsNotConnected
+Description = Top Keyence Module Is Not Connected
+Action=Please Ensure the Top Keyence Controller is Power On and Reconnecting the Connection
+
+[KeyenceTop]
+Station=KeyenceTop
+EnumErr = SnapTimeOut
+Description = Top Keyence Decode TimeOut
+Action = Ensure the Product Top Keyence is Clear

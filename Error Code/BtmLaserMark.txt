@@ -1,0 +1,38 @@
+[BtmLaserMark]
+Station=BtmLaserMark
+EnumErr =ChillerAlarm
+Description = Bottom Laser Chiller Alarm
+Action=Please Ensure Chiller Is Power On and is Running
+
+[BtmLaserMark]
+Station=BtmLaserMark
+EnumErr =TcpModuleIsNotConnected
+Description = Bottom Laser Module Is Not Connected
+Action=Please Ensure the Bottom Laser Controller is Power On and Reconnecting the Connection
+
+[BtmLaserMark]
+Station=BtmLaserMark
+EnumErr =UnitNotSeatedProperly
+Description = Unit Missing/ Unit Not Seated Properly at The Nest 
+Action = Ensure the Laser Station product has seated properly
+
+[BtmLaserMark]
+Station=BtmLaserMark
+EnumErr =ZMotorHomeFail
+Description = Bottom Laser Z Motor Home Fail
+Action=Please Ensure Bottom Laser Z Motor is Servo On
+
+[BtmLaserMark]
+Station=BtmLaserMark
+EnumErr =ZMotorMoveFailLaserPos
+Description = Bottom Laser Z Motor Move Laser Pos Fail
+Action=Please Ensure Bottom Laser Z Motor is Servo On
+
+[BtmLaserMark]
+Station=BtmLaserMark
+EnumErr =ZMotorMoveOffsetFail
+Description = Bottom Laser Z Motor Move Offset Fail
+Action=Please Ensure Bottom Laser Z Motor is Servo On
+
+
+
