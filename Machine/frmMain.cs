@@ -323,17 +323,17 @@ namespace Machine
             //lbl_Recipe.Text = "Recipe: " + GDefine.Recipe.ToString();
             CheckAccessPage();
 
-            DateTime dt = DateTime.Now;
-            if (Convert.ToDateTime(GDefine._sCurrentDate) < dt.Date)
-            {
-                GDefine._sCurrentDate = dt.ToString("dd-MM-yyyy");
-                GDefine.SaveCurrentDate();
-                //for (int i = 0; i < TaskDeviceRecipe.aiCounter.Count(); i++)
-                //{
-                //    TaskDeviceRecipe.aiCounter[i] = 0;
-                //}
-                TaskDeviceRecipe.SaveDeviceRecipe(); ;
-            }
+            //DateTime dt = DateTime.Now;
+            //if (Convert.ToDateTime(GDefine._sCurrentDate) < dt.Date)
+            //{
+            //    GDefine._sCurrentDate = dt.ToString("dd-MM-yyyy");
+            //    GDefine.SaveCurrentDate();
+            //    //for (int i = 0; i < TaskDeviceRecipe.aiCounter.Count(); i++)
+            //    //{
+            //    //    TaskDeviceRecipe.aiCounter[i] = 0;
+            //    //}
+            //    TaskDeviceRecipe.SaveDeviceRecipe(); ;
+            //}
 
             try
             {

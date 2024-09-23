@@ -15,7 +15,7 @@ namespace MotionIODevice.IO
         private List<TOutput> outputList = new List<TOutput>();
         void BuildIOCard()
         {
-            ioBoards.Add(new UniDAQ_ET_2254P(0, "192.168.1.11", 502));
+            ioBoards.Add(new UniDAQ_ET_2254P(0, "192.168.1.12", 502));
 
             //ioBoards.Add(new UniDAQ_ET_2254P(1, "192.168.1.11", 502));
 

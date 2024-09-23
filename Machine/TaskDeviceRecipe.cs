@@ -58,7 +58,7 @@ namespace Machine
 
                 _LotInfo._RecipeInfo.DeviceID = IniFile.ReadString("DeviceRecipe", "DeviceID", FileName.Replace(GDefine.DeviceRecipeExt, ""));                
                 _LotInfo._RecipeInfo.Index = IniFile.ReadInteger("DeviceRecipe", "AssignedCode", 0);
-                _LotInfo._RecipeInfo.Counter = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
+                //_LotInfo._RecipeInfo.Counter = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
                 _LotInfo._RecipeInfo.TimeLimit = IniFile.ReadDouble("DeviceRecipe", "TimeLimit", 0);               
 
                 frmMain.SequenceRun.RecipeInfo(_LotInfo);
@@ -95,7 +95,7 @@ namespace Machine
                 {
                     IniFile.Create(GDefine.DevicePath + @"\", Files[i].ToString());
 
-                    asDeviceID[i] = IniFile.ReadString("DeviceRecipe", "DeviceID", "");                  
+                    asDeviceID[i] = Files[i].Name.Replace(GDefine.DeviceRecipeExt, "");                  
                     aiAssignedNo[i] = IniFile.ReadInteger("DeviceRecipe", "AssignedCode", 0);
                     //aiCounter[i] = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
                     adDuration[i] = IniFile.ReadDouble("DeviceRecipe", "TimeLimit", 0);

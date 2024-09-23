@@ -98,33 +98,14 @@ namespace MotionIODevice.IO
             inputList.Add(new TInput(uBoardNo, 6, 0, 0x06, "", "", ""));
             inputList.Add(new TInput(uBoardNo, 7, 0, 0x07, "", "", ""));
 
-            //inputList.Add(new TInput(uBoardNo, 8, 0, 0x01, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 9, 0, 0x02, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 10, 0, 0x04, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 11, 0, 0x08, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 12, 0, 0x10, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 13, 0, 0x20, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 14, 0, 0x40, "", "", ""));
-            //inputList.Add(new TInput(uBoardNo, 15, 0, 0x80, "", "", ""));
-
-            // Output
-            //outputList.Add(new TOutput(uBoardNo, 0, 0, 0x00, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 1, 0, 0x01, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 2, 0, 0x02, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 3, 0, 0x03, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 4, 0, 0x04, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 5, 0, 0x05, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 6, 0, 0x06, "", "", ""));
-            //outputList.Add(new TOutput(uBoardNo, 7, 0, 0x07, "", "", ""));
-
-            outputList.Add(new TOutput(uBoardNo, 8, 0, 0x01, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 9, 0, 0x02, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 10, 0, 0x04, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 11, 0, 0x08, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 12, 0, 0x10, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 13, 0, 0x20, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 14, 0, 0x40, "", "", ""));
-            outputList.Add(new TOutput(uBoardNo, 15, 0, 0x80, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 8, 0, 0x00, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 9, 0, 0x01, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 10, 0, 0x02, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 11, 0, 0x03, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 12, 0, 0x04, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 13, 0, 0x05, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 14, 0, 0x06, "", "", ""));
+            outputList.Add(new TOutput(uBoardNo, 15, 0, 0x07, "", "", ""));
         }
 
         public bool UpdateInput(ref TInput Input)
@@ -238,6 +219,7 @@ namespace MotionIODevice.IO
 
         public bool OutBit(int eBit, TOutputStatus state)
         {
+            if (eBit >= 8) { eBit -= 8; }
             int bit = eBit;
             if (!IsBoardOpened) { return false; }
             TOutput data = outputList[bit];

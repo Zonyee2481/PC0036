@@ -729,7 +729,7 @@ namespace Machine
         {
             if (!Visible) return;
             lbl_Mode.Text = TaskIO.ReadBit_AutoMode() ? "Auto Mode" : "Manual Mode";
-            lbl_Mode.BackColor = TaskIO.ReadBit_AutoMode() ? Color.Yellow : Color.Blue;
+            lbl_Mode.BackColor = TaskIO.ReadBit_AutoMode() ? Color.Orange : Color.Blue;
             //lbl_Mode.Text = "Auto Mode";
             //lbl_Mode.BackColor = Color.Blue;
             ShowRunningNumbers();
