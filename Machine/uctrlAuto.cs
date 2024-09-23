@@ -696,7 +696,7 @@ namespace Machine
             string D = dateTime.Date.ToString("dd-MM-yyyy");
             string T = dateTime.ToString("HH:mm:ss tt");
 
-            if (!TaskLotInfo.CheckLotCounter(txtDeviceID.Text, dateTime))
+            if (!TaskLotInfo.CheckLotCounter(txtDeviceID.Text.Substring(0, 3), dateTime))
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;

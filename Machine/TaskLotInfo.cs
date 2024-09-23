@@ -45,7 +45,7 @@ namespace Machine
             if (M.Length == 1) { M = "0" + M; }
             string MY = M + "-" + Y;
 
-            string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + MY + "\\" + D + "\\" + LotInfo.LotNum + "\\";
+            string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + MY + "\\" + D + "\\" + LotInfo.PartNum + "\\" + LotInfo.LotNum + "_" + D + "_" + Convert.ToDateTime(LotInfo.TimeIn).ToString("HHmmss") + "\\";
             string LotFile = LotDir + D + "_" + Convert.ToDateTime(LotInfo.TimeIn).ToString("HHmmss") + ".txt";
 
             if (!Directory.Exists(LotDir)) { Directory.CreateDirectory(LotDir); }
@@ -118,7 +118,7 @@ namespace Machine
 
             if (Directory.Exists(LotDir))
             {
-                fileCount = Directory.GetFiles(LotDir).Length;
+                fileCount = Directory.GetDirectories(LotDir).Length;
             }
 
             return (fileCount < GDefine._iMaxCounter);

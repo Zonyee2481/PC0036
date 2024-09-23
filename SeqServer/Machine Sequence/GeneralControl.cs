@@ -99,9 +99,8 @@ namespace SeqServer
             Begin = 1,
             TurnOnBitCode,
             TurnOnStartControl,
-            TurnOnStartBtnLED,
             WaitStartTimer,
-            TurnOffStartBtnLED,
+            TurnOffStartControl,
             SetTimer,
             CheckTimesUp,
             TurnOnTimesUp,
@@ -137,6 +136,10 @@ namespace SeqServer
                                     m_MyFlag.MsgArg.MachineStatus = eMcState.MC_INITIALIZED;
                                     m_SeqEventPool.FireEvent(EV_TYPE.InitDone, this);
                                     FireEvent2UI(m_MyFlag.MsgArg);
+                                    TimesUp = false;
+                                    StartCtrlRelay = false;
+                                    StartBtnLED = false;
+                                    ClearBitCode();
                                     m_RunSeq = RunSeq.EOS;
                                 }
                                 break;
@@ -157,17 +160,13 @@ namespace SeqServer
                             case RunSeq.TurnOnStartControl:
                                 {
                                     StartCtrlRelay = true;
-                                    m_RunSeq = RunSeq.TurnOnStartBtnLED;
-                                }
-                                break;
-                            case RunSeq.TurnOnStartBtnLED:
-                                {
                                     StartBtnLED = true;
                                     m_RunSeq = RunSeq.WaitStartTimer;
                                 }
                                 break;
-                            case RunSeq.TurnOffStartBtnLED:
+                            case RunSeq.TurnOffStartControl:
                                 {
+                                    StartCtrlRelay = false;
                                     StartBtnLED = false;
                                     m_RunSeq = RunSeq.SetTimer;
                                 }
@@ -271,6 +270,14 @@ namespace SeqServer
             BitCode_8 = bitCode8;
         }
 
+        private void ClearBitCode()
+        {
+            BitCode_1 = false;
+            BitCode_2 = false;
+            BitCode_4 = false;
+            BitCode_8 = false;
+        }
+
         private bool StartCtrlRelay
         {
             set
@@ -324,7 +331,7 @@ namespace SeqServer
                     if (ReadBit(IN.START_TIMER.ToString()))
 #endif
                 {
-                    m_RunSeq = RunSeq.TurnOffStartBtnLED;
+                    m_RunSeq = RunSeq.TurnOffStartControl;
                 }
             }
         }
