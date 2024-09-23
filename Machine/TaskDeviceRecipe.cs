@@ -46,7 +46,7 @@ namespace Machine
         public static Part Part = new Part();
         public static string[] asDeviceID = new string[arrMax];
         public static int[] aiAssignedNo = new int[arrMax];
-        public static int[] aiCounter = new int[arrMax];
+        //public static int[] aiCounter = new int[arrMax];
         public static double[] adDuration = new double[arrMax];        
 
         public static void LoadDeviceRecipe(string Path, string FileName)
@@ -73,7 +73,7 @@ namespace Machine
             {
                 asDeviceID = new string[arrMax];
                 aiAssignedNo = new int[arrMax];
-                aiCounter = new int[arrMax];
+                //aiCounter = new int[arrMax];
                 adDuration = new double[arrMax];
 
                 DirectoryInfo d = new DirectoryInfo(GDefine.DevicePath);//Assuming Test is your Folder
@@ -97,7 +97,7 @@ namespace Machine
 
                     asDeviceID[i] = IniFile.ReadString("DeviceRecipe", "DeviceID", "");                  
                     aiAssignedNo[i] = IniFile.ReadInteger("DeviceRecipe", "AssignedCode", 0);
-                    aiCounter[i] = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
+                    //aiCounter[i] = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
                     adDuration[i] = IniFile.ReadDouble("DeviceRecipe", "TimeLimit", 0);
                 }
             }
@@ -114,7 +114,7 @@ namespace Machine
 
                 IniFile.WriteString("DeviceRecipe", "DeviceID", asDeviceID[i]);
                 IniFile.WriteInteger("DeviceRecipe", "AssignedCode", aiAssignedNo[i]);
-                IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
+                //IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
                 IniFile.WriteDouble("DeviceRecipe", "TimeLimit", adDuration[i]);
             }
             catch { }
@@ -161,7 +161,7 @@ namespace Machine
                     IniFile.Create(d + @"\", Files[i].Name);
                     IniFile.WriteString("DeviceRecipe", "DeviceID", asDeviceID[i]);
                     IniFile.WriteInteger("DeviceRecipe", "AssignedCode", aiAssignedNo[i]);
-                    IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
+                    //IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
                     IniFile.WriteDouble("DeviceRecipe", "TimeLimit", adDuration[i]);
                 }
 
@@ -178,7 +178,7 @@ namespace Machine
                 ES.Net.IniFile IniFile = new ES.Net.IniFile();
                 IniFile.Create(GDefine.DevicePath + @"\", FileName + ".ini");
 
-                IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
+                //IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
 
                 LoadDeviceRecipe();
             }

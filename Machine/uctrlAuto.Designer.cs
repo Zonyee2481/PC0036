@@ -50,24 +50,27 @@ namespace Machine
             this.lbox_Log = new System.Windows.Forms.ListBox();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlLeftRight = new System.Windows.Forms.Panel();
-            this.pnlLeftLeft = new System.Windows.Forms.Panel();
-            this.gbMcPerformance = new System.Windows.Forms.GroupBox();
-            this.lbl_McRunTime = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbl_McIdleTime = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbl_McOPTime = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pnlMiddle = new System.Windows.Forms.Panel();
             this.pbMachine = new System.Windows.Forms.PictureBox();
             this.pnlLotInfo = new System.Windows.Forms.Panel();
             this.gbLotInfo = new System.Windows.Forms.GroupBox();
+            this.lblInvalid = new System.Windows.Forms.Label();
+            this.lblProdNotFound = new System.Windows.Forms.Label();
             this.txtDeviceID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLotNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblProdNotFound = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.gbMcPerformance = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbl_McOPTime = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbl_McIdleTime = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_McRunTime = new System.Windows.Forms.Label();
+            this.pnlLeftLeft = new System.Windows.Forms.Panel();
+            this.dgvRunningLot = new System.Windows.Forms.DataGridView();
             this.pnlRight.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -79,12 +82,14 @@ namespace Machine
             this.pnlLog.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.pnlLeftRight.SuspendLayout();
-            this.pnlLeftLeft.SuspendLayout();
-            this.gbMcPerformance.SuspendLayout();
             this.pnlMiddle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMachine)).BeginInit();
             this.pnlLotInfo.SuspendLayout();
             this.gbLotInfo.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.gbMcPerformance.SuspendLayout();
+            this.pnlLeftLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRunningLot)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlRight
@@ -327,6 +332,7 @@ namespace Machine
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.panel2);
             this.pnlLeft.Controls.Add(this.pnlLeftRight);
             this.pnlLeft.Controls.Add(this.pnlLeftLeft);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -338,107 +344,22 @@ namespace Machine
             // pnlLeftRight
             // 
             this.pnlLeftRight.Controls.Add(this.groupBox3);
-            this.pnlLeftRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftRight.Location = new System.Drawing.Point(200, 0);
             this.pnlLeftRight.Name = "pnlLeftRight";
-            this.pnlLeftRight.Size = new System.Drawing.Size(200, 633);
+            this.pnlLeftRight.Size = new System.Drawing.Size(200, 392);
             this.pnlLeftRight.TabIndex = 1;
             // 
-            // pnlLeftLeft
+            // groupBox3
             // 
-            this.pnlLeftLeft.Controls.Add(this.gbMcPerformance);
-            this.pnlLeftLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeftLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeftLeft.Name = "pnlLeftLeft";
-            this.pnlLeftLeft.Size = new System.Drawing.Size(200, 633);
-            this.pnlLeftLeft.TabIndex = 0;
-            // 
-            // gbMcPerformance
-            // 
-            this.gbMcPerformance.Controls.Add(this.lbl_McRunTime);
-            this.gbMcPerformance.Controls.Add(this.label6);
-            this.gbMcPerformance.Controls.Add(this.lbl_McIdleTime);
-            this.gbMcPerformance.Controls.Add(this.label7);
-            this.gbMcPerformance.Controls.Add(this.lbl_McOPTime);
-            this.gbMcPerformance.Controls.Add(this.label10);
-            this.gbMcPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbMcPerformance.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.gbMcPerformance.ForeColor = System.Drawing.Color.DarkBlue;
-            this.gbMcPerformance.Location = new System.Drawing.Point(0, 0);
-            this.gbMcPerformance.Name = "gbMcPerformance";
-            this.gbMcPerformance.Size = new System.Drawing.Size(200, 633);
-            this.gbMcPerformance.TabIndex = 0;
-            this.gbMcPerformance.TabStop = false;
-            this.gbMcPerformance.Text = "Machine Perfomance";
-            // 
-            // lbl_McRunTime
-            // 
-            this.lbl_McRunTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_McRunTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbl_McRunTime.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_McRunTime.Location = new System.Drawing.Point(6, 44);
-            this.lbl_McRunTime.Name = "lbl_McRunTime";
-            this.lbl_McRunTime.Size = new System.Drawing.Size(188, 22);
-            this.lbl_McRunTime.TabIndex = 70;
-            this.lbl_McRunTime.Text = "0";
-            this.lbl_McRunTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 22);
-            this.label6.TabIndex = 69;
-            this.label6.Text = "Machine Run Time:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbl_McIdleTime
-            // 
-            this.lbl_McIdleTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_McIdleTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbl_McIdleTime.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_McIdleTime.Location = new System.Drawing.Point(6, 129);
-            this.lbl_McIdleTime.Name = "lbl_McIdleTime";
-            this.lbl_McIdleTime.Size = new System.Drawing.Size(188, 22);
-            this.lbl_McIdleTime.TabIndex = 68;
-            this.lbl_McIdleTime.Text = "0";
-            this.lbl_McIdleTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label7
-            // 
-            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 107);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(188, 22);
-            this.label7.TabIndex = 67;
-            this.label7.Text = "Machine Idle Time:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbl_McOPTime
-            // 
-            this.lbl_McOPTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_McOPTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbl_McOPTime.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_McOPTime.Location = new System.Drawing.Point(6, 85);
-            this.lbl_McOPTime.Name = "lbl_McOPTime";
-            this.lbl_McOPTime.Size = new System.Drawing.Size(188, 22);
-            this.lbl_McOPTime.TabIndex = 66;
-            this.lbl_McOPTime.Text = "0";
-            this.lbl_McOPTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label10
-            // 
-            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 63);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(188, 22);
-            this.label10.TabIndex = 65;
-            this.label10.Text = "Machine Operation Time:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.groupBox3.ForeColor = System.Drawing.Color.DarkBlue;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 392);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Machine Perfomance";
             // 
             // pnlMiddle
             // 
@@ -474,6 +395,7 @@ namespace Machine
             // 
             // gbLotInfo
             // 
+            this.gbLotInfo.Controls.Add(this.lblInvalid);
             this.gbLotInfo.Controls.Add(this.lblProdNotFound);
             this.gbLotInfo.Controls.Add(this.txtDeviceID);
             this.gbLotInfo.Controls.Add(this.label2);
@@ -486,6 +408,32 @@ namespace Machine
             this.gbLotInfo.TabStop = false;
             this.gbLotInfo.Text = "Lot Info";
             // 
+            // lblInvalid
+            // 
+            this.lblInvalid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblInvalid.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvalid.ForeColor = System.Drawing.Color.Red;
+            this.lblInvalid.Location = new System.Drawing.Point(182, 49);
+            this.lblInvalid.Name = "lblInvalid";
+            this.lblInvalid.Size = new System.Drawing.Size(188, 22);
+            this.lblInvalid.TabIndex = 71;
+            this.lblInvalid.Text = "** Product Not Found! **";
+            this.lblInvalid.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblInvalid.Visible = false;
+            // 
+            // lblProdNotFound
+            // 
+            this.lblProdNotFound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblProdNotFound.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProdNotFound.ForeColor = System.Drawing.Color.Red;
+            this.lblProdNotFound.Location = new System.Drawing.Point(182, 49);
+            this.lblProdNotFound.Name = "lblProdNotFound";
+            this.lblProdNotFound.Size = new System.Drawing.Size(188, 22);
+            this.lblProdNotFound.TabIndex = 70;
+            this.lblProdNotFound.Text = "** Product Not Found! **";
+            this.lblProdNotFound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblProdNotFound.Visible = false;
+            // 
             // txtDeviceID
             // 
             this.txtDeviceID.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -494,6 +442,7 @@ namespace Machine
             this.txtDeviceID.Size = new System.Drawing.Size(476, 31);
             this.txtDeviceID.TabIndex = 14;
             this.txtDeviceID.TextChanged += new System.EventHandler(this.txtDeviceID_TextChanged);
+            this.txtDeviceID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDeviceID_KeyDown);
             // 
             // label2
             // 
@@ -501,9 +450,9 @@ namespace Machine
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 25);
+            this.label2.Size = new System.Drawing.Size(129, 25);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Product Number:";
+            this.label2.Text = "Lot Number:";
             // 
             // txtLotNo
             // 
@@ -526,30 +475,118 @@ namespace Machine
             this.label1.Text = "Lot Number:";
             this.label1.Visible = false;
             // 
-            // lblProdNotFound
+            // panel2
             // 
-            this.lblProdNotFound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblProdNotFound.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProdNotFound.ForeColor = System.Drawing.Color.Red;
-            this.lblProdNotFound.Location = new System.Drawing.Point(182, 49);
-            this.lblProdNotFound.Name = "lblProdNotFound";
-            this.lblProdNotFound.Size = new System.Drawing.Size(188, 22);
-            this.lblProdNotFound.TabIndex = 70;
-            this.lblProdNotFound.Text = "** Product Not Found! **";
-            this.lblProdNotFound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblProdNotFound.Visible = false;
+            this.panel2.Controls.Add(this.dgvRunningLot);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 398);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(400, 235);
+            this.panel2.TabIndex = 2;
             // 
-            // groupBox3
+            // gbMcPerformance
             // 
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.groupBox3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 633);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Machine Perfomance";
+            this.gbMcPerformance.Controls.Add(this.lbl_McRunTime);
+            this.gbMcPerformance.Controls.Add(this.label6);
+            this.gbMcPerformance.Controls.Add(this.lbl_McIdleTime);
+            this.gbMcPerformance.Controls.Add(this.label7);
+            this.gbMcPerformance.Controls.Add(this.lbl_McOPTime);
+            this.gbMcPerformance.Controls.Add(this.label10);
+            this.gbMcPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbMcPerformance.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.gbMcPerformance.ForeColor = System.Drawing.Color.DarkBlue;
+            this.gbMcPerformance.Location = new System.Drawing.Point(0, 0);
+            this.gbMcPerformance.Name = "gbMcPerformance";
+            this.gbMcPerformance.Size = new System.Drawing.Size(200, 392);
+            this.gbMcPerformance.TabIndex = 0;
+            this.gbMcPerformance.TabStop = false;
+            this.gbMcPerformance.Text = "Machine Perfomance";
+            // 
+            // label10
+            // 
+            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 63);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(188, 22);
+            this.label10.TabIndex = 65;
+            this.label10.Text = "Machine Operation Time:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_McOPTime
+            // 
+            this.lbl_McOPTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_McOPTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_McOPTime.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_McOPTime.Location = new System.Drawing.Point(6, 85);
+            this.lbl_McOPTime.Name = "lbl_McOPTime";
+            this.lbl_McOPTime.Size = new System.Drawing.Size(188, 22);
+            this.lbl_McOPTime.TabIndex = 66;
+            this.lbl_McOPTime.Text = "0";
+            this.lbl_McOPTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 107);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(188, 22);
+            this.label7.TabIndex = 67;
+            this.label7.Text = "Machine Idle Time:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_McIdleTime
+            // 
+            this.lbl_McIdleTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_McIdleTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_McIdleTime.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_McIdleTime.Location = new System.Drawing.Point(6, 129);
+            this.lbl_McIdleTime.Name = "lbl_McIdleTime";
+            this.lbl_McIdleTime.Size = new System.Drawing.Size(188, 22);
+            this.lbl_McIdleTime.TabIndex = 68;
+            this.lbl_McIdleTime.Text = "0";
+            this.lbl_McIdleTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(188, 22);
+            this.label6.TabIndex = 69;
+            this.label6.Text = "Machine Run Time:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_McRunTime
+            // 
+            this.lbl_McRunTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_McRunTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_McRunTime.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_McRunTime.Location = new System.Drawing.Point(6, 44);
+            this.lbl_McRunTime.Name = "lbl_McRunTime";
+            this.lbl_McRunTime.Size = new System.Drawing.Size(188, 22);
+            this.lbl_McRunTime.TabIndex = 70;
+            this.lbl_McRunTime.Text = "0";
+            this.lbl_McRunTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pnlLeftLeft
+            // 
+            this.pnlLeftLeft.Controls.Add(this.gbMcPerformance);
+            this.pnlLeftLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeftLeft.Name = "pnlLeftLeft";
+            this.pnlLeftLeft.Size = new System.Drawing.Size(200, 392);
+            this.pnlLeftLeft.TabIndex = 0;
+            // 
+            // dgvRunningLot
+            // 
+            this.dgvRunningLot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRunningLot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRunningLot.Location = new System.Drawing.Point(0, 0);
+            this.dgvRunningLot.Name = "dgvRunningLot";
+            this.dgvRunningLot.Size = new System.Drawing.Size(400, 235);
+            this.dgvRunningLot.TabIndex = 157;
             // 
             // uctrlAuto
             // 
@@ -573,13 +610,15 @@ namespace Machine
             this.pnlLog.ResumeLayout(false);
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeftRight.ResumeLayout(false);
-            this.pnlLeftLeft.ResumeLayout(false);
-            this.gbMcPerformance.ResumeLayout(false);
             this.pnlMiddle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMachine)).EndInit();
             this.pnlLotInfo.ResumeLayout(false);
             this.gbLotInfo.ResumeLayout(false);
             this.gbLotInfo.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.gbMcPerformance.ResumeLayout(false);
+            this.pnlLeftLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRunningLot)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -613,6 +652,10 @@ namespace Machine
         private System.Windows.Forms.Panel pnlLog;
         private System.Windows.Forms.PictureBox pbMachine;
         private System.Windows.Forms.Panel pnlLeftRight;
+        private System.Windows.Forms.Label lblProdNotFound;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblInvalid;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlLeftLeft;
         private System.Windows.Forms.GroupBox gbMcPerformance;
         private System.Windows.Forms.Label lbl_McRunTime;
@@ -621,7 +664,6 @@ namespace Machine
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbl_McOPTime;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblProdNotFound;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dgvRunningLot;
     }
 }

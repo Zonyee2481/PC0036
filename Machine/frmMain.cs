@@ -328,10 +328,10 @@ namespace Machine
             {
                 GDefine._sCurrentDate = dt.ToString("dd-MM-yyyy");
                 GDefine.SaveCurrentDate();
-                for (int i = 0; i < TaskDeviceRecipe.aiCounter.Count(); i++)
-                {
-                    TaskDeviceRecipe.aiCounter[i] = 0;
-                }
+                //for (int i = 0; i < TaskDeviceRecipe.aiCounter.Count(); i++)
+                //{
+                //    TaskDeviceRecipe.aiCounter[i] = 0;
+                //}
                 TaskDeviceRecipe.SaveDeviceRecipe(); ;
             }
 

@@ -23,7 +23,7 @@ namespace Machine
             lv_DeviceRecipeList.Columns.Add("Assigned Code", 100);            
             lv_DeviceRecipeList.Columns.Add("Duration 1", 120);
             lv_DeviceRecipeList.Columns.Add("Duration 2", 120);
-            lv_DeviceRecipeList.Columns.Add("Counter", 50);
+            //lv_DeviceRecipeList.Columns.Add("Counter", 50);
         }
         public static uctrlDeviceRecipe Page = new uctrlDeviceRecipe();
         public void ShowPage(Control parent)
@@ -62,7 +62,7 @@ namespace Machine
                     arr[2] = TaskDeviceRecipe.aiAssignedNo[i].ToString();
                     arr[3] = TaskDeviceRecipe.adDuration[i].ToString("0.0000");
                     arr[4] = H + " H " + M + " M " + S + " S ";
-                    arr[5] = TaskDeviceRecipe.aiCounter[i].ToString();
+                    //arr[5] = TaskDeviceRecipe.aiCounter[i].ToString();
                     itm = new ListViewItem(arr);
                     lv_DeviceRecipeList.Items.Add(itm);
                 }
@@ -84,7 +84,7 @@ namespace Machine
             form._bNew = true;
             form._sDeviceID = "";
             form._iAssignedNo = 0;
-            form._iCounter = 0;
+            //form._iCounter = 0;
             form._dDuration = 0;
 
             form.ShowDialog();
@@ -105,7 +105,7 @@ namespace Machine
                     form._iAssignedNo = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);                    
                     form._dDuration = Convert.ToDouble(lv_DeviceRecipeList.Items[i].SubItems[3].Text);
                     form._sDuration_2 = lv_DeviceRecipeList.Items[i].SubItems[4].Text;
-                    form._iCounter = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[5].Text);
+                    //form._iCounter = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[5].Text);
                     form.ShowDialog();
                     ClearListView();
                     UpdateListView();

@@ -99,7 +99,7 @@ namespace Machine
 
                 TaskDeviceRecipe.asDeviceID[Files.Count()] = txt_DeviceID.Text;
                 TaskDeviceRecipe.aiAssignedNo[Files.Count()] = cmbAssignCode.SelectedIndex;
-                TaskDeviceRecipe.aiCounter[Files.Count()] = Convert.ToInt32(txt_Counter.Text);
+                //TaskDeviceRecipe.aiCounter[Files.Count()] = Convert.ToInt32(txt_Counter.Text);
                 TaskDeviceRecipe.adDuration[Files.Count()] = Convert.ToDouble(txt_Duration.Text);
                 TaskDeviceRecipe.SaveDeviceRecipe(txt_DeviceID.Text, Files.Count());
             }
@@ -111,7 +111,7 @@ namespace Machine
                     TaskDeviceRecipe.RenameDeviceRecipe(oldFileName, txt_DeviceID.Text);
                     TaskDeviceRecipe.asDeviceID[_iIndex] = txt_DeviceID.Text;
                     TaskDeviceRecipe.aiAssignedNo[_iIndex] = cmbAssignCode.SelectedIndex;
-                    TaskDeviceRecipe.aiCounter[_iIndex] = Convert.ToInt32(txt_Counter.Text);
+                    //TaskDeviceRecipe.aiCounter[_iIndex] = Convert.ToInt32(txt_Counter.Text);
                     TaskDeviceRecipe.adDuration[_iIndex] = Convert.ToDouble(txt_Duration.Text);
                     TaskDeviceRecipe.SaveDeviceRecipe(txt_DeviceID.Text, _iIndex);
                 }
@@ -119,7 +119,7 @@ namespace Machine
                 {
                     TaskDeviceRecipe.asDeviceID[_iIndex] = txt_DeviceID.Text;
                     TaskDeviceRecipe.aiAssignedNo[_iIndex] = cmbAssignCode.SelectedIndex;
-                    TaskDeviceRecipe.aiCounter[_iIndex] = Convert.ToInt32(txt_Counter.Text);
+                    //TaskDeviceRecipe.aiCounter[_iIndex] = Convert.ToInt32(txt_Counter.Text);
                     TaskDeviceRecipe.adDuration[_iIndex] = Convert.ToDouble(txt_Duration.Text);
                     TaskDeviceRecipe.SaveDeviceRecipe(txt_DeviceID.Text, _iIndex);
                 }
@@ -133,7 +133,7 @@ namespace Machine
             {
                 txt_DeviceID.Text = _sDeviceID;
                 cmbAssignCode.SelectedIndex = _iAssignedNo;
-                txt_Counter.Text = _iCounter.ToString();
+                //txt_Counter.Text = _iCounter.ToString();
                 txt_Duration.Text = _dDuration.ToString();
                 time = Convert.ToInt32(_dDuration * (60 * 60));
                 S = time % 60;
@@ -147,7 +147,7 @@ namespace Machine
             {
                 txt_DeviceID.Text = "";
                 cmbAssignCode.SelectedIndex = 0;
-                txt_Counter.Text = _iCounter.ToString();
+                //txt_Counter.Text = _iCounter.ToString();
                 txt_Duration.Text = _dDuration.ToString();
                 time = Convert.ToInt32(_dDuration * (60 * 60));
                 S = time % 60;
@@ -232,10 +232,10 @@ namespace Machine
             DialogResult dialogResult = frmMsg.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                _iCounter = 0;
-                TaskDeviceRecipe.aiCounter[_iIndex] = 0;
-                TaskDeviceRecipe.ResetFileCounter(txt_DeviceID.Text, _iIndex);
-                txt_Counter.Text = TaskDeviceRecipe.aiCounter[_iIndex].ToString();
+                //_iCounter = 0;
+                //TaskDeviceRecipe.aiCounter[_iIndex] = 0;
+                //TaskDeviceRecipe.ResetFileCounter(txt_DeviceID.Text, _iIndex);
+                //txt_Counter.Text = TaskDeviceRecipe.aiCounter[_iIndex].ToString();
             }
             else if (dialogResult == DialogResult.Cancel)
             {

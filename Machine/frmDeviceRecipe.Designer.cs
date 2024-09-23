@@ -39,6 +39,8 @@
             this.tmr_UpdateDisplay = new System.Windows.Forms.Timer(this.components);
             this.grb_DeviceRecipe = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gbBitCodes = new System.Windows.Forms.GroupBox();
+            this.pnlBitCode = new System.Windows.Forms.Panel();
             this.txtDuration_2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Reset = new System.Windows.Forms.Button();
@@ -46,8 +48,6 @@
             this.txt_Counter = new System.Windows.Forms.TextBox();
             this.cmbAssignCode = new System.Windows.Forms.ComboBox();
             this.txt_Duration = new System.Windows.Forms.Label();
-            this.gbBitCodes = new System.Windows.Forms.GroupBox();
-            this.pnlBitCode = new System.Windows.Forms.Panel();
             this.grb_DeviceRecipe.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbBitCodes.SuspendLayout();
@@ -88,6 +88,7 @@
             this.label31.TabIndex = 174;
             this.label31.Text = "5. Counter:";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label31.Visible = false;
             // 
             // label32
             // 
@@ -171,6 +172,26 @@
             this.panel1.Size = new System.Drawing.Size(665, 493);
             this.panel1.TabIndex = 300;
             // 
+            // gbBitCodes
+            // 
+            this.gbBitCodes.Controls.Add(this.pnlBitCode);
+            this.gbBitCodes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbBitCodes.Location = new System.Drawing.Point(0, 0);
+            this.gbBitCodes.Name = "gbBitCodes";
+            this.gbBitCodes.Size = new System.Drawing.Size(665, 493);
+            this.gbBitCodes.TabIndex = 0;
+            this.gbBitCodes.TabStop = false;
+            this.gbBitCodes.Text = "Bit Code";
+            // 
+            // pnlBitCode
+            // 
+            this.pnlBitCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBitCode.Enabled = false;
+            this.pnlBitCode.Location = new System.Drawing.Point(3, 16);
+            this.pnlBitCode.Name = "pnlBitCode";
+            this.pnlBitCode.Size = new System.Drawing.Size(659, 474);
+            this.pnlBitCode.TabIndex = 0;
+            // 
             // txtDuration_2
             // 
             this.txtDuration_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,6 +223,7 @@
             this.btn_Reset.TabIndex = 296;
             this.btn_Reset.Text = "Reset";
             this.btn_Reset.UseVisualStyleBackColor = true;
+            this.btn_Reset.Visible = false;
             this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
             // label2
@@ -223,6 +245,7 @@
             this.txt_Counter.ReadOnly = true;
             this.txt_Counter.Size = new System.Drawing.Size(134, 26);
             this.txt_Counter.TabIndex = 294;
+            this.txt_Counter.Visible = false;
             // 
             // cmbAssignCode
             // 
@@ -248,26 +271,6 @@
             this.txt_Duration.Text = "0";
             this.txt_Duration.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.txt_Duration.Click += new System.EventHandler(this.txt_Duration_Click);
-            // 
-            // gbBitCodes
-            // 
-            this.gbBitCodes.Controls.Add(this.pnlBitCode);
-            this.gbBitCodes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbBitCodes.Location = new System.Drawing.Point(0, 0);
-            this.gbBitCodes.Name = "gbBitCodes";
-            this.gbBitCodes.Size = new System.Drawing.Size(665, 493);
-            this.gbBitCodes.TabIndex = 0;
-            this.gbBitCodes.TabStop = false;
-            this.gbBitCodes.Text = "Bit Code";
-            // 
-            // pnlBitCode
-            // 
-            this.pnlBitCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBitCode.Enabled = false;
-            this.pnlBitCode.Location = new System.Drawing.Point(3, 16);
-            this.pnlBitCode.Name = "pnlBitCode";
-            this.pnlBitCode.Size = new System.Drawing.Size(659, 474);
-            this.pnlBitCode.TabIndex = 0;
             // 
             // frmDeviceRecipe
             // 

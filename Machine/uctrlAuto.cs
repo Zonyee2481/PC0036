@@ -299,7 +299,7 @@ namespace Machine
                     break;
                 case eMcState.MC_RUNNING:
                     InvokeHelper.Enable(btn_Start, false);
-                    InvokeHelper.Enable(btn_Stop, true);                    
+                    InvokeHelper.Enable(btn_Stop, true);
                     InvokeHelper.Text(lbl_MachineState, "Running");
                     InvokeHelper.BackColor(lbl_MachineState, Color.LimeGreen);
                     InvokeHelper.ForeColor(lbl_MachineState, Color.White);
@@ -512,7 +512,7 @@ namespace Machine
                     return true;
                 }
             }
-            _Err:
+        _Err:
             //msgForm = new frmMessaging2();
             //msgForm.StartPosition = FormStartPosition.CenterParent;
             //msgForm.ShowMsg("Device Recipe Not Found!", frmMessaging2.TMsgBtn.smbOK);
@@ -526,7 +526,7 @@ namespace Machine
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;
-                msgForm.ShowMsg("Product " + txtDeviceID.Text + " Is Ran Out Of Today Limit Count " + GDefine._iMaxCounter + "!" , frmMessaging2.TMsgBtn.smbOK);
+                msgForm.ShowMsg("Product " + txtDeviceID.Text + " Is Ran Out Of Today Limit Count " + GDefine._iMaxCounter + "!", frmMessaging2.TMsgBtn.smbOK);
                 DialogResult dialogResult = msgForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
@@ -536,7 +536,7 @@ namespace Machine
             }
             TaskDeviceRecipe._LotInfo._RecipeInfo.Counter++;
             return true;
-            _Err:
+        _Err:
             return false;
         }
 
@@ -688,6 +688,38 @@ namespace Machine
             return true;
         }
 
+        public bool StartLot2()
+        {
+            DateTime dateTime = DateTime.Now;
+            string year = dateTime.Date.ToString("yyyy");
+            string month = dateTime.Date.ToString("MM");
+            string D = dateTime.Date.ToString("dd-MM-yyyy");
+            string T = dateTime.ToString("HH:mm:ss tt");
+
+            if (!TaskLotInfo.CheckLotCounter(txtDeviceID.Text, dateTime))
+            {
+                msgForm = new frmMessaging2();
+                msgForm.StartPosition = FormStartPosition.CenterParent;
+                msgForm.ShowMsg("Lot " + txtDeviceID.Text + " Is Ran Out Of Today Limit Count " + GDefine._iMaxCounter + "!", frmMessaging2.TMsgBtn.smbOK);
+                DialogResult dialogResult = msgForm.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    goto _Abort;
+                }
+            }
+
+            TaskLotInfo.LotInfo.LotNum = txtDeviceID.Text;
+            TaskLotInfo.LotInfo.PartNum = txtDeviceID.Text.Substring(0, 3);
+            TaskLotInfo.LotInfo.DateIn = D;
+            TaskLotInfo.LotInfo.TimeIn = T;
+
+            TaskLotInfo.LotInfo.Activated = true;
+
+            return true;
+        _Abort:
+            return false;
+        }
+
         public void ResetMcCtrl()
         {
             AddToLog($"Reset Click");
@@ -769,15 +801,68 @@ namespace Machine
 
         private void txtDeviceID_TextChanged(object sender, EventArgs e)
         {
-            InvokeHelper.Visible(lblProdNotFound, false);
-            if (!CheckDeviceRecipe(txtDeviceID.Text))
+            //InvokeHelper.Visible(lblProdNotFound, false);
+
+            //if (!CheckDeviceRecipe(txtDeviceID.Text))
+            //{
+            //    bool visible = txtDeviceID.Text != string.Empty ? true : false;
+            //    InvokeHelper.Visible(lblProdNotFound, visible);
+            //    return;
+            //}
+
+            //if (!StartLot())
+            //{
+            //    return;
+            //}
+
+            //StartMcCtrl();
+        }
+
+        private bool CheckValidLotNumberLength(string LotNumber)
+        {
+            if (LotNumber.Length < 8)
             {
-                bool visible = txtDeviceID.Text != string.Empty ? true : false;
-                InvokeHelper.Visible(lblProdNotFound, visible);
+                return false;
+                //msgForm = new frmMessaging2();
+                //msgForm.StartPosition = FormStartPosition.CenterParent;
+                //msgForm.ShowMsg("Invalid Lot Number " + txtDeviceID.Text + "! (Length < 8)", frmMessaging2.TMsgBtn.smbOK);
+                //DialogResult dialogResult = msgForm.ShowDialog();
+                //if (dialogResult == DialogResult.OK)
+                //{
+                //    return false;
+                //}
+            }
+
+            return true;
+        }
+
+        private void txtDeviceID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) { return; }
+
+            string deviceID = string.Empty;
+            InvokeHelper.Visible(lblInvalid, false);
+            if (!CheckValidLotNumberLength(txtDeviceID.Text))
+            {
+                InvokeHelper.Text(lblInvalid, "** Invalid Lot Number Length! **");
+                InvokeHelper.Visible(lblInvalid, true);
                 return;
             }
 
-            if (!StartLot())
+            deviceID = txtDeviceID.Text.Substring(0, 3);
+
+            if (!CheckDeviceRecipe(deviceID))
+            {
+                InvokeHelper.Text(lblInvalid, "** Product Not Found! **");
+                InvokeHelper.Visible(lblInvalid, true);
+                return;
+            }
+
+            TaskDeviceRecipe.LoadDeviceRecipe(GDefine.DevicePath, deviceID + GDefine.DeviceRecipeExt);
+            TaskDeviceRecipe.SaveDeviceRecipe();
+            GDefine.SaveDefaultFile();
+
+            if (!StartLot2())
             {
                 return;
             }
