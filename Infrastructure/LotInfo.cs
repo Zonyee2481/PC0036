@@ -21,7 +21,7 @@ namespace Infrastructure
         public string DeviceID = "";
         public int Index = -1;
         public int Counter = 0;
-        public double TimeLimit = 0;
+        public int TimeLimit = 0;
     }
 
     //public class BitCodeInfo

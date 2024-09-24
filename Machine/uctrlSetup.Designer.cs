@@ -32,26 +32,26 @@ namespace Machine
             this.pnlSetup = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlBottom = new System.Windows.Forms.Panel();
+            this.gbBitCodes = new System.Windows.Forms.GroupBox();
+            this.pnlBitCodesPoint = new System.Windows.Forms.Panel();
+            this.pnlTop = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_Save = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_MaxCount = new System.Windows.Forms.Label();
-            this.gbBitCodes = new System.Windows.Forms.GroupBox();
-            this.pnlBitCodesPoint = new System.Windows.Forms.Panel();
             this.pnlTitle = new System.Windows.Forms.Panel();
             this.lbl_Title = new System.Windows.Forms.Label();
-            this.pnlTop = new System.Windows.Forms.Panel();
-            this.pnlBottom = new System.Windows.Forms.Panel();
             this.pnlSetup.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlBottom.SuspendLayout();
+            this.gbBitCodes.SuspendLayout();
+            this.pnlTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.gbBitCodes.SuspendLayout();
             this.pnlTitle.SuspendLayout();
-            this.pnlTop.SuspendLayout();
-            this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSetup
@@ -82,6 +82,44 @@ namespace Machine
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(650, 779);
             this.panel3.TabIndex = 1;
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Controls.Add(this.gbBitCodes);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 193);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(650, 586);
+            this.pnlBottom.TabIndex = 1;
+            // 
+            // gbBitCodes
+            // 
+            this.gbBitCodes.Controls.Add(this.pnlBitCodesPoint);
+            this.gbBitCodes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbBitCodes.Location = new System.Drawing.Point(0, 0);
+            this.gbBitCodes.Name = "gbBitCodes";
+            this.gbBitCodes.Size = new System.Drawing.Size(650, 586);
+            this.gbBitCodes.TabIndex = 1;
+            this.gbBitCodes.TabStop = false;
+            this.gbBitCodes.Text = "Bit Code";
+            // 
+            // pnlBitCodesPoint
+            // 
+            this.pnlBitCodesPoint.AutoScroll = true;
+            this.pnlBitCodesPoint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBitCodesPoint.Location = new System.Drawing.Point(3, 16);
+            this.pnlBitCodesPoint.Name = "pnlBitCodesPoint";
+            this.pnlBitCodesPoint.Size = new System.Drawing.Size(644, 567);
+            this.pnlBitCodesPoint.TabIndex = 0;
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Controls.Add(this.groupBox1);
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(650, 193);
+            this.pnlTop.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -126,44 +164,24 @@ namespace Machine
             this.label1.Location = new System.Drawing.Point(15, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 32);
+            this.label1.Size = new System.Drawing.Size(193, 32);
             this.label1.TabIndex = 156;
-            this.label1.Text = "Max Counter:";
+            this.label1.Text = "Max Lot Running Counter Per Day:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbl_MaxCount
             // 
             this.lbl_MaxCount.BackColor = System.Drawing.Color.White;
             this.lbl_MaxCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_MaxCount.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_MaxCount.Location = new System.Drawing.Point(122, 12);
+            this.lbl_MaxCount.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lbl_MaxCount.Location = new System.Drawing.Point(212, 12);
             this.lbl_MaxCount.Margin = new System.Windows.Forms.Padding(2);
             this.lbl_MaxCount.Name = "lbl_MaxCount";
-            this.lbl_MaxCount.Size = new System.Drawing.Size(89, 32);
+            this.lbl_MaxCount.Size = new System.Drawing.Size(101, 32);
             this.lbl_MaxCount.TabIndex = 155;
             this.lbl_MaxCount.Text = "-";
             this.lbl_MaxCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbl_MaxCount.Click += new System.EventHandler(this.lbl_MaxCount_Click);
-            // 
-            // gbBitCodes
-            // 
-            this.gbBitCodes.Controls.Add(this.pnlBitCodesPoint);
-            this.gbBitCodes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbBitCodes.Location = new System.Drawing.Point(0, 0);
-            this.gbBitCodes.Name = "gbBitCodes";
-            this.gbBitCodes.Size = new System.Drawing.Size(650, 586);
-            this.gbBitCodes.TabIndex = 1;
-            this.gbBitCodes.TabStop = false;
-            this.gbBitCodes.Text = "Bit Code";
-            // 
-            // pnlBitCodesPoint
-            // 
-            this.pnlBitCodesPoint.AutoScroll = true;
-            this.pnlBitCodesPoint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBitCodesPoint.Location = new System.Drawing.Point(3, 16);
-            this.pnlBitCodesPoint.Name = "pnlBitCodesPoint";
-            this.pnlBitCodesPoint.Size = new System.Drawing.Size(644, 567);
-            this.pnlBitCodesPoint.TabIndex = 0;
             // 
             // pnlTitle
             // 
@@ -186,24 +204,6 @@ namespace Machine
             this.lbl_Title.Text = "Setup";
             this.lbl_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnlTop
-            // 
-            this.pnlTop.Controls.Add(this.groupBox1);
-            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTop.Location = new System.Drawing.Point(0, 0);
-            this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(650, 193);
-            this.pnlTop.TabIndex = 0;
-            // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Controls.Add(this.gbBitCodes);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 193);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(650, 586);
-            this.pnlBottom.TabIndex = 1;
-            // 
             // uctrlSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,12 +214,12 @@ namespace Machine
             this.pnlSetup.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.pnlBottom.ResumeLayout(false);
+            this.gbBitCodes.ResumeLayout(false);
+            this.pnlTop.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.gbBitCodes.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
-            this.pnlTop.ResumeLayout(false);
-            this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

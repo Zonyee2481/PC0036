@@ -190,7 +190,7 @@ namespace Machine
 
             _iMaxCounter = IniFile.ReadInteger("Default", "MaxCounter", _iMaxCounter);            
             SM.RecipeName = TaskDeviceRecipe._LotInfo.PartNum = IniFile.ReadString("Default", "Recipe", TaskDeviceRecipe._LotInfo.PartNum);
-            _sCurrentDate = TaskDeviceRecipe._LotInfo.PartNum = IniFile.ReadString("Default", "CurrentDate", _sCurrentDate);
+            _sCurrentDate = IniFile.ReadString("Default", "CurrentDate", _sCurrentDate);
             //SM.Recipe.Index = IniFile.ReadInteger("Default", "Index", TaskDeviceRecipe._RecipeInfo.Index);
             //_bEnabInLaser = IniFile.ReadBool("Enable", "InLaser", _bEnabInLaser);
             //_bEnabOutLaser = IniFile.ReadBool("Enable", "OutLaser", _bEnabOutLaser);
@@ -402,70 +402,70 @@ namespace Machine
         }
 
         #region Waffle pack barcode spec
-        public const string WP = "WP";
-        public const string OutSource = "Y";
-        public static string _2DID = "";
-        public static string Barcode = "";
-        public static string[] Combinations = new string[1679616];
-        public static int _iMarkCounter = 1;
+        //public const string WP = "WP";
+        //public const string OutSource = "Y";
+        //public static string _2DID = "";
+        //public static string Barcode = "";
+        //public static string[] Combinations = new string[1679616];
+        //public static int _iMarkCounter = 1;
         #endregion
-        public const string CounterPath = @"..\Counter\";
+        //public const string CounterPath = @"..\Counter\";
 
-        public static string IndexFile = "index.txt";
-        public static void LoadCounter()
-        {
-            IndexFile = TaskDeviceRecipe._sDeviceID + "_" + GetMonth();
-            ES.Net.IniFile IniFile = new ES.Net.IniFile();
-            if (!File.Exists(CounterPath + IndexFile + ".txt"))
-            {
-                IniFile.Create(CounterPath + IndexFile);
-                IniFile.WriteInteger("Counter", "Index", 0);
-            }
+        //public static string IndexFile = "index.txt";
+        //public static void LoadCounter()
+        //{
+        //    IndexFile = TaskDeviceRecipe._sDeviceID + "_" + GetMonth();
+        //    ES.Net.IniFile IniFile = new ES.Net.IniFile();
+        //    if (!File.Exists(CounterPath + IndexFile + ".txt"))
+        //    {
+        //        IniFile.Create(CounterPath + IndexFile);
+        //        IniFile.WriteInteger("Counter", "Index", 0);
+        //    }
 
-            _iCounter = IniFile.ReadInteger("Counter", "Index", _iCounter);
-        }
+        //    _iCounter = IniFile.ReadInteger("Counter", "Index", _iCounter);
+        //}
 
-        public static void SaveCounter()
-        {
-            IndexFile = TaskDeviceRecipe._sDeviceID + "_" + GetMonth();
-            ES.Net.IniFile IniFile = new ES.Net.IniFile();
-            if (!File.Exists(CounterPath + IndexFile + ".txt"))
-            {
-                IniFile.Create(CounterPath + IndexFile);
-            }
+        //public static void SaveCounter()
+        //{
+        //    IndexFile = TaskDeviceRecipe._sDeviceID + "_" + GetMonth();
+        //    ES.Net.IniFile IniFile = new ES.Net.IniFile();
+        //    if (!File.Exists(CounterPath + IndexFile + ".txt"))
+        //    {
+        //        IniFile.Create(CounterPath + IndexFile);
+        //    }
 
-            IniFile.WriteInteger("Counter", "Index", _iCounter);
-        }
+        //    IniFile.WriteInteger("Counter", "Index", _iCounter);
+        //}
 
-        public static string GetMonth()
-        {
-            string month = DateTime.Now.ToString("%M");
-            switch (month)
-            {
-                case "10":
-                    month = "0";
-                    break;
-                case "11":
-                    month = "A";
-                    break;
-                case "12":
-                    month = "B";
-                    break;
-            }
-            return month;
-        }
-        public static string GenerateBarcode()
-        {
-            string FixCode = GDefine.WP;
+        //public static string GetMonth()
+        //{
+        //    string month = DateTime.Now.ToString("%M");
+        //    switch (month)
+        //    {
+        //        case "10":
+        //            month = "0";
+        //            break;
+        //        case "11":
+        //            month = "A";
+        //            break;
+        //        case "12":
+        //            month = "B";
+        //            break;
+        //    }
+        //    return month;
+        //}
+        //public static string GenerateBarcode()
+        //{
+        //    string FixCode = GDefine.WP;
 
-            string _sYear = DateTime.Now.ToString("yy");
-            string _sMonth = GetMonth();
-            string _sRowCol = TaskDeviceRecipe._iRow.ToString() + TaskDeviceRecipe._iCol.ToString();
-            string _OutsourceCode = GDefine.OutSource;
-            string _RunningNum = GDefine.Combinations[TaskDeviceRecipe._LotInfo.Counter - 1];
+        //    string _sYear = DateTime.Now.ToString("yy");
+        //    string _sMonth = GetMonth();
+        //    string _sRowCol = TaskDeviceRecipe._iRow.ToString() + TaskDeviceRecipe._iCol.ToString();
+        //    string _OutsourceCode = GDefine.OutSource;
+        //    string _RunningNum = GDefine.Combinations[TaskDeviceRecipe._LotInfo.Counter - 1];
 
-            return FixCode + _sYear + _sMonth + _sRowCol + _OutsourceCode + _RunningNum;
-        }
+        //    return FixCode + _sYear + _sMonth + _sRowCol + _OutsourceCode + _RunningNum;
+        //}
 
         //public static void MarkInfo(string[] _asOffset, int _iIndex)
         //{
@@ -568,44 +568,44 @@ namespace Machine
 
             return true;
         }
-        public static void ResetCounterFile()
-        {
-            Combinations = new string[1679616];
+        //public static void ResetCounterFile()
+        //{
+        //    Combinations = new string[1679616];
 
-            int count = 0;
+        //    int count = 0;
 
-            for (int i = 0; i < 36; i++)
-            {
-                for (int j = 0; j < 36; j++)
-                {
-                    for (int k = 0; k < 36; k++)
-                    {
-                        for (int l = 0; l < 36; l++)
-                        {
-                            char firstDigit = (char)(i < 10 ? i + 48 : i + 55);
-                            char secondDigit = (char)(j < 10 ? j + 48 : j + 55);
-                            char thirdDigit = (char)(k < 10 ? k + 48 : k + 55);
-                            char fourthDigit = (char)(l < 10 ? l + 48 : l + 55);
+        //    for (int i = 0; i < 36; i++)
+        //    {
+        //        for (int j = 0; j < 36; j++)
+        //        {
+        //            for (int k = 0; k < 36; k++)
+        //            {
+        //                for (int l = 0; l < 36; l++)
+        //                {
+        //                    char firstDigit = (char)(i < 10 ? i + 48 : i + 55);
+        //                    char secondDigit = (char)(j < 10 ? j + 48 : j + 55);
+        //                    char thirdDigit = (char)(k < 10 ? k + 48 : k + 55);
+        //                    char fourthDigit = (char)(l < 10 ? l + 48 : l + 55);
 
-                            if (firstDigit == '0' && secondDigit == '0' && thirdDigit == '0' && l < 1)
-                                continue;
+        //                    if (firstDigit == '0' && secondDigit == '0' && thirdDigit == '0' && l < 1)
+        //                        continue;
 
-                            string combination = $"{firstDigit}{secondDigit}{thirdDigit}{fourthDigit}";
+        //                    string combination = $"{firstDigit}{secondDigit}{thirdDigit}{fourthDigit}";
 
-                            if (combination.Contains("10") || combination.Contains("20") || combination.Contains("30") || combination.Contains("40") || combination.Contains("50") || combination.Contains("60") || combination.Contains("70") || combination.Contains("80") || combination.Contains("90") ||
-                              combination.Contains("A0") || combination.Contains("B0") || combination.Contains("C0") || combination.Contains("D0") || combination.Contains("E0") || combination.Contains("F0") || combination.Contains("G0") || combination.Contains("H0") || combination.Contains("I0") ||
-                               combination.Contains("J0") || combination.Contains("K0") || combination.Contains("L0") || combination.Contains("M0") || combination.Contains("N0") || combination.Contains("O0") || combination.Contains("P0") || combination.Contains("Q0") || combination.Contains("R0") ||
-                                combination.Contains("S0") || combination.Contains("T0") || combination.Contains("U0") || combination.Contains("V0") || combination.Contains("W0") || combination.Contains("X0") || combination.Contains("Y0") || combination.Contains("Z0"))
-                                continue;
+        //                    if (combination.Contains("10") || combination.Contains("20") || combination.Contains("30") || combination.Contains("40") || combination.Contains("50") || combination.Contains("60") || combination.Contains("70") || combination.Contains("80") || combination.Contains("90") ||
+        //                      combination.Contains("A0") || combination.Contains("B0") || combination.Contains("C0") || combination.Contains("D0") || combination.Contains("E0") || combination.Contains("F0") || combination.Contains("G0") || combination.Contains("H0") || combination.Contains("I0") ||
+        //                       combination.Contains("J0") || combination.Contains("K0") || combination.Contains("L0") || combination.Contains("M0") || combination.Contains("N0") || combination.Contains("O0") || combination.Contains("P0") || combination.Contains("Q0") || combination.Contains("R0") ||
+        //                        combination.Contains("S0") || combination.Contains("T0") || combination.Contains("U0") || combination.Contains("V0") || combination.Contains("W0") || combination.Contains("X0") || combination.Contains("Y0") || combination.Contains("Z0"))
+        //                        continue;
 
-                            Combinations[count] = $"{firstDigit}{secondDigit}{thirdDigit}{fourthDigit}";
-                            //InsertData(count, "WP24343Y" + Combinations[count]);
-                            //Log(Combinations[count]);
-                            count++;
-                        }
-                    }
-                }
-            }
+        //                    Combinations[count] = $"{firstDigit}{secondDigit}{thirdDigit}{fourthDigit}";
+        //                    //InsertData(count, "WP24343Y" + Combinations[count]);
+        //                    //Log(Combinations[count]);
+        //                    count++;
+        //                }
+        //            }
+        //        }
+        //    }
 
             //ArrangeData(Combinations);
             //string path = Path.Combine(CounterPath, CounterFile);
@@ -625,7 +625,7 @@ namespace Machine
             //    writer.WriteLine(combination);
             //  }
             //}
-        }
+        //}
 
         public static void Log(string text)
         {

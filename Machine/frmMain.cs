@@ -31,7 +31,7 @@ namespace Machine
             this.Size = new Size(1920, 1040);
             this.Text = "TTOT UI " + Application.ProductVersion.ToString();
             PanelControl = pnl_Form;
-            GDefine.LoadComParam();
+            //GDefine.LoadComParam();
             IOModule = new IOMain();
             //AdvantechModule = new MotionMain_Advantech();
             //MoonStfModule = new MotionMain_MoonsSTF();
@@ -121,6 +121,7 @@ namespace Machine
             AccessConfig.LoadAccessPageConfig();
             uctrlLogin.Page.ShowPage(pnl_Form);
             TaskDeviceRecipe.LoadDeviceRecipe();
+            TaskDeviceRecipe.LoadDeviceTimeLimit(GDefine.DevicePath, SM.RecipeName + GDefine.DeviceRecipeExt);
             TaskBitCode.InitBitCode();
             TaskBitCode.LoadBitCodeRecipe();
 

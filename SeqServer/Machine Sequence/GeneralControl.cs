@@ -136,6 +136,7 @@ namespace SeqServer
                                     m_MyFlag.MsgArg.MachineStatus = eMcState.MC_INITIALIZED;
                                     m_SeqEventPool.FireEvent(EV_TYPE.InitDone, this);
                                     FireEvent2UI(m_MyFlag.MsgArg);
+                                    SM.McProcessTime = 0;
                                     TimesUp = false;
                                     StartCtrlRelay = false;
                                     StartBtnLED = false;
@@ -161,6 +162,7 @@ namespace SeqServer
                                 {
                                     StartCtrlRelay = true;
                                     StartBtnLED = true;
+                                    SM.McProcessTime = (m_LotInfo._RecipeInfo.TimeLimit / 1000);
                                     m_RunSeq = RunSeq.WaitStartTimer;
                                 }
                                 break;
@@ -173,9 +175,10 @@ namespace SeqServer
                                 break;
                             case RunSeq.SetTimer:
                                 {
-                                    int duration = 0;
-                                    ConvertToMilliseconds(m_LotInfo._RecipeInfo.TimeLimit, out duration);
-                                    t = Environment.TickCount + duration;
+                                    //int duration = 0;
+                                    //ConvertToMilliseconds(m_LotInfo._RecipeInfo.TimeLimit, out duration);
+                                    t = Environment.TickCount + m_LotInfo._RecipeInfo.TimeLimit;
+                                    SM.StartCount = true;
                                     m_RunSeq = RunSeq.CheckTimesUp;
                                 }
                                 break;
@@ -183,13 +186,14 @@ namespace SeqServer
                                 {
                                     if (Environment.TickCount > t)
                                     {
+                                        SM.StartCount = false;
                                         m_RunSeq = RunSeq.TurnOnTimesUp;
                                     }
                                 }
                                 break;
                             case RunSeq.TurnOnTimesUp:
                                 {
-                                    TimesUp = true;
+                                    TimesUp = true;                                    
                                     m_RunSeq = RunSeq.WaitEndLot;
                                 }
                                 break;

@@ -93,6 +93,19 @@ namespace Machine
             {
                 dgvSeqNum.Rows[row].Cells[0].Value = $"{totalModules[row]}";
             }
+
+            DataGridViewTextBoxColumn lotColumn1 = new DataGridViewTextBoxColumn();
+            lotColumn1.HeaderText = "Lot Number";
+            lotColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
+            lotColumn1.FillWeight = 1;
+
+            DataGridViewTextBoxColumn lotColumn2 = new DataGridViewTextBoxColumn();
+            lotColumn2.HeaderText = "Count";
+            lotColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
+            lotColumn2.FillWeight = 1;
+
+            dgvRunningLot.Columns.Add(lotColumn1);
+            dgvRunningLot.Columns.Add(lotColumn2);
         }
 
         private void ShowRunningNumbers()
@@ -105,6 +118,19 @@ namespace Machine
                 if (listrunning[row] != "MC_ResumeReq")
                     dgvSeqNum.Rows[row].Cells[1].Value = $"{listrunning[row]}";
             }
+
+            //DateTime currentDate = DateTime.Now;
+
+            //string date = currentDate.ToString("dd-MM-yyyy");
+            //string m = currentDate.Month.ToString();
+            //string y = currentDate.Year.ToString();
+
+            //if (m.Length == 1) { m = "0" + m; }
+            //string my = m + "-" + y;
+
+            //string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + my + "\\" + date;
+
+
         }
 
         public void AddToLog(string S)
@@ -326,8 +352,7 @@ namespace Machine
                         //PromptMessageOk("Lot Finished!");
                         EndLot = false;
                     }
-                    InvokeHelper.Enable(gbLotInfo, true);
-                    //InvokeHelper.Text(txtLotNo, string.Empty);
+                    InvokeHelper.Enable(txtDeviceID, true);
                     InvokeHelper.Text(txtDeviceID, string.Empty);
                     InvokeHelper.Focus(txtDeviceID, true);
                     InvokeHelper.BackColor(lbl_MachineState, Color.Yellow);
@@ -468,35 +493,6 @@ namespace Machine
             InvokeHelper.Enable(this, true);
         }
 
-        bool CheckLotInfoTextBox()
-        {
-            if (txtLotNo.Text == string.Empty)
-            {
-                msgForm = new frmMessaging2();
-                msgForm.StartPosition = FormStartPosition.CenterParent;
-                msgForm.ShowMsg("Lot Number Not Allow To Empty!", frmMessaging2.TMsgBtn.smbOK);
-                DialogResult dialogResult = msgForm.ShowDialog();
-                if (dialogResult == DialogResult.OK)
-                {
-                    return false;
-                }
-            }
-
-            if (txtDeviceID.Text == string.Empty)
-            {
-                msgForm = new frmMessaging2();
-                msgForm.StartPosition = FormStartPosition.CenterParent;
-                msgForm.ShowMsg("Device ID Is Not Allow to Empty!", frmMessaging2.TMsgBtn.smbOK);
-                DialogResult dialogResult = msgForm.ShowDialog();
-                if (dialogResult == DialogResult.OK)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         bool CheckDeviceRecipe(string text)
         {
             DirectoryInfo d = new DirectoryInfo(GDefine.DevicePath);
@@ -573,7 +569,7 @@ namespace Machine
                         //{
                         //    return;
                         //}
-                        InvokeHelper.Enable(gbLotInfo, false);
+                        InvokeHelper.Enable(txtDeviceID, false);
                         AddToLog($"Start Click");
                         SetMcState(eMcState.MC_RUNNING);
                         frmMain.MainEvent.UITriggerEvent(EV_TYPE.BeginSeq);
@@ -654,49 +650,13 @@ namespace Machine
 
         public bool StartLot()
         {
-            //if (!CheckLotInfoTextBox())
-            //{
-            //    return false;
-            //}
-
-            //if (!CheckDeviceRecipe())
-            //{
-            //    return false;
-            //}
-
-            TaskDeviceRecipe.LoadDeviceRecipe(GDefine.DevicePath, txtDeviceID.Text + GDefine.DeviceRecipeExt);
-
-            if (!CheckDeviceCounter())
-            {
-                return false;
-            }
-
-            TaskDeviceRecipe.SaveDeviceRecipe(GDefine.DevicePath, txtDeviceID.Text);
-
-            GDefine.SaveDefaultFile();
-
-            string D = DateTime.Now.Date.ToString("dd-MM-yyyy");
-            string T = DateTime.Now.ToString("HH:mm:ss tt");
-
-            //TaskLotInfo.LotInfo.LotNum = txtLotNo.Text;
-            TaskLotInfo.LotInfo.PartNum = txtDeviceID.Text;
-            TaskLotInfo.LotInfo.DateIn = D;
-            TaskLotInfo.LotInfo.TimeIn = T;
-
-            TaskLotInfo.LotInfo.Activated = true;
-
-            return true;
-        }
-
-        public bool StartLot2()
-        {
             DateTime dateTime = DateTime.Now;
             string year = dateTime.Date.ToString("yyyy");
             string month = dateTime.Date.ToString("MM");
             string D = dateTime.Date.ToString("dd-MM-yyyy");
             string T = dateTime.ToString("HH:mm:ss tt");
 
-            if (!TaskLotInfo.CheckLotCounter(txtDeviceID.Text.Substring(0, 3), dateTime))
+            if (!TaskLotInfo.CheckLotCounter(txtDeviceID.Text, dateTime))
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;
@@ -760,8 +720,6 @@ namespace Machine
                 frmMain.MainEvent.UITriggerEvent(EV_TYPE.FarProcComp, msg);
                 EndLot = true;
             }
-
-        _End:
             tmrSignal.Start();
         }
 
@@ -780,7 +738,11 @@ namespace Machine
 
                 if (SM.McState != eMcState.MC_RUNNING && SM.McState != eMcState.MC_INITIALIZING) SM.McIdleTime++;
 
-                lbl_McIdleTime.Text = TickConverter.Convert2DHMS(SM.McIdleTime, 1);
+                lbl_McIdleTime.Text = TickConverter.Convert2DHMS(SM.McIdleTime, 1);                
+
+                if (SM.McState == eMcState.MC_RUNNING && SM.StartCount) SM.McProcessTime--;
+
+                lbl_McProcessTime.Text = TickConverter.Convert2DHMS(SM.McProcessTime, 1);
 
                 #endregion
             }
@@ -862,7 +824,7 @@ namespace Machine
             TaskDeviceRecipe.SaveDeviceRecipe();
             GDefine.SaveDefaultFile();
 
-            if (!StartLot2())
+            if (!StartLot())
             {
                 return;
             }

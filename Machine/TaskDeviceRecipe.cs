@@ -21,33 +21,53 @@ namespace Machine
     class TaskDeviceRecipe
     {
         public static string _sDeviceID = "";
-        public static string _sDeviceName = "";
-        public static int _iRow = 0;
-        public static int _iCol = 0;
-        public static string _sTopMarkFile = GDefine.AppPath2;
-        public static string _sBottomMarkFile = GDefine.AppPath2;
-        public static double _dTopLaserMarkPos = 0;
-        public static double _dBottomLaserMarkPos = 0;
-        public static int _iOCRRecipe = 0;
+        //public static string _sDeviceName = "";
+        //public static int _iRow = 0;
+        //public static int _iCol = 0;
+        //public static string _sTopMarkFile = GDefine.AppPath2;
+        //public static string _sBottomMarkFile = GDefine.AppPath2;
+        //public static double _dTopLaserMarkPos = 0;
+        //public static double _dBottomLaserMarkPos = 0;
+        //public static int _iOCRRecipe = 0;
 
         public static int arrMax = 999;
         public static int _iTotalCount = 0;
         public static string[] _asDeviceID = new string[arrMax];
-        public static string[] _asDeviceName = new string[arrMax];
-        public static int[] _aiRow = new int[arrMax];
-        public static int[] _aiCol = new int[arrMax];
-        public static string[] _asTopMarkFile = new string[arrMax];
-        public static string[] _asBottomMarkFile = new string[arrMax];
-        public static int[] _aiOCRRecipe = new int[arrMax];
-        public static string[] _aiFixCode = new string[arrMax];
-        public static string[] _aiOutSource = new string[arrMax];
+        //public static string[] _asDeviceName = new string[arrMax];
+        //public static int[] _aiRow = new int[arrMax];
+        //public static int[] _aiCol = new int[arrMax];
+        //public static string[] _asTopMarkFile = new string[arrMax];
+        //public static string[] _asBottomMarkFile = new string[arrMax];
+        //public static int[] _aiOCRRecipe = new int[arrMax];
+        //public static string[] _aiFixCode = new string[arrMax];
+        //public static string[] _aiOutSource = new string[arrMax];
         public static LotInfo _LotInfo = new LotInfo();
-        public static RecipeInfo _RecipeInfo = new RecipeInfo();
-        public static Part Part = new Part();
+        //public static RecipeInfo _RecipeInfo = new RecipeInfo();
+        //public static Part Part = new Part();
         public static string[] asDeviceID = new string[arrMax];
         public static int[] aiAssignedNo = new int[arrMax];
         //public static int[] aiCounter = new int[arrMax];
-        public static double[] adDuration = new double[arrMax];        
+        public static double[] adDuration = new double[arrMax];
+        public static int iHour = 0, iMin = 0, iSec = 0;
+
+        public static void LoadDeviceTimeLimit(string Path, string FileName)
+        {
+            try
+            {
+                ES.Net.IniFile IniFile = new ES.Net.IniFile();
+                IniFile.Create(Path + @"\", FileName);
+
+                int timeLimit= IniFile.ReadInteger("DeviceRecipe", "TimeLimit", 0);
+                TimeSpan timeSpan = TimeSpan.FromMilliseconds(timeLimit);
+
+                iHour = timeSpan.Hours;
+                iMin = timeSpan.Minutes;
+                iSec = timeSpan.Seconds;
+
+                //frmMain.SequenceRun.RecipeInfo(_LotInfo);
+            }
+            catch { }
+        }
 
         public static void LoadDeviceRecipe(string Path, string FileName)
         {
@@ -56,13 +76,17 @@ namespace Machine
                 ES.Net.IniFile IniFile = new ES.Net.IniFile();
                 IniFile.Create(Path + @"\", FileName);
 
-                _LotInfo._RecipeInfo.DeviceID = IniFile.ReadString("DeviceRecipe", "DeviceID", FileName.Replace(GDefine.DeviceRecipeExt, ""));                
+                _LotInfo._RecipeInfo.DeviceID = IniFile.ReadString("DeviceRecipe", "DeviceID", FileName.Replace(GDefine.DeviceRecipeExt, ""));
                 _LotInfo._RecipeInfo.Index = IniFile.ReadInteger("DeviceRecipe", "AssignedCode", 0);
                 //_LotInfo._RecipeInfo.Counter = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
-                _LotInfo._RecipeInfo.TimeLimit = IniFile.ReadDouble("DeviceRecipe", "TimeLimit", 0);               
+                _LotInfo._RecipeInfo.TimeLimit = IniFile.ReadInteger("DeviceRecipe", "TimeLimit", 0);
+                TimeSpan timeSpan = TimeSpan.FromMilliseconds(_LotInfo._RecipeInfo.TimeLimit);
+
+                iHour = timeSpan.Hours;
+                iMin = timeSpan.Minutes;
+                iSec = timeSpan.Seconds;
 
                 frmMain.SequenceRun.RecipeInfo(_LotInfo);
-
             }
             catch { }
         }

@@ -45,8 +45,8 @@ namespace Machine
             if (M.Length == 1) { M = "0" + M; }
             string MY = M + "-" + Y;
 
-            string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + MY + "\\" + D + "\\" + LotInfo.PartNum + "\\" + LotInfo.LotNum + "_" + D + "_" + Convert.ToDateTime(LotInfo.TimeIn).ToString("HHmmss") + "\\";
-            string LotFile = LotDir + D + "_" + Convert.ToDateTime(LotInfo.TimeIn).ToString("HHmmss") + ".txt";
+            string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + MY + "\\" + D + "\\" + LotInfo.PartNum + "\\" + LotInfo.LotNum + "\\";
+            string LotFile = LotDir + LotInfo.LotNum + "_" + D + "_" + Convert.ToDateTime(LotInfo.TimeIn).ToString("HHmmss") + ".txt";
 
             if (!Directory.Exists(LotDir)) { Directory.CreateDirectory(LotDir); }
 
@@ -103,7 +103,7 @@ namespace Machine
             }
         }
 
-        public static bool CheckLotCounter(string PartNumber, DateTime dateTime)
+        public static bool CheckLotCounter(string LotNumber, DateTime dateTime)
         {
             string D = dateTime.Date.ToString("dd-MM-yyyy");
             string M = dateTime.Month.ToString();
@@ -112,13 +112,13 @@ namespace Machine
             if (M.Length == 1) { M = "0" + M; }
             string MY = M + "-" + Y;
 
-            string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + MY + "\\" + D + "\\" + PartNumber + "\\";
+            string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + MY + "\\" + D + "\\" + LotNumber.Substring(0, 3) + "\\" + LotNumber;
 
             int fileCount = 0;
 
             if (Directory.Exists(LotDir))
             {
-                fileCount = Directory.GetDirectories(LotDir).Length;
+                fileCount = Directory.GetFiles(LotDir).Length;
             }
 
             return (fileCount < GDefine._iMaxCounter);

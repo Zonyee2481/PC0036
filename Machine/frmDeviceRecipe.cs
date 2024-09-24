@@ -29,11 +29,9 @@ namespace Machine
         public int _iIndex = 0;
         public string _sDeviceID = "";
         public int _iAssignedNo = 0;
-        public double _dDuration = 1;
+        public int _iDuration = 1;
         public string _sDuration_2 = "";
         public int _iCounter = 0;
-        int time;
-        int S, M, H;
         private frmMessaging2 frmMsg;
         private void btn_Close_Click(object sender, EventArgs e)
         {
@@ -61,16 +59,16 @@ namespace Machine
                     return false;
                 }
             }
-            if (Convert.ToDouble(txt_Duration.Text) <= 0)
-            {
-                frmMsg = new frmMessaging2();
-                frmMsg.ShowMsg("Time's Up Duration Not Allow To Less Than Or Equal 0!", frmMessaging2.TMsgBtn.smbOK);
-                DialogResult dialogResult = frmMsg.ShowDialog();
-                if (dialogResult == DialogResult.OK)
-                {
-                    return false;
-                }
-            }    
+            //if (Convert.ToDouble(txt_Duration.Text) <= 0)
+            //{
+            //    frmMsg = new frmMessaging2();
+            //    frmMsg.ShowMsg("Time's Up Duration Not Allow To Less Than Or Equal 0!", frmMessaging2.TMsgBtn.smbOK);
+            //    DialogResult dialogResult = frmMsg.ShowDialog();
+            //    if (dialogResult == DialogResult.OK)
+            //    {
+            //        return false;
+            //    }
+            //}    
             return true;
         }
 
@@ -99,8 +97,8 @@ namespace Machine
 
                 TaskDeviceRecipe.asDeviceID[Files.Count()] = txt_DeviceID.Text;
                 TaskDeviceRecipe.aiAssignedNo[Files.Count()] = cmbAssignCode.SelectedIndex;
-                //TaskDeviceRecipe.aiCounter[Files.Count()] = Convert.ToInt32(txt_Counter.Text);
-                TaskDeviceRecipe.adDuration[Files.Count()] = Convert.ToDouble(txt_Duration.Text);
+                TimeSpan timeSpan = new TimeSpan(TaskDeviceRecipe.iHour, TaskDeviceRecipe.iMin, TaskDeviceRecipe.iSec);
+                TaskDeviceRecipe.adDuration[Files.Count()] = timeSpan.TotalMilliseconds;
                 TaskDeviceRecipe.SaveDeviceRecipe(txt_DeviceID.Text, Files.Count());
             }
             else if (_bEdit)
@@ -111,16 +109,16 @@ namespace Machine
                     TaskDeviceRecipe.RenameDeviceRecipe(oldFileName, txt_DeviceID.Text);
                     TaskDeviceRecipe.asDeviceID[_iIndex] = txt_DeviceID.Text;
                     TaskDeviceRecipe.aiAssignedNo[_iIndex] = cmbAssignCode.SelectedIndex;
-                    //TaskDeviceRecipe.aiCounter[_iIndex] = Convert.ToInt32(txt_Counter.Text);
-                    TaskDeviceRecipe.adDuration[_iIndex] = Convert.ToDouble(txt_Duration.Text);
+                    TimeSpan timeSpan = new TimeSpan(TaskDeviceRecipe.iHour, TaskDeviceRecipe.iMin, TaskDeviceRecipe.iSec);
+                    TaskDeviceRecipe.adDuration[_iIndex] = timeSpan.TotalMilliseconds;
                     TaskDeviceRecipe.SaveDeviceRecipe(txt_DeviceID.Text, _iIndex);
                 }
                 else
                 {
                     TaskDeviceRecipe.asDeviceID[_iIndex] = txt_DeviceID.Text;
                     TaskDeviceRecipe.aiAssignedNo[_iIndex] = cmbAssignCode.SelectedIndex;
-                    //TaskDeviceRecipe.aiCounter[_iIndex] = Convert.ToInt32(txt_Counter.Text);
-                    TaskDeviceRecipe.adDuration[_iIndex] = Convert.ToDouble(txt_Duration.Text);
+                    TimeSpan timeSpan = new TimeSpan(TaskDeviceRecipe.iHour, TaskDeviceRecipe.iMin, TaskDeviceRecipe.iSec);
+                    TaskDeviceRecipe.adDuration[_iIndex] = timeSpan.TotalMilliseconds;
                     TaskDeviceRecipe.SaveDeviceRecipe(txt_DeviceID.Text, _iIndex);
                 }
             }
@@ -133,30 +131,27 @@ namespace Machine
             {
                 txt_DeviceID.Text = _sDeviceID;
                 cmbAssignCode.SelectedIndex = _iAssignedNo;
-                //txt_Counter.Text = _iCounter.ToString();
-                txt_Duration.Text = _dDuration.ToString();
-                time = Convert.ToInt32(_dDuration * (60 * 60));
-                S = time % 60;
-                M = (time / 60) % 60;
-                H = (time / (3600)) % 24;
-                _sDuration_2 = H + " H " + M + " M " + S + " S ";
-                txtDuration_2.Text = _sDuration_2;
-                btn_Reset.Enabled = true;
+                TimeSpan timeSpan = TimeSpan.FromMilliseconds(_iDuration);
+                txtDurationS.Text = timeSpan.Seconds.ToString("00");
+                txtDurationM.Text = timeSpan.Minutes.ToString("00");
+                txtDurationH.Text = timeSpan.Hours.ToString("00");
             }
             else
             {
                 txt_DeviceID.Text = "";
                 cmbAssignCode.SelectedIndex = 0;
-                //txt_Counter.Text = _iCounter.ToString();
-                txt_Duration.Text = _dDuration.ToString();
-                time = Convert.ToInt32(_dDuration * (60 * 60));
-                S = time % 60;
-                M = (time / 60) % 60;
-                H = (time / (3600)) % 24;
-                _sDuration_2 = H + " H " + M + " M " + S + " S ";
-                txtDuration_2.Text = _sDuration_2;
-                btn_Reset.Enabled = false;
+                txtDurationS.Text = "00";
+                txtDurationM.Text = "00";
+                txtDurationH.Text = "00";
             }
+
+            //txt_Duration.Text = _dDuration.ToString();
+            //time = Convert.ToInt32(_dDuration * (60 * 60));
+            //S = time % 60;
+            //M = (time / 60) % 60;
+            //H = (time / (3600)) % 24;
+            //_sDuration_2 = H + " H " + M + " M " + S + " S ";
+            //txtDuration_2.Text = _sDuration_2;
         }                
 
         private void tmr_UpdateDisplay_Tick(object sender, EventArgs e)
@@ -213,34 +208,22 @@ namespace Machine
             _iAssignedNo = cmbAssignCode.SelectedIndex;
         }
 
-        private void txt_Duration_Click(object sender, EventArgs e)
+        private void txtDurationS_Click(object sender, EventArgs e)
         {
-            GDefine.UserCtrl.UserAdjustExecute(ref _dDuration, 0, 100);
-            txt_Duration.Text = _dDuration.ToString("0.0000");
-            time = Convert.ToInt32(_dDuration * (60 * 60));
-            S = time % 60;
-            M = (time / 60) % 60;
-            H = (time / (3600)) % 24;
-            _sDuration_2 = H + " H " + M + " M " + S + " S ";
-            txtDuration_2.Text = _sDuration_2;
+            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iSec, 0, 59);
+            txtDurationS.Text = TaskDeviceRecipe.iSec.ToString("00");
         }
 
-        private void btn_Reset_Click(object sender, EventArgs e)
+        private void txtDurationM_Click(object sender, EventArgs e)
         {
-            frmMsg = new frmMessaging2();
-            frmMsg.ShowMsg("Are You Sure Want To Reset Counter To 0?", frmMessaging2.TMsgBtn.smbOK | frmMessaging2.TMsgBtn.smbCancel);
-            DialogResult dialogResult = frmMsg.ShowDialog();
-            if (dialogResult == DialogResult.OK)
-            {
-                //_iCounter = 0;
-                //TaskDeviceRecipe.aiCounter[_iIndex] = 0;
-                //TaskDeviceRecipe.ResetFileCounter(txt_DeviceID.Text, _iIndex);
-                //txt_Counter.Text = TaskDeviceRecipe.aiCounter[_iIndex].ToString();
-            }
-            else if (dialogResult == DialogResult.Cancel)
-            {
-                return;
-            }
+            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iMin, 0, 59);
+            txtDurationM.Text = TaskDeviceRecipe.iMin.ToString("00");
+        }
+
+        private void txtDurationH_Click(object sender, EventArgs e)
+        {
+            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iHour, 0, 23);
+            txtDurationH.Text = TaskDeviceRecipe.iHour.ToString("00");
         }
     }
 }

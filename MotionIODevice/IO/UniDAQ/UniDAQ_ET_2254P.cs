@@ -177,14 +177,15 @@ namespace MotionIODevice.IO
                 if (!asyncResult.IsCompleted)
                 {
                     tcpClient.Close();
-                    Console.WriteLine(DateTime.Now.ToString() + ":Cannot connect to server.");
+                    //Console.WriteLine(DateTime.Now.ToString() + ":Cannot connect to server.");
+                    MessageBox.Show(DateTime.Now.ToString() + ":Failed to connect ET-2254P server.");
                     IsBoardOpened = false;
                     return false;
                 }
                 master = ModbusIpMaster.CreateIp(tcpClient);
                 master.Transport.Retries = 0;
                 master.Transport.ReadTimeout = 1500;
-                MessageBox.Show("Connected! " + DateTime.Now.ToString());
+                //MessageBox.Show("Connected! " + DateTime.Now.ToString());
                 IsBoardOpened = true;
                 return true;
             }

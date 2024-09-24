@@ -21,9 +21,7 @@ namespace Machine
             lv_DeviceRecipeList.Columns.Add("No", 30);
             lv_DeviceRecipeList.Columns.Add("Device ID", 200);
             lv_DeviceRecipeList.Columns.Add("Assigned Code", 100);            
-            lv_DeviceRecipeList.Columns.Add("Duration 1", 120);
-            lv_DeviceRecipeList.Columns.Add("Duration 2", 120);
-            //lv_DeviceRecipeList.Columns.Add("Counter", 50);
+            lv_DeviceRecipeList.Columns.Add("Durations", 120);
         }
         public static uctrlDeviceRecipe Page = new uctrlDeviceRecipe();
         public void ShowPage(Control parent)
@@ -51,18 +49,15 @@ namespace Machine
                 {
                     if (TaskDeviceRecipe.asDeviceID[i] == null) break;
                     counter++;
-                    int time = Convert.ToInt32(TaskDeviceRecipe.adDuration[i] * (60 * 60));
+                    TimeSpan timeSpan = TimeSpan.FromMilliseconds(TaskDeviceRecipe.adDuration[i]);
                     arr[0] = counter.ToString();
                     int S, M, H;
-                    S = time % 60;
-                    M = (time / 60) % 60;
-                    H = (time / (3600)) % 24;
-                    //arr[3] = H + "H" + M + "M" + S + "S";
+                    S = timeSpan.Seconds;
+                    M = timeSpan.Minutes;
+                    H = timeSpan.Hours;
                     arr[1] = TaskDeviceRecipe.asDeviceID[i].ToString();
                     arr[2] = TaskDeviceRecipe.aiAssignedNo[i].ToString();
-                    arr[3] = TaskDeviceRecipe.adDuration[i].ToString("0.0000");
-                    arr[4] = H + " H " + M + " M " + S + " S ";
-                    //arr[5] = TaskDeviceRecipe.aiCounter[i].ToString();
+                    arr[3] = H + " H " + M + " M " + S + " S "; ;
                     itm = new ListViewItem(arr);
                     lv_DeviceRecipeList.Items.Add(itm);
                 }
@@ -84,8 +79,7 @@ namespace Machine
             form._bNew = true;
             form._sDeviceID = "";
             form._iAssignedNo = 0;
-            //form._iCounter = 0;
-            form._dDuration = 0;
+            form._iDuration = 0;
 
             form.ShowDialog();
             ClearListView();
@@ -102,10 +96,8 @@ namespace Machine
                     form._bEdit = true;
                     form._bNew = false;
                     form._sDeviceID = lv_DeviceRecipeList.Items[i].SubItems[1].Text;
-                    form._iAssignedNo = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);                    
-                    form._dDuration = Convert.ToDouble(lv_DeviceRecipeList.Items[i].SubItems[3].Text);
-                    form._sDuration_2 = lv_DeviceRecipeList.Items[i].SubItems[4].Text;
-                    //form._iCounter = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[5].Text);
+                    form._iAssignedNo = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);
+                    form._iDuration = Convert.ToInt32(TaskDeviceRecipe.adDuration[i]);
                     form.ShowDialog();
                     ClearListView();
                     UpdateListView();

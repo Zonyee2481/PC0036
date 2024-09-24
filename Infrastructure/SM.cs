@@ -9,7 +9,6 @@ namespace Infrastructure
     public static class SM
     {
         public static string RecipeName;
-
         public static int McUpTime = 0;
         public static int McRunTime = 0;
         public static int McOpTime = 0;
@@ -23,6 +22,8 @@ namespace Infrastructure
         public static int Index = 0;
         public static string Connection = "";
         public static string UserName = "";
+        public static int McProcessTime = 0;
+        public static bool StartCount = false;
 
         public static eMcState McState = eMcState.MC_BEGIN;
 
