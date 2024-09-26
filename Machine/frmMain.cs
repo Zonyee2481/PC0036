@@ -124,7 +124,7 @@ namespace Machine
             TaskDeviceRecipe.LoadDeviceTimeLimit(GDefine.DevicePath, SM.RecipeName + GDefine.DeviceRecipeExt);
             TaskBitCode.InitBitCode();
             TaskBitCode.LoadBitCodeRecipe();
-
+            TaskLotInfo.DeleteLotRecordData();
             //LoadMachineRecipe();
         }
 

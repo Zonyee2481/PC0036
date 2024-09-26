@@ -45,10 +45,13 @@ namespace Machine
         //public static RecipeInfo _RecipeInfo = new RecipeInfo();
         //public static Part Part = new Part();
         public static string[] asDeviceID = new string[arrMax];
-        public static int[] aiAssignedNo = new int[arrMax];
-        //public static int[] aiCounter = new int[arrMax];
-        public static double[] adDuration = new double[arrMax];
-        public static int iHour = 0, iMin = 0, iSec = 0;
+        public static int[] aiRunHz_1st = new int[arrMax];
+        public static int[] aiRunHz_2nd = new int[arrMax];
+        public static double[] adTimeLimit_1st = new double[arrMax];
+        public static double[] adTimeLimit_2nd = new double[arrMax];
+        public static bool[] abMasterProduct = new bool[arrMax];
+        public static int iHour_1st = 0, iMin_1st = 0, iSec_1st = 0;
+        public static int iHour_2nd = 0, iMin_2nd = 0, iSec_2nd = 0;
 
         public static void LoadDeviceTimeLimit(string Path, string FileName)
         {
@@ -56,13 +59,22 @@ namespace Machine
             {
                 ES.Net.IniFile IniFile = new ES.Net.IniFile();
                 IniFile.Create(Path + @"\", FileName);
+                TimeSpan timeSpan = new TimeSpan();
 
-                int timeLimit= IniFile.ReadInteger("DeviceRecipe", "TimeLimit", 0);
-                TimeSpan timeSpan = TimeSpan.FromMilliseconds(timeLimit);
+                int timeLimit_1st = IniFile.ReadInteger("DeviceRecipe", "TimeLimit_1st", 0);
+                int timeLimit_2nd = IniFile.ReadInteger("DeviceRecipe", "TimeLimit_2nd", 0);
 
-                iHour = timeSpan.Hours;
-                iMin = timeSpan.Minutes;
-                iSec = timeSpan.Seconds;
+                timeSpan = TimeSpan.FromMilliseconds(timeLimit_1st);
+
+                iHour_1st = timeSpan.Hours;
+                iMin_1st = timeSpan.Minutes;
+                iSec_1st = timeSpan.Seconds;
+
+                timeSpan = TimeSpan.FromMilliseconds(timeLimit_2nd);
+
+                iHour_2nd = timeSpan.Hours;
+                iMin_2nd = timeSpan.Minutes;
+                iSec_2nd = timeSpan.Seconds;
 
                 //frmMain.SequenceRun.RecipeInfo(_LotInfo);
             }
@@ -77,14 +89,24 @@ namespace Machine
                 IniFile.Create(Path + @"\", FileName);
 
                 _LotInfo._RecipeInfo.DeviceID = IniFile.ReadString("DeviceRecipe", "DeviceID", FileName.Replace(GDefine.DeviceRecipeExt, ""));
-                _LotInfo._RecipeInfo.Index = IniFile.ReadInteger("DeviceRecipe", "AssignedCode", 0);
-                //_LotInfo._RecipeInfo.Counter = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
-                _LotInfo._RecipeInfo.TimeLimit = IniFile.ReadInteger("DeviceRecipe", "TimeLimit", 0);
-                TimeSpan timeSpan = TimeSpan.FromMilliseconds(_LotInfo._RecipeInfo.TimeLimit);
+                _LotInfo._RecipeInfo.RunHz_1st = IniFile.ReadInteger("DeviceRecipe", "RunningHz_1st", 0);
+                _LotInfo._RecipeInfo.RunHz_2nd = IniFile.ReadInteger("DeviceRecipe", "RunningHz_2nd", 0);
+                _LotInfo._RecipeInfo.TimeLimit_1st = IniFile.ReadInteger("DeviceRecipe", "TimeLimit_1st", 0);
+                _LotInfo._RecipeInfo.TimeLimit_2nd = IniFile.ReadInteger("DeviceRecipe", "TimeLimit_2nd", 0);
+                _LotInfo._RecipeInfo.MasterProduct = IniFile.ReadBool("DeviceRecipe", "MasterProduct", false);
+                TimeSpan timeSpan = new TimeSpan();
+                
+                timeSpan = TimeSpan.FromMilliseconds(_LotInfo._RecipeInfo.TimeLimit_1st);
 
-                iHour = timeSpan.Hours;
-                iMin = timeSpan.Minutes;
-                iSec = timeSpan.Seconds;
+                iHour_1st = timeSpan.Hours;
+                iMin_1st = timeSpan.Minutes;
+                iSec_1st = timeSpan.Seconds;
+
+                timeSpan = TimeSpan.FromMilliseconds(_LotInfo._RecipeInfo.TimeLimit_2nd);
+
+                iHour_2nd = timeSpan.Hours;
+                iMin_2nd = timeSpan.Minutes;
+                iSec_2nd = timeSpan.Seconds;
 
                 frmMain.SequenceRun.RecipeInfo(_LotInfo);
             }
@@ -96,9 +118,11 @@ namespace Machine
             try
             {
                 asDeviceID = new string[arrMax];
-                aiAssignedNo = new int[arrMax];
-                //aiCounter = new int[arrMax];
-                adDuration = new double[arrMax];
+                aiRunHz_1st = new int[arrMax];
+                aiRunHz_2nd = new int[arrMax];
+                adTimeLimit_1st = new double[arrMax];
+                adTimeLimit_2nd = new double[arrMax];
+                abMasterProduct = new bool[arrMax];
 
                 DirectoryInfo d = new DirectoryInfo(GDefine.DevicePath);//Assuming Test is your Folder
 
@@ -120,9 +144,11 @@ namespace Machine
                     IniFile.Create(GDefine.DevicePath + @"\", Files[i].ToString());
 
                     asDeviceID[i] = Files[i].Name.Replace(GDefine.DeviceRecipeExt, "");                  
-                    aiAssignedNo[i] = IniFile.ReadInteger("DeviceRecipe", "AssignedCode", 0);
-                    //aiCounter[i] = IniFile.ReadInteger("DeviceRecipe", "Counter", 0);
-                    adDuration[i] = IniFile.ReadDouble("DeviceRecipe", "TimeLimit", 0);
+                    aiRunHz_1st[i] = IniFile.ReadInteger("DeviceRecipe", "RunningHz_1st", 0);
+                    aiRunHz_2nd[i] = IniFile.ReadInteger("DeviceRecipe", "RunningHz_2nd", 0);
+                    adTimeLimit_1st[i] = IniFile.ReadDouble("DeviceRecipe", "TimeLimit_1st", 0);
+                    adTimeLimit_2nd[i] = IniFile.ReadDouble("DeviceRecipe", "TimeLimit_2nd", 0);
+                    abMasterProduct[i] = IniFile.ReadBool("DeviceRecipe", "MasterProduct", false);
                 }
             }
             catch { }
@@ -137,9 +163,11 @@ namespace Machine
                 IniFile.Create(GDefine.DevicePath + @"\", FileName + ".ini");
 
                 IniFile.WriteString("DeviceRecipe", "DeviceID", asDeviceID[i]);
-                IniFile.WriteInteger("DeviceRecipe", "AssignedCode", aiAssignedNo[i]);
-                //IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
-                IniFile.WriteDouble("DeviceRecipe", "TimeLimit", adDuration[i]);
+                IniFile.WriteInteger("DeviceRecipe", "RunningHz_1st", aiRunHz_1st[i]);
+                IniFile.WriteInteger("DeviceRecipe", "RunningHz_2nd", aiRunHz_2nd[i]);
+                IniFile.WriteDouble("DeviceRecipe", "TimeLimit_1st", adTimeLimit_1st[i]);
+                IniFile.WriteDouble("DeviceRecipe", "TimeLimit_2nd", adTimeLimit_2nd[i]);
+                IniFile.WriteBool("DeviceRecipe", "MasterProduct", abMasterProduct[i]);
             }
             catch { }
         }
@@ -152,9 +180,11 @@ namespace Machine
                 IniFile.Create(GDefine.DevicePath + @"\", FileName + ".ini");
 
                 IniFile.WriteString("DeviceRecipe", "DeviceID", _LotInfo._RecipeInfo.DeviceID);
-                IniFile.WriteInteger("DeviceRecipe", "AssignedCode", _LotInfo._RecipeInfo.Index);
-                IniFile.WriteInteger("DeviceRecipe", "Counter", _LotInfo._RecipeInfo.Counter);
-                IniFile.WriteDouble("DeviceRecipe", "TimeLimit", _LotInfo._RecipeInfo.TimeLimit);
+                IniFile.WriteInteger("DeviceRecipe", "RunningHz_1st", _LotInfo._RecipeInfo.RunHz_1st);
+                IniFile.WriteDouble("DeviceRecipe", "TimeLimit_1st", _LotInfo._RecipeInfo.TimeLimit_1st);
+                IniFile.WriteInteger("DeviceRecipe", "RunningHz_2nd", _LotInfo._RecipeInfo.RunHz_2nd);
+                IniFile.WriteDouble("DeviceRecipe", "TimeLimit_2nd", _LotInfo._RecipeInfo.TimeLimit_2nd);
+                IniFile.WriteBool("DeviceRecipe", "MasterProduct", _LotInfo._RecipeInfo.MasterProduct);
 
                 LoadDeviceRecipe();
             }
@@ -184,9 +214,11 @@ namespace Machine
                 {
                     IniFile.Create(d + @"\", Files[i].Name);
                     IniFile.WriteString("DeviceRecipe", "DeviceID", asDeviceID[i]);
-                    IniFile.WriteInteger("DeviceRecipe", "AssignedCode", aiAssignedNo[i]);
-                    //IniFile.WriteInteger("DeviceRecipe", "Counter", aiCounter[i]);
-                    IniFile.WriteDouble("DeviceRecipe", "TimeLimit", adDuration[i]);
+                    IniFile.WriteInteger("DeviceRecipe", "RunningHz_1st", aiRunHz_1st[i]);
+                    IniFile.WriteInteger("DeviceRecipe", "RunningHz_2nd", aiRunHz_2nd[i]);
+                    IniFile.WriteDouble("DeviceRecipe", "TimeLimit_1st", adTimeLimit_1st[i]);
+                    IniFile.WriteDouble("DeviceRecipe", "TimeLimit_2nd", adTimeLimit_2nd[i]);
+                    IniFile.WriteBool("DeviceRecipe", "MasterProduct", abMasterProduct[i]);
                 }
 
                 LoadDeviceRecipe();

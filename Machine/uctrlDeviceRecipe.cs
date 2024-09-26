@@ -19,9 +19,12 @@ namespace Machine
         {
             InitializeComponent();
             lv_DeviceRecipeList.Columns.Add("No", 30);
-            lv_DeviceRecipeList.Columns.Add("Device ID", 200);
-            lv_DeviceRecipeList.Columns.Add("Assigned Code", 100);            
-            lv_DeviceRecipeList.Columns.Add("Durations", 120);
+            lv_DeviceRecipeList.Columns.Add("Device ID", 100);
+            lv_DeviceRecipeList.Columns.Add("1st Running Hz", 100);
+            lv_DeviceRecipeList.Columns.Add("1st Running Time Limit", 130);
+            lv_DeviceRecipeList.Columns.Add("2nd Running Hz", 100);
+            lv_DeviceRecipeList.Columns.Add("2nd Running Time Limit", 130);
+            lv_DeviceRecipeList.Columns.Add("Master Product", 90);
         }
         public static uctrlDeviceRecipe Page = new uctrlDeviceRecipe();
         public void ShowPage(Control parent)
@@ -43,21 +46,29 @@ namespace Machine
             int counter = 0;
             for (int i = 0; i < TaskDeviceRecipe.asDeviceID.Count(); i++)
             {
-                string[] arr = new string[6];
+                string[] arr = new string[7];
                 ListViewItem itm;
                 try
                 {
                     if (TaskDeviceRecipe.asDeviceID[i] == null) break;
                     counter++;
-                    TimeSpan timeSpan = TimeSpan.FromMilliseconds(TaskDeviceRecipe.adDuration[i]);
+                    TimeSpan timeSpan = new TimeSpan();                  
                     arr[0] = counter.ToString();
                     int S, M, H;
+                    arr[1] = TaskDeviceRecipe.asDeviceID[i].ToString();
+                    arr[2] = TaskDeviceRecipe.aiRunHz_1st[i].ToString();
+                    timeSpan = TimeSpan.FromMilliseconds(TaskDeviceRecipe.adTimeLimit_1st[i]);
                     S = timeSpan.Seconds;
                     M = timeSpan.Minutes;
                     H = timeSpan.Hours;
-                    arr[1] = TaskDeviceRecipe.asDeviceID[i].ToString();
-                    arr[2] = TaskDeviceRecipe.aiAssignedNo[i].ToString();
                     arr[3] = H + " H " + M + " M " + S + " S "; ;
+                    arr[4] = TaskDeviceRecipe.aiRunHz_2nd[i].ToString();
+                    timeSpan = TimeSpan.FromMilliseconds(TaskDeviceRecipe.adTimeLimit_2nd[i]);
+                    S = timeSpan.Seconds;
+                    M = timeSpan.Minutes;
+                    H = timeSpan.Hours;
+                    arr[5] = H + " H " + M + " M " + S + " S ";
+                    arr[6] = TaskDeviceRecipe.abMasterProduct[i].ToString();
                     itm = new ListViewItem(arr);
                     lv_DeviceRecipeList.Items.Add(itm);
                 }
@@ -78,8 +89,11 @@ namespace Machine
             form._bEdit = false;
             form._bNew = true;
             form._sDeviceID = "";
-            form._iAssignedNo = 0;
-            form._iDuration = 0;
+            form._iRunHz_1st = 0;
+            form._iTimeLimit_1st = 0;
+            form._iRunHz_2nd = 0;
+            form._iTimeLimit_2nd = 0;
+            form._bMasterProduct = false;
 
             form.ShowDialog();
             ClearListView();
@@ -96,8 +110,11 @@ namespace Machine
                     form._bEdit = true;
                     form._bNew = false;
                     form._sDeviceID = lv_DeviceRecipeList.Items[i].SubItems[1].Text;
-                    form._iAssignedNo = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);
-                    form._iDuration = Convert.ToInt32(TaskDeviceRecipe.adDuration[i]);
+                    form._iRunHz_1st = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);
+                    form._iTimeLimit_1st = Convert.ToInt32(TaskDeviceRecipe.adTimeLimit_1st[i]);
+                    form._iRunHz_2nd = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[4].Text);
+                    form._iTimeLimit_2nd = Convert.ToInt32(TaskDeviceRecipe.adTimeLimit_2nd[i]);
+                    form._bMasterProduct = TaskDeviceRecipe.abMasterProduct[i];
                     form.ShowDialog();
                     ClearListView();
                     UpdateListView();

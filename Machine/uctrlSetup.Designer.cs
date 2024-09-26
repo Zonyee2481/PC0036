@@ -101,7 +101,7 @@ namespace Machine
             this.gbBitCodes.Size = new System.Drawing.Size(650, 586);
             this.gbBitCodes.TabIndex = 1;
             this.gbBitCodes.TabStop = false;
-            this.gbBitCodes.Text = "Bit Code";
+            this.gbBitCodes.Text = "Setup Hz Code Assignments";
             // 
             // pnlBitCodesPoint
             // 

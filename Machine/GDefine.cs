@@ -43,6 +43,7 @@ namespace Machine
         public const string OveralLogPath = AppPath + @"\LogEvent\OverallErr";
         public const string OveralMonthLogPath = AppPath + @"\LogEvent\OverallMonthErr";
         public static string LotInfoFolder = @"\LotInfo";
+        public static string RecordData = @"\RecordData";
         public static string OutQCFolder = @"\OutQC";
         public static string _sLaserMarkFile = GDefine.AppPath2;
         public static string _sLaserMarkContentFile = GDefine.AppPath2;
@@ -50,44 +51,6 @@ namespace Machine
         public static string _sSqlServerName = System.Environment.MachineName + @"\SQLEXPRESS";//Data Source
         public static string _sSqlDatabaseName = "PC001";//Initial Catalog
         public static string _sConnStr = @"Data Source=" + GDefine._sSqlServerName + ";Initial Catalog=" + GDefine._sSqlDatabaseName + ";Integrated Security=True;Pooling=False";
-        public static string CounterFile = "combinations.txt";
-        public static string CognexOCRLogPath = AppPath + @"\CognexOCRLog\"; //folder
-        public static string In2DIDLogPath = AppPath + @"\In2DIDLog\"; //folder
-        public static string Out2DIDLogPath = AppPath + @"\Out2DIDLog\"; //folder
-
-        public static string _sIS1MarkingFile = "IS1 Marking Offset.txt";
-        public static string _sIS2MarkingFile = "IS2 Marking Offset.txt";
-        public static string _sOS1MarkingFile = "OS1 Marking Offset.txt";
-        public static string _sOS2MarkingFile = "OS2 Marking Offset.txt";
-
-        public static string _sIS1LaserHeightOffsetFile = "IS1 Laser Height Offset.txt";
-        public static string _sIS2LaserHeightOffsetFile = "IS2 Laser Height Offset.txt";
-        public static string _sOS1LaserHeightOffsetFile = "OS1 Laser Height Offset.txt";
-        public static string _sOS2LaserHeightOffsetFile = "OS2 Laser Height Offset.txt";
-
-        public static bool _bSaveRecipe = false;
-
-        public static bool _bEnabInLaser = false;
-        public static bool _bEnabOutLaser = false;
-        public static bool _bEnabCognexOCR = false;
-        public static bool _bEnabInKeyence = false;
-        public static bool _bEnabOutKeyence = false;
-        public static bool _bEnabDoorCheck = false;
-        public static bool _bEnabLaserMotor = false;
-        public static bool _bFailUnitUnloadToPass = false;
-        public static bool _bEnableUnloadRtr = false;
-        public static bool _bEnableLeftPnp = false;
-        public static bool _bEnableRightPnp = false;
-        public static double _bVacOnvalue = 3000.0;
-        public static double _bVacOffvalue = 3000.0;
-        public static double _bCylTimeOut = 3000.0;
-        public static int _bWaitInterval = 200;
-        public static int _bCylBuffer = 300;
-        public static int _bInProdCnt = 50;
-        public static int _bOutProdCnt = 50;
-
-        public static bool _bEnabInKeyenceStopWhenReadFail = false;
-        public static bool _bEnabOutKeyenceStopWhenReadFail = false;
 
         public static List<IPPort> _IpPort = new List<IPPort>();
         public static string OCRIP = "192.168.100.97";
@@ -103,30 +66,9 @@ namespace Machine
         public static string CognexMainIP = "127.0.0.1";
         public static string CognexMainPort = "0023";
 
-
-        public static int _iWaffleInputCount = 0;
-        public static int _iWafflePassCount = 0;
-        public static int _iWaffleRejectCount = 0;
-        public static int _iOCRRejectCounter = 0;
-        public static int _iIn2DIDRRejectCounter = 0;
-        public static int _iOut2DIDRejectCounter = 0;
-        public static int _iCounter = 0;
-        public static int _iOCRDirectFailCounter = 0;
-        public static int _iIn2DIDDirectFailCounter = 0;
-        public static int _iOut2DIDDirectFailCounter = 0;
-
-
-        public static List<string> _LOutQCList = new List<string>();
         public static ES.UserCtrl.UserCtrlTools UserCtrl = new ES.UserCtrl.UserCtrlTools();
         #region Auto
-        public static bool _bSysAutoRun = false;
-        public static bool _bSysAutoStop = false;
-        public static bool _bEnableDryRun = false;
-        public static bool _bEnableBlankRun = false;
-        public static bool _bEnabAirPressureCheck = false;
         public static bool _bPanelUnlock = true;
-        public static bool _bSysAssist = false;
-        public static bool _bSliderUpdate = false;
         public static int _iMaxCounter = 1;
         public static string _sCurrentDate = null;
         #endregion
@@ -139,26 +81,8 @@ namespace Machine
             IniFile.WriteString("Default", "Recipe", TaskDeviceRecipe._LotInfo._RecipeInfo.DeviceID);
             IniFile.WriteInteger("Default", "MaxCounter", _iMaxCounter);
             IniFile.WriteString("Default", "CurrentDate", _sCurrentDate);
-            //IniFile.WriteBool("Enable", "InLaser", _bEnabInLaser);
-            //IniFile.WriteBool("Enable", "OutLaser", _bEnabOutLaser);
-            //IniFile.WriteBool("Enable", "CognexOCR", _bEnabCognexOCR);
-            //IniFile.WriteBool("Enable", "InKeyence", _bEnabInKeyence);
-            //IniFile.WriteBool("Enable", "OutKeyence", _bEnabOutKeyence);
-            //IniFile.WriteBool("Enable", "DoorCheck", _bEnabDoorCheck);
-            //IniFile.WriteBool("Enable", "InKeyenceStopWhenReadFail", _bEnabInKeyenceStopWhenReadFail);
-            //IniFile.WriteBool("Enable", "OutKeyenceStopWhenReadFail", _bEnabOutKeyenceStopWhenReadFail);
-            //IniFile.WriteBool("Enable", "LaserMotor", _bEnabLaserMotor);
-            //IniFile.WriteBool("Enable", "FailUnitUnloadToPass", _bFailUnitUnloadToPass);
-            //IniFile.WriteBool("Enable", "UnloadRtr", _bEnableUnloadRtr);
-            //IniFile.WriteDouble("Enable", "VacOnInterval", _bVacOnvalue);
-            //IniFile.WriteDouble("Enable", "VacOffInterval", _bVacOffvalue);
-            //IniFile.WriteDouble("Enable", "CylinderTimeOut", _bCylTimeOut);
-            //IniFile.WriteInteger("Enable", "CylinderBuffer", _bCylBuffer);
-            //IniFile.WriteInteger("Enable", "WaitInterval", _bWaitInterval);
-            //IniFile.WriteInteger("Enable", "InProdCnt", _bInProdCnt);
-            //IniFile.WriteInteger("Enable", "OutProdCnt", _bOutProdCnt);
-            //IniFile.WriteBool("Enable", "EnablePnpLeft", _bEnableLeftPnp);
-            //IniFile.WriteBool("Enable", "EnablePnpRight", _bEnableRightPnp);
+            IniFile.WriteInteger("Default", "LotNoCoolingPeriodInHour", 0);
+            IniFile.WriteInteger("Default", "LotNoCoolingPeriodInMinute", 0);
 
             //ParseToSequence();
             LoadDefaultFile();
@@ -191,28 +115,8 @@ namespace Machine
             _iMaxCounter = IniFile.ReadInteger("Default", "MaxCounter", _iMaxCounter);            
             SM.RecipeName = TaskDeviceRecipe._LotInfo.PartNum = IniFile.ReadString("Default", "Recipe", TaskDeviceRecipe._LotInfo.PartNum);
             _sCurrentDate = IniFile.ReadString("Default", "CurrentDate", _sCurrentDate);
-            //SM.Recipe.Index = IniFile.ReadInteger("Default", "Index", TaskDeviceRecipe._RecipeInfo.Index);
-            //_bEnabInLaser = IniFile.ReadBool("Enable", "InLaser", _bEnabInLaser);
-            //_bEnabOutLaser = IniFile.ReadBool("Enable", "OutLaser", _bEnabOutLaser);
-            //_bEnabCognexOCR = IniFile.ReadBool("Enable", "CognexOCR", _bEnabCognexOCR);
-            //_bEnabInKeyence = IniFile.ReadBool("Enable", "InKeyence", _bEnabInKeyence);
-            //_bEnabOutKeyence = IniFile.ReadBool("Enable", "OutKeyence", _bEnabOutKeyence);
-            //_bEnabDoorCheck = IniFile.ReadBool("Enable", "DoorCheck", _bEnabDoorCheck);
-            //_bEnabInKeyenceStopWhenReadFail = IniFile.ReadBool("Enable", "InKeyenceStopWhenReadFail", _bEnabInKeyenceStopWhenReadFail);
-            //_bEnabOutKeyenceStopWhenReadFail = IniFile.ReadBool("Enable", "OutKeyenceStopWhenReadFail", _bEnabOutKeyenceStopWhenReadFail);
-            //_bEnabLaserMotor = IniFile.ReadBool("Enable", "LaserMotor", _bEnabLaserMotor);
-            //_bFailUnitUnloadToPass = IniFile.ReadBool("Enable", "FailUnitUnloadToPass", _bFailUnitUnloadToPass);
-            //_bEnableUnloadRtr = IniFile.ReadBool("Enable", "UnloadRtr", _bEnableUnloadRtr);
-            //_bVacOnvalue = IniFile.ReadDouble("Enable", "VacOnInterval", _bVacOnvalue);
-            //_bVacOffvalue = IniFile.ReadDouble("Enable", "VacOffInterval", _bVacOffvalue);
-            //_bWaitInterval = IniFile.ReadInteger("Enable", "WaitInterval", _bWaitInterval);
-            //_bCylTimeOut = IniFile.ReadDouble("Enable", "CylinderTimeOut", _bCylTimeOut);
-            //_bCylBuffer = IniFile.ReadInteger("Enable", "CylinderBuffer", _bCylBuffer);
-            //_bInProdCnt = IniFile.ReadInteger("Enable", "InProdCnt", _bInProdCnt);
-            //_bOutProdCnt = IniFile.ReadInteger("Enable", "OutProdCnt", _bOutProdCnt);
-            //_bEnableLeftPnp = IniFile.ReadBool("Enable", "EnablePnpLeft", _bEnableLeftPnp);
-            //_bEnableRightPnp = IniFile.ReadBool("Enable", "EnablePnpRight", _bEnableRightPnp);
-            //ParseToSequence(); For bypass module
+            SM.LotNoCoolingPeriodInHour = IniFile.ReadInteger("Default", "LotNoCoolingPeriodInHour", SM.LotNoCoolingPeriodInHour);
+            SM.LotNoCoolingPeriodInMinute = IniFile.ReadInteger("Default", "LotNoCoolingPeriodInMinute", SM.LotNoCoolingPeriodInMinute);
         }
 
         public static void LoadCurrentDate()

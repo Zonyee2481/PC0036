@@ -516,26 +516,6 @@ namespace Machine
             return false; ;
         }
 
-        bool CheckDeviceCounter()
-        {
-            if (TaskDeviceRecipe._LotInfo._RecipeInfo.Counter >= GDefine._iMaxCounter)
-            {
-                msgForm = new frmMessaging2();
-                msgForm.StartPosition = FormStartPosition.CenterParent;
-                msgForm.ShowMsg("Product " + txtDeviceID.Text + " Is Ran Out Of Today Limit Count " + GDefine._iMaxCounter + "!", frmMessaging2.TMsgBtn.smbOK);
-                DialogResult dialogResult = msgForm.ShowDialog();
-                if (dialogResult == DialogResult.OK)
-                {
-                    return false;
-                }
-                goto _Err;
-            }
-            TaskDeviceRecipe._LotInfo._RecipeInfo.Counter++;
-            return true;
-        _Err:
-            return false;
-        }
-
         public void StartMcCtrl()
         {
             switch (GetMcState())
@@ -656,7 +636,7 @@ namespace Machine
             string D = dateTime.Date.ToString("dd-MM-yyyy");
             string T = dateTime.ToString("HH:mm:ss tt");
 
-            if (!TaskLotInfo.CheckLotCounter(txtDeviceID.Text, dateTime))
+            if (!TaskLotInfo.CheckLotRecordDataCount(txtDeviceID.Text, dateTime))
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;
@@ -668,8 +648,13 @@ namespace Machine
                 }
             }
 
+            int iLotCount = TaskLotInfo.LotRecordDataCount(txtDeviceID.Text, dateTime);
+
+            TaskDeviceRecipe._LotInfo.InitialRun = iLotCount < 1;
+
             TaskLotInfo.LotInfo.LotNum = txtDeviceID.Text;
             TaskLotInfo.LotInfo.PartNum = txtDeviceID.Text.Substring(0, 3);
+            TaskLotInfo.LotInfo.HzCodeRun = TaskDeviceRecipe._LotInfo.InitialRun ? TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_1st : TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_2nd;
             TaskLotInfo.LotInfo.DateIn = D;
             TaskLotInfo.LotInfo.TimeIn = T;
 
@@ -818,6 +803,20 @@ namespace Machine
                 InvokeHelper.Text(lblInvalid, "** Product Not Found! **");
                 InvokeHelper.Visible(lblInvalid, true);
                 return;
+            }
+
+            if (!TaskLotInfo.CheckLotRecordDataShortly(txtDeviceID.Text, SM.LotNoCoolingPeriodInHour, SM.LotNoCoolingPeriodInMinute))
+            {
+                msgForm = new frmMessaging2();
+                msgForm.StartPosition = FormStartPosition.CenterParent;
+                msgForm.ShowMsg(txtDeviceID.Text + " Still Within Cooling Period " + SM.LotNoCoolingPeriodInHour + " H " + SM.LotNoCoolingPeriodInMinute + " M!" + (char)10 + 
+                    "Please Wait To Run This Lot!"
+                    , frmMessaging2.TMsgBtn.smbOK);
+                DialogResult dialogResult = msgForm.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    return;
+                }               
             }
 
             TaskDeviceRecipe.LoadDeviceRecipe(GDefine.DevicePath, deviceID + GDefine.DeviceRecipeExt);

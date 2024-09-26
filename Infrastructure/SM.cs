@@ -24,6 +24,8 @@ namespace Infrastructure
         public static string UserName = "";
         public static int McProcessTime = 0;
         public static bool StartCount = false;
+        public static int LotNoCoolingPeriodInHour = 0;
+        public static int LotNoCoolingPeriodInMinute = 0;
 
         public static eMcState McState = eMcState.MC_BEGIN;
 

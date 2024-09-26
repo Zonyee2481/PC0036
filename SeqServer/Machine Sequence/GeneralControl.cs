@@ -162,7 +162,7 @@ namespace SeqServer
                                 {
                                     StartCtrlRelay = true;
                                     StartBtnLED = true;
-                                    SM.McProcessTime = (m_LotInfo._RecipeInfo.TimeLimit / 1000);
+                                    SM.McProcessTime = m_LotInfo.InitialRun ? (m_LotInfo._RecipeInfo.TimeLimit_1st / 1000) : (m_LotInfo._RecipeInfo.TimeLimit_2nd / 1000);
                                     m_RunSeq = RunSeq.WaitStartTimer;
                                 }
                                 break;
@@ -175,9 +175,7 @@ namespace SeqServer
                                 break;
                             case RunSeq.SetTimer:
                                 {
-                                    //int duration = 0;
-                                    //ConvertToMilliseconds(m_LotInfo._RecipeInfo.TimeLimit, out duration);
-                                    t = Environment.TickCount + m_LotInfo._RecipeInfo.TimeLimit;
+                                    t = Environment.TickCount + (m_LotInfo.InitialRun ? m_LotInfo._RecipeInfo.TimeLimit_1st : m_LotInfo._RecipeInfo.TimeLimit_2nd);
                                     SM.StartCount = true;
                                     m_RunSeq = RunSeq.CheckTimesUp;
                                 }
@@ -263,10 +261,11 @@ namespace SeqServer
 
         private void SetBitCode()
         {
-            bool bitCode1 = m_BitCode[m_LotInfo._RecipeInfo.Index].BitCode_1;
-            bool bitCode2 = m_BitCode[m_LotInfo._RecipeInfo.Index].BitCode_2;
-            bool bitCode4 = m_BitCode[m_LotInfo._RecipeInfo.Index].BitCode_4;
-            bool bitCode8 = m_BitCode[m_LotInfo._RecipeInfo.Index].BitCode_8;
+            int index = m_LotInfo.InitialRun ? m_LotInfo._RecipeInfo.RunHz_1st : m_LotInfo._RecipeInfo.RunHz_2nd;
+            bool bitCode1 = m_BitCode[index].BitCode_1;
+            bool bitCode2 = m_BitCode[index].BitCode_2;
+            bool bitCode4 = m_BitCode[index].BitCode_4;
+            bool bitCode8 = m_BitCode[index].BitCode_8;
 
             BitCode_1 = bitCode1;
             BitCode_2 = bitCode2;

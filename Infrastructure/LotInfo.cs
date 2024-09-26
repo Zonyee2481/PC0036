@@ -11,38 +11,21 @@ namespace Infrastructure
         public string LotNum;
         public string PartNum;
         public string PartName;
-        public int Counter;  //Load from C:\\Machine\\LotInfo\\23\\B\\0_0.ini
         public RecipeInfo _RecipeInfo = new RecipeInfo();
+        public bool InitialRun = false;
         //public string[] Combinations = new string[1679616];
     }
 
     public class RecipeInfo
     {
         public string DeviceID = "";
-        public int Index = -1;
-        public int Counter = 0;
-        public int TimeLimit = 0;
+        public int RunHz_1st = -1;
+        public int RunHz_2nd = -1;
+        public int TimeLimit_1st = 0;
+        public int TimeLimit_2nd = 0;
+        public bool MasterProduct = false;
+
     }
-
-    //public class BitCodeInfo
-    //{
-    //    public int Index;
-    //    public bool BitCode_1;
-    //    public bool BitCode_2;
-    //    public bool BitCode_4;
-    //    public bool BitCode_8;
-    //    public string Description;
-
-    //    public BitCodeInfo(int index, bool bitCode_1, bool bitCode_2, bool bitCode_4, bool bitCode_8, string description)
-    //    {
-    //        this.Index = index;
-    //        this.BitCode_1 = bitCode_1;
-    //        this.BitCode_2 = bitCode_2;
-    //        this.BitCode_4 = bitCode_4;
-    //        this.BitCode_8 = bitCode_8;
-    //        this.Description = description;
-    //    }
-    //}
 
     public class LotCounter
     {
