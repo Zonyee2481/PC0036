@@ -217,6 +217,7 @@ namespace Machine
                 int hour = Convert.ToInt32(time.Substring(0, 2));
                 int minute = Convert.ToInt32(time.Substring(2, 2));
                 int second = Convert.ToInt32(time.Substring(4, 2));
+                if (minute + checkMinute >= 60) { checkMinute = 0; checkHour = 1; } 
                 DateTime fileTime = new DateTime(current.Year, current.Month, current.Day, (hour + checkHour), (minute + checkMinute), second);
                 if (current < fileTime)
                 {

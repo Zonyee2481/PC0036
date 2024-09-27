@@ -820,7 +820,7 @@ namespace Machine
             }
 
             TaskDeviceRecipe.LoadDeviceRecipe(GDefine.DevicePath, deviceID + GDefine.DeviceRecipeExt);
-            TaskDeviceRecipe.SaveDeviceRecipe();
+            //TaskDeviceRecipe.SaveDeviceRecipe();
             GDefine.SaveDefaultFile();
 
             if (!StartLot())
