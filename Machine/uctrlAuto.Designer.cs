@@ -381,6 +381,7 @@ namespace Machine
             this.dgvRunningLot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRunningLot.Location = new System.Drawing.Point(0, 0);
             this.dgvRunningLot.Name = "dgvRunningLot";
+            this.dgvRunningLot.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRunningLot.Size = new System.Drawing.Size(394, 413);
             this.dgvRunningLot.TabIndex = 157;
             // 
