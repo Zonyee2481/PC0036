@@ -30,8 +30,8 @@ namespace Machine
         public string _sDeviceID = "";
         public int _iRunHz_1st = 0;
         public int _iRunHz_2nd = 0;
-        public int _iTimeLimit_1st = 1;
-        public int _iTimeLimit_2nd = 1;
+        public int _iTimeLimit_1st = 0;
+        public int _iTimeLimit_2nd = 0;
         public bool _bMasterProduct = false;
         private frmMessaging2 frmMsg;
         private void btn_Close_Click(object sender, EventArgs e)
@@ -159,29 +159,35 @@ namespace Machine
         {
             if (_bEdit)
             {
+               
+               
                 txt_DeviceID.Text = _sDeviceID;
                 cmbRunHz_1st.SelectedIndex = _iRunHz_1st;
-                cmbRunHz_2nd.SelectedIndex = _iRunHz_2nd;
+                cmbRunHz_2nd.SelectedIndex = _iRunHz_2nd;                
                 TimeSpan timeSpan = new TimeSpan();
                 timeSpan = TimeSpan.FromMilliseconds(_iTimeLimit_1st);
-                txtDurationS_1st.Text = timeSpan.Seconds.ToString("00");
-                txtDurationM_1st.Text = timeSpan.Minutes.ToString("00");
+                txtDurationS_1st.Text = timeSpan.TotalSeconds.ToString();
+                //txtDurationS_1st.Text = timeSpan.Seconds.ToString("00");
+                txtDurationM_1st.Text = timeSpan.Minutes.ToString("");
                 txtDurationH_1st.Text = timeSpan.Hours.ToString("00");
+                TaskDeviceRecipe.iSec_1st = Convert.ToInt32(timeSpan.TotalSeconds);
                 timeSpan = TimeSpan.FromMilliseconds(_iTimeLimit_2nd);
-                txtDurationS_2nd.Text = timeSpan.Seconds.ToString("00");
+                txtDurationS_2nd.Text = timeSpan.TotalSeconds.ToString();
+                //txtDurationS_2nd.Text = timeSpan.Seconds.ToString("00");
                 txtDurationM_2nd.Text = timeSpan.Minutes.ToString("00");
                 txtDurationH_2nd.Text = timeSpan.Hours.ToString("00");
+                TaskDeviceRecipe.iSec_2nd = Convert.ToInt32(timeSpan.TotalSeconds);
                 cbMasterRecipe.Checked = _bMasterProduct;
             }
             else
             {
                 txt_DeviceID.Text = "";
                 cmbRunHz_1st.SelectedIndex = 0;
-                txtDurationS_1st.Text = "00";
+                txtDurationS_1st.Text = "0";
                 txtDurationM_1st.Text = "00";
                 txtDurationH_1st.Text = "00";
                 cmbRunHz_2nd.SelectedIndex = 0;
-                txtDurationS_2nd.Text = "00";
+                txtDurationS_2nd.Text = "0";
                 txtDurationM_2nd.Text = "00";
                 txtDurationH_2nd.Text = "00";
             }
@@ -249,8 +255,8 @@ namespace Machine
 
         private void txtDurationS_1st_Click(object sender, EventArgs e)
         {
-            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iSec_1st, 0, 59);
-            txtDurationS_1st.Text = TaskDeviceRecipe.iSec_1st.ToString("00");
+            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iSec_1st, 0, 1800);
+            txtDurationS_1st.Text = TaskDeviceRecipe.iSec_1st.ToString();
         }
 
         private void txtDurationH_2nd_Click(object sender, EventArgs e)
@@ -267,8 +273,8 @@ namespace Machine
 
         private void txtDurationS_2nd_Click(object sender, EventArgs e)
         {
-            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iSec_2nd, 0, 59);
-            txtDurationS_2nd.Text = TaskDeviceRecipe.iSec_2nd.ToString("00");
+            GDefine.UserCtrl.UserAdjustExecute(ref TaskDeviceRecipe.iSec_2nd, 0, 1800);
+            txtDurationS_2nd.Text = TaskDeviceRecipe.iSec_2nd.ToString();
         }
 
         private void cmbRunHz_2nd_SelectedIndexChanged(object sender, EventArgs e)

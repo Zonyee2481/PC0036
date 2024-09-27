@@ -22,5 +22,14 @@ namespace Machine
 
             return (RD + " D " + RH + " H " + RM + " M " + RS + " S ");
         }
+
+        public static string Convert2S(int TickCount)
+        {
+            int RS = 0;
+
+            RS = TickCount;
+
+            return (RS + " S ");
+        }
     }
 }

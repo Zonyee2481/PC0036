@@ -370,9 +370,9 @@ namespace Machine
             // 
             this.panel2.Controls.Add(this.dgvRunningLot);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 395);
+            this.panel2.Location = new System.Drawing.Point(3, 217);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(394, 235);
+            this.panel2.Size = new System.Drawing.Size(394, 413);
             this.panel2.TabIndex = 2;
             // 
             // dgvRunningLot
@@ -381,7 +381,7 @@ namespace Machine
             this.dgvRunningLot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRunningLot.Location = new System.Drawing.Point(0, 0);
             this.dgvRunningLot.Name = "dgvRunningLot";
-            this.dgvRunningLot.Size = new System.Drawing.Size(394, 235);
+            this.dgvRunningLot.Size = new System.Drawing.Size(394, 413);
             this.dgvRunningLot.TabIndex = 157;
             // 
             // lbl_McRunTime

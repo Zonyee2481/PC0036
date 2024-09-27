@@ -119,18 +119,38 @@ namespace Machine
                     dgvSeqNum.Rows[row].Cells[1].Value = $"{listrunning[row]}";
             }
 
-            //DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Now;
 
-            //string date = currentDate.ToString("dd-MM-yyyy");
-            //string m = currentDate.Month.ToString();
-            //string y = currentDate.Year.ToString();
+            string date = currentDate.ToString("dd-MM-yyyy");
+            string m = currentDate.Month.ToString();
+            string y = currentDate.Year.ToString();
 
-            //if (m.Length == 1) { m = "0" + m; }
-            //string my = m + "-" + y;
+            if (m.Length == 1) { m = "0" + m; }
+            string my = m + "-" + y;
 
-            //string LotDir = GDefine.AppPath + GDefine.LotInfoFolder + "\\" + my + "\\" + date;
+            string recordDataDir = GDefine.AppPath + GDefine.RecordData + "\\" + my + "\\" + date;
+            List<string> lsLotNumber = new List<string>();
+            List<int> liCounter = new List<int>();
+            string[] records = Directory.GetDirectories(recordDataDir);
+            foreach (string record in records)
+            {
+                string[] products = Directory.GetDirectories(record);
+                foreach (string lot in products)
+                {
+                    DirectoryInfo file = new DirectoryInfo(lot);                                       
+                    int count = file.GetFiles().Length;
+                    lsLotNumber.Add(file.Name);
+                    liCounter.Add(count);
+                }
+            }
 
+            dgvRunningLot.RowCount = lsLotNumber.Count;
 
+            for (int row = 0; row < lsLotNumber.Count; row++)
+            {
+                dgvRunningLot.Rows[row].Cells[0].Value = lsLotNumber[row];
+                dgvRunningLot.Rows[row].Cells[1].Value = liCounter[row];
+            }
         }
 
         public void AddToLog(string S)
@@ -727,7 +747,7 @@ namespace Machine
 
                 if (SM.McState == eMcState.MC_RUNNING && SM.StartCount) SM.McProcessTime--;
 
-                lbl_McProcessTime.Text = TickConverter.Convert2DHMS(SM.McProcessTime, 1);
+                lbl_McProcessTime.Text = TickConverter.Convert2S(SM.McProcessTime);
 
                 #endregion
             }

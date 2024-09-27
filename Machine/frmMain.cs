@@ -124,7 +124,7 @@ namespace Machine
             TaskDeviceRecipe.LoadDeviceTimeLimit(GDefine.DevicePath, SM.RecipeName + GDefine.DeviceRecipeExt);
             TaskBitCode.InitBitCode();
             TaskBitCode.LoadBitCodeRecipe();
-            TaskLotInfo.DeleteLotRecordData();
+            TaskLotInfo.DeleteLotRecordData(); // Delete past 2 lot record data
             //LoadMachineRecipe();
         }
 
@@ -368,7 +368,7 @@ namespace Machine
 
         void CheckAccessPage()
         {
-            return;
+            //return;
             if (AccessConfig._sCurrentLoginLevel == "")
             {
                 //btn_Auto.Visible = false;

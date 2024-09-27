@@ -66,15 +66,17 @@ namespace Machine
 
                 timeSpan = TimeSpan.FromMilliseconds(timeLimit_1st);
 
-                iHour_1st = timeSpan.Hours;
-                iMin_1st = timeSpan.Minutes;
-                iSec_1st = timeSpan.Seconds;
+                //iHour_1st = timeSpan.Hours;
+                //iMin_1st = timeSpan.Minutes;
+                //iSec_1st = timeSpan.Seconds;
+                iSec_1st = Convert.ToInt32(timeSpan.TotalSeconds);
 
                 timeSpan = TimeSpan.FromMilliseconds(timeLimit_2nd);
 
-                iHour_2nd = timeSpan.Hours;
-                iMin_2nd = timeSpan.Minutes;
-                iSec_2nd = timeSpan.Seconds;
+                //iHour_2nd = timeSpan.Hours;
+                //iMin_2nd = timeSpan.Minutes;
+                //iSec_2nd = timeSpan.Seconds;
+                iSec_2nd = Convert.ToInt32(timeSpan.TotalSeconds);
 
                 //frmMain.SequenceRun.RecipeInfo(_LotInfo);
             }
@@ -98,15 +100,17 @@ namespace Machine
                 
                 timeSpan = TimeSpan.FromMilliseconds(_LotInfo._RecipeInfo.TimeLimit_1st);
 
-                iHour_1st = timeSpan.Hours;
-                iMin_1st = timeSpan.Minutes;
-                iSec_1st = timeSpan.Seconds;
+                //iHour_1st = timeSpan.Hours;
+                //iMin_1st = timeSpan.Minutes;
+                //iSec_1st = timeSpan.Seconds;
+                iSec_1st = Convert.ToInt32(timeSpan.TotalSeconds);
 
                 timeSpan = TimeSpan.FromMilliseconds(_LotInfo._RecipeInfo.TimeLimit_2nd);
 
-                iHour_2nd = timeSpan.Hours;
-                iMin_2nd = timeSpan.Minutes;
-                iSec_2nd = timeSpan.Seconds;
+                //iHour_2nd = timeSpan.Hours;
+                //iMin_2nd = timeSpan.Minutes;
+                //iSec_2nd = timeSpan.Seconds;
+                iSec_2nd = Convert.ToInt32(timeSpan.TotalSeconds);
 
                 frmMain.SequenceRun.RecipeInfo(_LotInfo);
             }

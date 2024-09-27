@@ -58,9 +58,11 @@
             this.gbBitCodes = new System.Windows.Forms.GroupBox();
             this.pnlBitCode = new System.Windows.Forms.Panel();
             this.cmbRunHz_1st = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grb_DeviceRecipe.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbBitCodes.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label26
@@ -137,23 +139,16 @@
             // 
             // grb_DeviceRecipe
             // 
+            this.grb_DeviceRecipe.Controls.Add(this.groupBox1);
             this.grb_DeviceRecipe.Controls.Add(this.cbMasterRecipe);
             this.grb_DeviceRecipe.Controls.Add(this.label12);
             this.grb_DeviceRecipe.Controls.Add(this.cmbRunHz_2nd);
             this.grb_DeviceRecipe.Controls.Add(this.label11);
             this.grb_DeviceRecipe.Controls.Add(this.label1);
-            this.grb_DeviceRecipe.Controls.Add(this.label2);
-            this.grb_DeviceRecipe.Controls.Add(this.label3);
             this.grb_DeviceRecipe.Controls.Add(this.txtDurationS_2nd);
-            this.grb_DeviceRecipe.Controls.Add(this.txtDurationM_2nd);
-            this.grb_DeviceRecipe.Controls.Add(this.txtDurationH_2nd);
             this.grb_DeviceRecipe.Controls.Add(this.label10);
             this.grb_DeviceRecipe.Controls.Add(this.label8);
-            this.grb_DeviceRecipe.Controls.Add(this.label7);
-            this.grb_DeviceRecipe.Controls.Add(this.label6);
             this.grb_DeviceRecipe.Controls.Add(this.txtDurationS_1st);
-            this.grb_DeviceRecipe.Controls.Add(this.txtDurationM_1st);
-            this.grb_DeviceRecipe.Controls.Add(this.txtDurationH_1st);
             this.grb_DeviceRecipe.Controls.Add(this.panel1);
             this.grb_DeviceRecipe.Controls.Add(this.cmbRunHz_1st);
             this.grb_DeviceRecipe.Controls.Add(this.label26);
@@ -174,7 +169,7 @@
             // 
             this.cbMasterRecipe.AutoSize = true;
             this.cbMasterRecipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMasterRecipe.Location = new System.Drawing.Point(272, 163);
+            this.cbMasterRecipe.Location = new System.Drawing.Point(277, 163);
             this.cbMasterRecipe.Name = "cbMasterRecipe";
             this.cbMasterRecipe.Size = new System.Drawing.Size(15, 14);
             this.cbMasterRecipe.TabIndex = 317;
@@ -219,7 +214,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(528, 134);
+            this.label1.Location = new System.Drawing.Point(388, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 16);
             this.label1.TabIndex = 313;
@@ -230,22 +225,24 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label2.Location = new System.Drawing.Point(426, 134);
+            this.label2.Location = new System.Drawing.Point(184, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 16);
             this.label2.TabIndex = 312;
             this.label2.Text = "M";
+            this.label2.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label3.Location = new System.Drawing.Point(325, 134);
+            this.label3.Location = new System.Drawing.Point(83, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 16);
             this.label3.TabIndex = 311;
             this.label3.Text = "H";
+            this.label3.Visible = false;
             // 
             // txtDurationS_2nd
             // 
@@ -254,11 +251,11 @@
             this.txtDurationS_2nd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtDurationS_2nd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDurationS_2nd.ForeColor = System.Drawing.Color.Green;
-            this.txtDurationS_2nd.Location = new System.Drawing.Point(451, 129);
+            this.txtDurationS_2nd.Location = new System.Drawing.Point(248, 129);
             this.txtDurationS_2nd.Name = "txtDurationS_2nd";
-            this.txtDurationS_2nd.Size = new System.Drawing.Size(71, 27);
+            this.txtDurationS_2nd.Size = new System.Drawing.Size(134, 27);
             this.txtDurationS_2nd.TabIndex = 310;
-            this.txtDurationS_2nd.Text = "00";
+            this.txtDurationS_2nd.Text = "0";
             this.txtDurationS_2nd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.txtDurationS_2nd.Click += new System.EventHandler(this.txtDurationS_2nd_Click);
             // 
@@ -269,12 +266,13 @@
             this.txtDurationM_2nd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtDurationM_2nd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDurationM_2nd.ForeColor = System.Drawing.Color.Green;
-            this.txtDurationM_2nd.Location = new System.Drawing.Point(349, 129);
+            this.txtDurationM_2nd.Location = new System.Drawing.Point(107, 72);
             this.txtDurationM_2nd.Name = "txtDurationM_2nd";
             this.txtDurationM_2nd.Size = new System.Drawing.Size(71, 27);
             this.txtDurationM_2nd.TabIndex = 309;
             this.txtDurationM_2nd.Text = "00";
             this.txtDurationM_2nd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtDurationM_2nd.Visible = false;
             this.txtDurationM_2nd.Click += new System.EventHandler(this.txtDurationM_2nd_Click);
             // 
             // txtDurationH_2nd
@@ -284,12 +282,13 @@
             this.txtDurationH_2nd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtDurationH_2nd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDurationH_2nd.ForeColor = System.Drawing.Color.Green;
-            this.txtDurationH_2nd.Location = new System.Drawing.Point(248, 129);
+            this.txtDurationH_2nd.Location = new System.Drawing.Point(6, 72);
             this.txtDurationH_2nd.Name = "txtDurationH_2nd";
             this.txtDurationH_2nd.Size = new System.Drawing.Size(71, 27);
             this.txtDurationH_2nd.TabIndex = 308;
             this.txtDurationH_2nd.Text = "00";
             this.txtDurationH_2nd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtDurationH_2nd.Visible = false;
             this.txtDurationH_2nd.Click += new System.EventHandler(this.txtDurationH_2nd_Click);
             // 
             // label10
@@ -309,7 +308,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(528, 78);
+            this.label8.Location = new System.Drawing.Point(388, 78);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 16);
             this.label8.TabIndex = 306;
@@ -320,22 +319,24 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(426, 78);
+            this.label7.Location = new System.Drawing.Point(184, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(19, 16);
             this.label7.TabIndex = 305;
             this.label7.Text = "M";
+            this.label7.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label6.Location = new System.Drawing.Point(325, 78);
+            this.label6.Location = new System.Drawing.Point(83, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 16);
             this.label6.TabIndex = 304;
             this.label6.Text = "H";
+            this.label6.Visible = false;
             // 
             // txtDurationS_1st
             // 
@@ -344,11 +345,11 @@
             this.txtDurationS_1st.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtDurationS_1st.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDurationS_1st.ForeColor = System.Drawing.Color.Green;
-            this.txtDurationS_1st.Location = new System.Drawing.Point(451, 73);
+            this.txtDurationS_1st.Location = new System.Drawing.Point(248, 73);
             this.txtDurationS_1st.Name = "txtDurationS_1st";
-            this.txtDurationS_1st.Size = new System.Drawing.Size(71, 27);
+            this.txtDurationS_1st.Size = new System.Drawing.Size(134, 27);
             this.txtDurationS_1st.TabIndex = 303;
-            this.txtDurationS_1st.Text = "00";
+            this.txtDurationS_1st.Text = "0";
             this.txtDurationS_1st.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.txtDurationS_1st.Click += new System.EventHandler(this.txtDurationS_1st_Click);
             // 
@@ -359,12 +360,13 @@
             this.txtDurationM_1st.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtDurationM_1st.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDurationM_1st.ForeColor = System.Drawing.Color.Green;
-            this.txtDurationM_1st.Location = new System.Drawing.Point(349, 73);
+            this.txtDurationM_1st.Location = new System.Drawing.Point(107, 16);
             this.txtDurationM_1st.Name = "txtDurationM_1st";
             this.txtDurationM_1st.Size = new System.Drawing.Size(71, 27);
             this.txtDurationM_1st.TabIndex = 302;
             this.txtDurationM_1st.Text = "00";
             this.txtDurationM_1st.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtDurationM_1st.Visible = false;
             this.txtDurationM_1st.Click += new System.EventHandler(this.txtDurationM_1st_Click);
             // 
             // txtDurationH_1st
@@ -374,12 +376,13 @@
             this.txtDurationH_1st.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtDurationH_1st.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDurationH_1st.ForeColor = System.Drawing.Color.Green;
-            this.txtDurationH_1st.Location = new System.Drawing.Point(248, 73);
+            this.txtDurationH_1st.Location = new System.Drawing.Point(6, 16);
             this.txtDurationH_1st.Name = "txtDurationH_1st";
             this.txtDurationH_1st.Size = new System.Drawing.Size(71, 27);
             this.txtDurationH_1st.TabIndex = 301;
             this.txtDurationH_1st.Text = "00";
             this.txtDurationH_1st.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtDurationH_1st.Visible = false;
             this.txtDurationH_1st.Click += new System.EventHandler(this.txtDurationH_1st_Click);
             // 
             // panel1
@@ -421,6 +424,24 @@
             this.cmbRunHz_1st.TabIndex = 293;
             this.cmbRunHz_1st.SelectedIndexChanged += new System.EventHandler(this.cmbRunHz_1st_SelectedIndexChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtDurationH_1st);
+            this.groupBox1.Controls.Add(this.txtDurationM_1st);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtDurationH_2nd);
+            this.groupBox1.Controls.Add(this.txtDurationM_2nd);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(647, 68);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(223, 109);
+            this.groupBox1.TabIndex = 318;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Visible = false;
+            // 
             // frmDeviceRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,6 +457,8 @@
             this.grb_DeviceRecipe.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.gbBitCodes.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
     }
@@ -471,5 +494,6 @@
         private System.Windows.Forms.Label txtDurationM_2nd;
         private System.Windows.Forms.Label txtDurationH_2nd;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

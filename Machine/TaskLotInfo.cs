@@ -230,19 +230,40 @@ namespace Machine
 
         public static void DeleteLotRecordData()
         {
-            DateTime current = DateTime.Now;
-            string date = current.Date.ToString("dd-MM-yyyy");
-            string M = current.Month.ToString();
-            string Y = current.Year.ToString();
+            DateTime current;
+            string date, M, Y, MY, MYDir;
+            current = DateTime.Now.AddDays(-5);
+            date = current.Date.ToString("dd-MM-yyyy");
+            M = current.Month.ToString();
+            Y = current.Year.ToString();
 
             if (M.Length == 1) { M = "0" + M; }
-            string MY = M + "-" + Y;
+            MY = M + "-" + Y;
 
-            string MYDir = GDefine.AppPath + GDefine.RecordData;
+            MYDir = GDefine.AppPath + GDefine.RecordData + "\\" + MY + "\\" + date;
 
             if (Directory.Exists(MYDir))
             {
+                // Delete every 5 days
+                var dir = new DirectoryInfo(MYDir);
+                dir.Delete(true);
+            }
 
+            current = DateTime.Now.AddMonths(-2);
+            date = current.Date.ToString("dd-MM-yyyy");
+            M = current.Month.ToString();
+            Y = current.Year.ToString();
+
+            if (M.Length == 1) { M = "0" + M; }
+            MY = M + "-" + Y;
+
+            MYDir = GDefine.AppPath + GDefine.RecordData + "\\" + MY;
+
+            if (Directory.Exists(MYDir))
+            {
+                // Delete month folder every 2 months
+                var dir = new DirectoryInfo(MYDir);
+                dir.Delete(true);
             }
         }
     }
