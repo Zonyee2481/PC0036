@@ -532,7 +532,7 @@ namespace Machine
             this.lblInvalid.ForeColor = System.Drawing.Color.Red;
             this.lblInvalid.Location = new System.Drawing.Point(173, 98);
             this.lblInvalid.Name = "lblInvalid";
-            this.lblInvalid.Size = new System.Drawing.Size(299, 27);
+            this.lblInvalid.Size = new System.Drawing.Size(500, 27);
             this.lblInvalid.TabIndex = 71;
             this.lblInvalid.Text = "** Product Not Found! **";
             this.lblInvalid.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

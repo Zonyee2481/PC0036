@@ -122,6 +122,14 @@ namespace SeqServer
                 {
                     lock (m_SyncSN)
                     {
+                        //if ((m_RunSeq != RunSeq.Init && m_RunSeq != RunSeq.InitDone && m_RunSeq != RunSeq.EOS) && m_SeqFlag.StartManualMode)
+                        //{
+                        //    m_MyFlag.MsgArg.MachineStatus = eMcState.MC_RUN_MANUAL;
+                        //    FireEvent2UI(m_MyFlag.MsgArg);
+                        //    m_Temp = m_RunSeq;
+                        //    m_RunSeq = RunSeq.MC_ResumeReq;
+                        //    break;
+                        //}
                         switch (m_RunSeq)
                         {
                             #region Init Sequence
@@ -222,11 +230,17 @@ namespace SeqServer
             }
         }
 
-#region IO Inputs
+        #region IO Inputs
+        private bool Auto
+        {
+            get
+            {
+                return ReadBit(IN.AUTO.ToString());
+            }
+        }
+        #endregion
 
-#endregion
-
-#region IO Outputs
+        #region IO Outputs
         private bool BitCode_1
         {
             set

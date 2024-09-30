@@ -23,6 +23,7 @@ namespace Infrastructure
         MC_MAINTENACE,
         MC_STOPPING,
         MC_IDLE,
+        MC_RUN_MANUAL,
 
         MC_OPT_REQ,
     };

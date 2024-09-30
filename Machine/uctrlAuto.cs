@@ -131,20 +131,24 @@ namespace Machine
             string recordDataDir = GDefine.AppPath + GDefine.RecordData + "\\" + my + "\\" + date;
             List<string> lsLotNumber = new List<string>();
             List<int> liCounter = new List<int>();
-            string[] records = Directory.GetDirectories(recordDataDir);
-            foreach (string record in records)
+            string[] records;
+            if (Directory.Exists(recordDataDir))
             {
-                string[] products = Directory.GetDirectories(record);
-                foreach (string lot in products)
+                records = Directory.GetDirectories(recordDataDir);
+                foreach (string record in records)
                 {
-                    DirectoryInfo file = new DirectoryInfo(lot);                                       
-                    int count = file.GetFiles().Length;
-                    lsLotNumber.Add(file.Name);
-                    liCounter.Add(count);
+                    string[] products = Directory.GetDirectories(record);
+                    foreach (string lot in products)
+                    {
+                        DirectoryInfo file = new DirectoryInfo(lot);
+                        int count = file.GetFiles().Length;
+                        lsLotNumber.Add(file.Name);
+                        liCounter.Add(count);
+                    }
                 }
-            }
+            }            
 
-            dgvRunningLot.RowCount = lsLotNumber.Count;
+            dgvRunningLot.RowCount = lsLotNumber.Count > 0 ? lsLotNumber.Count : 1;
 
             for (int row = 0; row < lsLotNumber.Count; row++)
             {
@@ -401,6 +405,13 @@ namespace Machine
                     InvokeHelper.BackColor(lbl_MachineState, Color.Yellow);
                     InvokeHelper.ForeColor(lbl_MachineState, Color.Black);
                     break;
+                //case eMcState.MC_RUN_MANUAL:
+                //    InvokeHelper.Enable(btn_Start, true);
+                //    InvokeHelper.Enable(btn_Stop, false);
+                //    InvokeHelper.Text(lbl_MachineState, "Stop");
+                //    InvokeHelper.BackColor(lbl_MachineState, Color.Red);
+                //    InvokeHelper.ForeColor(lbl_MachineState, Color.White);
+                //    break;
             }
 
             if (mcState == eMcState.MC_STOP || mcState == eMcState.MC_STOP_INIT || mcState == eMcState.MC_IDLE || mcState == eMcState.MC_INITIALIZED || mcState == eMcState.MC_BEGIN)
@@ -463,7 +474,12 @@ namespace Machine
                         SetMcState(eMcState.MC_WARNING);
                     }
                     break;
-
+                //case eMcState.MC_RUN_MANUAL:
+                //    {
+                //        frmMain.MainEvent.UITriggerEvent(EV_TYPE.MCStopReq);
+                //        SetMcState(eMcState.MC_RUN_MANUAL);
+                //    }
+                //    break;
 
                 case eMcState.MC_RUNNING: break; //Add log purpose
             }
@@ -589,7 +605,13 @@ namespace Machine
                         frmMain.MainEvent.UITriggerEvent(EV_TYPE.MCResumeSeq);
                     }
                     break;
-
+                //case eMcState.MC_RUN_MANUAL:
+                //    {
+                //        AddToLog($"Start Click");
+                //        SetMcState(eMcState.MC_RUNNING);
+                //        frmMain.MainEvent.UITriggerEvent(EV_TYPE.MCResumeSeq);
+                //    }
+                //    break;
             }
         }
 
@@ -705,7 +727,9 @@ namespace Machine
             if (!Visible) return;
             tmrSignal.Stop();
 
-            if (TaskLotInfo.LotInfo.Activated)
+            //frmMain.mytagSeqFlag.StartManualMode = TaskIO.ReadBit_AutoMode();
+            //frmMain.SequenceRun.MachineConfig = frmMain.mytagSeqFlag;
+            if (TaskLotInfo.LotInfo.Activated/* && GetMcState() != eMcState.MC_RUN_MANUAL*/)
 #if !SIMULATION
             if (TaskIO.ReadBit_StartTimer())
 #endif
@@ -714,6 +738,16 @@ namespace Machine
                 msg.StationName = "GeneralControl";
                 frmMain.MainEvent.UITriggerEvent(EV_TYPE.WorkReq, msg);
             }
+
+//            if (TaskLotInfo.LotInfo.Activated && GetMcState() == eMcState.MC_RUN_MANUAL)
+//#if !SIMULATION
+//            if (TaskIO.ReadBit_StartTimer())
+//#endif
+//            {
+//                frmMain.mytagSeqFlag.StartManualMode = false;
+//                frmMain.SequenceRun.MachineConfig = frmMain.mytagSeqFlag;
+//                btn_Start_Click(btn_Start, null);
+//            }
 
             if (TaskLotInfo.LotInfo.Activated)
 #if !SIMULATION
@@ -809,10 +843,22 @@ namespace Machine
 
             string deviceID = string.Empty;
             InvokeHelper.Visible(lblInvalid, false);
+#if !SIMULATION
+            if (!TaskIO.ReadBit_AutoMode())
+            {
+                InvokeHelper.Text(lblInvalid, "** Please Switch Running Mode To Auto To Continue! **");
+                InvokeHelper.Visible(lblInvalid, true);
+                InvokeHelper.Text(txtDeviceID, string.Empty);
+                InvokeHelper.Focus(txtDeviceID, true);
+                return;
+            }
+#endif
             if (!CheckValidLotNumberLength(txtDeviceID.Text))
             {
-                InvokeHelper.Text(lblInvalid, "** Invalid Lot Number Length! **");
+                InvokeHelper.Text(lblInvalid, "** Invalid Lot Number Length! " + txtDeviceID.Text + " **");
                 InvokeHelper.Visible(lblInvalid, true);
+                InvokeHelper.Text(txtDeviceID, string.Empty);
+                InvokeHelper.Focus(txtDeviceID, true);
                 return;
             }
 
@@ -820,8 +866,10 @@ namespace Machine
 
             if (!CheckDeviceRecipe(deviceID))
             {
-                InvokeHelper.Text(lblInvalid, "** Product Not Found! **");
+                InvokeHelper.Text(lblInvalid, "** Product " + txtDeviceID.Text + " Not Found! **");
                 InvokeHelper.Visible(lblInvalid, true);
+                InvokeHelper.Text(txtDeviceID, string.Empty);
+                InvokeHelper.Focus(txtDeviceID, true);
                 return;
             }
 
@@ -835,6 +883,8 @@ namespace Machine
                 DialogResult dialogResult = msgForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
+                    InvokeHelper.Text(txtDeviceID, string.Empty);
+                    InvokeHelper.Focus(txtDeviceID, true);
                     return;
                 }               
             }

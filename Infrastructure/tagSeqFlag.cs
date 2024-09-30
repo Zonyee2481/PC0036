@@ -11,6 +11,7 @@ namespace Infrastructure
         public bool Dryrun;
         public bool IsManualMode;
         public bool IsAutoMode;
+        public bool StartManualMode;
         public double VacOnInterval;
         public double VacOffInterval;
         public double CylTimeOut;
@@ -19,6 +20,7 @@ namespace Infrastructure
         public bool FlushUnitOut;
         public int InProdCount;
         public int OutProdCount;
+        
         //internal bool RTScanErr;
         //internal bool RTScanOnceOK;
         //internal bool SeqRun;
