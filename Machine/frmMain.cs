@@ -387,17 +387,17 @@ namespace Machine
             }
             if ((int)AccessConfig.CurrentAccessLvl == 1)
             {
-                btn_Setup.Enabled = AccessConfig._OperatorAccess[0];
-                btn_DeviceRecipe.Enabled = AccessConfig._OperatorAccess[1];
-                btn_frmIODiag.Enabled = AccessConfig._OperatorAccess[2];
-                btn_AccessConfig.Enabled = AccessConfig._OperatorAccess[3];
+                btn_Setup.Enabled = AccessConfig._TechnicianAccess[0];
+                btn_DeviceRecipe.Enabled = AccessConfig._TechnicianAccess[1];
+                btn_frmIODiag.Enabled = AccessConfig._TechnicianAccess[2];
+                btn_AccessConfig.Enabled = AccessConfig._TechnicianAccess[3];
             }
             if ((int)AccessConfig.CurrentAccessLvl == 2)
             {
-                btn_Setup.Enabled = AccessConfig._OperatorAccess[0];
-                btn_DeviceRecipe.Enabled = AccessConfig._OperatorAccess[1];
-                btn_frmIODiag.Enabled = AccessConfig._OperatorAccess[2];
-                btn_AccessConfig.Enabled = AccessConfig._OperatorAccess[3];
+                btn_Setup.Enabled = AccessConfig._EngineerAccess[0];
+                btn_DeviceRecipe.Enabled = AccessConfig._EngineerAccess[1];
+                btn_frmIODiag.Enabled = AccessConfig._EngineerAccess[2];
+                btn_AccessConfig.Enabled = AccessConfig._EngineerAccess[3];
             }
             if ((int)AccessConfig.CurrentAccessLvl == 3)
             {
