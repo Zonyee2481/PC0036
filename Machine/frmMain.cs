@@ -79,7 +79,7 @@ namespace Machine
             //GDefine.ResetCounterFile();
         }
         public static frmLog frmLog = new frmLog();
-        public static frmMessaging frmMsg = new frmMessaging();
+        //public static frmMessaging frmMsg = new frmMessaging();
         public static tagSeqFlag mytagSeqFlag = new tagSeqFlag();
         //Panel move form Declaration wtih dll Import
         public static IIOMain IOModule = null;
@@ -311,10 +311,10 @@ namespace Machine
         }
         private void tmr_Main_Tick(object sender, EventArgs e)
         {
-            if (!frmMain.frmMsg.Visible)
-            {
-                return;
-            }
+            //if (!frmMain.frmMsg.Visible)
+            //{
+            //    return;
+            //}
             lbl_Recipe.Text = "Recipe: " + SM.RecipeName;
             tmr_Main.Enabled = false;
             //pnl_Control.Enabled = GDefine._bPanelUnlock;

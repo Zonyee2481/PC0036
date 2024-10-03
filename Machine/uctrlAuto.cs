@@ -824,14 +824,11 @@ namespace Machine
             if (LotNumber.Length < 8)
             {
                 return false;
-                //msgForm = new frmMessaging2();
-                //msgForm.StartPosition = FormStartPosition.CenterParent;
-                //msgForm.ShowMsg("Invalid Lot Number " + txtDeviceID.Text + "! (Length < 8)", frmMessaging2.TMsgBtn.smbOK);
-                //DialogResult dialogResult = msgForm.ShowDialog();
-                //if (dialogResult == DialogResult.OK)
-                //{
-                //    return false;
-                //}
+            }
+
+            if (LotNumber.Length > 9 && (int)AccessConfig.CurrentAccessLvl < 3) // Admin access to bypass check lot number length for long
+            {
+                return false;
             }
 
             return true;

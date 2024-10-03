@@ -1,33 +1,33 @@
 ﻿namespace Machine
 {
-  partial class frmMain
-  {
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    /// <summary>
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
+    partial class frmMain
     {
-      if (disposing && (components != null))
-      {
-        components.Dispose();
-      }
-      base.Dispose(disposing);
-    }
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-    #region Windows Form Designer generated code
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel2 = new System.Windows.Forms.Panel();
@@ -439,35 +439,35 @@
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
-    }
+        }
 
-    #endregion
+        #endregion
 
-    private System.Windows.Forms.Panel panel2;
-    private System.Windows.Forms.Panel pnl_Control;
-    private System.Windows.Forms.Panel panel3;
-    private System.Windows.Forms.Timer tmr_slider;
-    private System.Windows.Forms.Button btn_SlideOut;
-    private System.Windows.Forms.Button btn_SlideIn;
-    private System.Windows.Forms.Button btn_frmIODiag;
-    private System.Windows.Forms.Button btn_Auto;
-    private System.Windows.Forms.Button btn_Main;
-    private System.Windows.Forms.Button btn_Setup;
-    private System.Windows.Forms.Panel panel4;
-    private System.Windows.Forms.Panel panel5;
-    private System.Windows.Forms.Panel panel6;
-    private System.Windows.Forms.Button btn_CloseAll;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Label lbl_Version;
-    public System.Windows.Forms.Panel pnl_Form;
-    private System.Windows.Forms.Timer tmr_Main;
-    private System.Windows.Forms.Label lbl_Time;
-    private System.Windows.Forms.Label lbl_Date;
-    private System.Windows.Forms.Button btn_AccessConfig;
-    private System.Windows.Forms.PictureBox pictureBox1;
-    private System.Windows.Forms.Label lbl_Welcome;
-    private System.Windows.Forms.Button btn_DeviceRecipe;
-    private System.Windows.Forms.Label lbl_Recipe;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnl_Control;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Timer tmr_slider;
+        private System.Windows.Forms.Button btn_SlideOut;
+        private System.Windows.Forms.Button btn_SlideIn;
+        private System.Windows.Forms.Button btn_frmIODiag;
+        private System.Windows.Forms.Button btn_Auto;
+        private System.Windows.Forms.Button btn_Main;
+        private System.Windows.Forms.Button btn_Setup;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btn_CloseAll;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_Version;
+        public System.Windows.Forms.Panel pnl_Form;
+        private System.Windows.Forms.Timer tmr_Main;
+        private System.Windows.Forms.Label lbl_Time;
+        private System.Windows.Forms.Label lbl_Date;
+        private System.Windows.Forms.Button btn_AccessConfig;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lbl_Welcome;
+        private System.Windows.Forms.Button btn_DeviceRecipe;
+        private System.Windows.Forms.Label lbl_Recipe;
         private System.Windows.Forms.Button btn_Close;
     }
 }
