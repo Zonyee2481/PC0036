@@ -62,11 +62,13 @@ namespace Machine
             this.pnlMiddle = new System.Windows.Forms.Panel();
             this.pnlLotInfo = new System.Windows.Forms.Panel();
             this.gbLotInfo = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_McRunningHz = new System.Windows.Forms.Label();
             this.lbl_McProcessTime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblInvalid = new System.Windows.Forms.Label();
             this.txtDeviceID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlRight.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -472,6 +474,8 @@ namespace Machine
             // 
             // gbLotInfo
             // 
+            this.gbLotInfo.Controls.Add(this.label4);
+            this.gbLotInfo.Controls.Add(this.lbl_McRunningHz);
             this.gbLotInfo.Controls.Add(this.lbl_McProcessTime);
             this.gbLotInfo.Controls.Add(this.label1);
             this.gbLotInfo.Controls.Add(this.lblInvalid);
@@ -486,18 +490,51 @@ namespace Machine
             this.gbLotInfo.TabStop = false;
             this.gbLotInfo.Text = "Lot Info";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 139);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 23);
+            this.label4.TabIndex = 74;
+            this.label4.Text = "Hz:";
+            // 
+            // lbl_McRunningHz
+            // 
+            this.lbl_McRunningHz.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_McRunningHz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_McRunningHz.Font = new System.Drawing.Font("Times New Roman", 75.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_McRunningHz.ForeColor = System.Drawing.Color.MediumBlue;
+            this.lbl_McRunningHz.Location = new System.Drawing.Point(10, 163);
+            this.lbl_McRunningHz.Name = "lbl_McRunningHz";
+            this.lbl_McRunningHz.Size = new System.Drawing.Size(663, 216);
+            this.lbl_McRunningHz.TabIndex = 73;
+            this.lbl_McRunningHz.Text = "0";
+            this.lbl_McRunningHz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lbl_McProcessTime
             // 
             this.lbl_McProcessTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_McProcessTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_McProcessTime.Font = new System.Drawing.Font("Times New Roman", 75.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_McProcessTime.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lbl_McProcessTime.Location = new System.Drawing.Point(10, 230);
+            this.lbl_McProcessTime.Location = new System.Drawing.Point(10, 403);
             this.lbl_McProcessTime.Name = "lbl_McProcessTime";
-            this.lbl_McProcessTime.Size = new System.Drawing.Size(663, 389);
+            this.lbl_McProcessTime.Size = new System.Drawing.Size(663, 216);
             this.lbl_McProcessTime.TabIndex = 71;
             this.lbl_McProcessTime.Text = "0";
             this.lbl_McProcessTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 379);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 23);
+            this.label1.TabIndex = 72;
+            this.label1.Text = "Time:";
             // 
             // lblInvalid
             // 
@@ -531,16 +568,6 @@ namespace Machine
             this.label2.Size = new System.Drawing.Size(118, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Lot Number:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 205);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 23);
-            this.label1.TabIndex = 72;
-            this.label1.Text = "Processing Time:";
             // 
             // uctrlAuto
             // 
@@ -613,5 +640,7 @@ namespace Machine
         private System.Windows.Forms.DataGridView dgvRunningLot;
         private System.Windows.Forms.Label lbl_McProcessTime;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_McRunningHz;
     }
 }

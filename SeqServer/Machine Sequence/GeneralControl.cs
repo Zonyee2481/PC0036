@@ -145,6 +145,7 @@ namespace SeqServer
                                     m_SeqEventPool.FireEvent(EV_TYPE.InitDone, this);
                                     FireEvent2UI(m_MyFlag.MsgArg);
                                     SM.McProcessTime = 0;
+                                    SM.McRunningHz = 0;
                                     TimesUp = false;
                                     StartCtrlRelay = false;
                                     StartBtnLED = false;
@@ -199,7 +200,10 @@ namespace SeqServer
                                 break;
                             case RunSeq.TurnOnTimesUp:
                                 {
-                                    TimesUp = true;                                    
+                                    TimesUp = true;
+                                    m_MyFlag.MsgArg.StationName = "General Control";
+                                    m_MyFlag.MsgArg.MachineStatus = eMcState.MC_RUN_TIMESUP;
+                                    FireEvent2UI(m_MyFlag.MsgArg);
                                     m_RunSeq = RunSeq.WaitEndLot;
                                 }
                                 break;

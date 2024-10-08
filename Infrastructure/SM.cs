@@ -23,6 +23,7 @@ namespace Infrastructure
         public static string Connection = "";
         public static string UserName = "";
         public static int McProcessTime = 0;
+        public static int McRunningHz = 0;
         public static bool StartCount = false;
         public static int LotNoCoolingPeriodInHour = 0;
         public static int LotNoCoolingPeriodInMinute = 0;

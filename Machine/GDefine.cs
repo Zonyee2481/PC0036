@@ -49,7 +49,7 @@ namespace Machine
         public static string _sLaserMarkContentFile = GDefine.AppPath2;
         public static string LaserCodePathWifName = AppPath2 + "\\Laser Code.csv";
         public static string _sSqlServerName = System.Environment.MachineName + @"\SQLEXPRESS";//Data Source
-        public static string _sSqlDatabaseName = "PC001";//Initial Catalog
+        public static string _sSqlDatabaseName = "PC0036";//Initial Catalog
         public static string _sConnStr = @"Data Source=" + GDefine._sSqlServerName + ";Initial Catalog=" + GDefine._sSqlDatabaseName + ";Integrated Security=True;Pooling=False";
 
         public static List<IPPort> _IpPort = new List<IPPort>();

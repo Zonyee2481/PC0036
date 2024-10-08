@@ -19,6 +19,7 @@ using SeqServer;
 using MotionIODevice;
 using MotionIODevice.IO;
 using Infrastructure;
+using Core.Database;
 
 namespace Machine
 {
@@ -33,6 +34,7 @@ namespace Machine
             PanelControl = pnl_Form;
             //GDefine.LoadComParam();
             IOModule = new IOMain();
+            dbMain = new SQLserver();
             //AdvantechModule = new MotionMain_Advantech();
             //MoonStfModule = new MotionMain_MoonsSTF();
             //GalilModule = new MotionMain_Galil();
@@ -90,14 +92,19 @@ namespace Machine
         public static IMainConnection MainConnection = null;
         public static IMotionMain GalilModule = null;
         public static Panel PanelControl = null;
+        public static SQLserver dbMain = null;
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-
+        TaskLicense tl = new TaskLicense();
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if (!tl.CheckLicenseKey())
+            {
+                this.Close();
+            }
             lbl_Version.Text = "Version: " + Application.ProductVersion.ToString();
             uctrlAuto.Page.AddToLog("Software Start up!");
             //TaskDeviceRecipe.ReadLaserCode();
@@ -125,6 +132,7 @@ namespace Machine
             TaskBitCode.InitBitCode();
             TaskBitCode.LoadBitCodeRecipe();
             TaskLotInfo.DeleteLotRecordData(); // Delete past 2 lot record data
+            dbMain.ConnectDatabase(GDefine._sConnStr);
             //LoadMachineRecipe();
         }
 

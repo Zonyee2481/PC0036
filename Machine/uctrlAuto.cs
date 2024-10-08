@@ -94,18 +94,18 @@ namespace Machine
                 dgvSeqNum.Rows[row].Cells[0].Value = $"{totalModules[row]}";
             }
 
-            DataGridViewTextBoxColumn lotColumn1 = new DataGridViewTextBoxColumn();
-            lotColumn1.HeaderText = "Lot Number";
-            lotColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
-            lotColumn1.FillWeight = 1;
+            //DataGridViewTextBoxColumn lotColumn1 = new DataGridViewTextBoxColumn();
+            //lotColumn1.HeaderText = "Lot Number";
+            //lotColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
+            //lotColumn1.FillWeight = 1;
 
-            DataGridViewTextBoxColumn lotColumn2 = new DataGridViewTextBoxColumn();
-            lotColumn2.HeaderText = "Count";
-            lotColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
-            lotColumn2.FillWeight = 1;
+            //DataGridViewTextBoxColumn lotColumn2 = new DataGridViewTextBoxColumn();
+            //lotColumn2.HeaderText = "Count";
+            //lotColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
+            //lotColumn2.FillWeight = 1;
 
-            dgvRunningLot.Columns.Add(lotColumn1);
-            dgvRunningLot.Columns.Add(lotColumn2);
+            //dgvRunningLot.Columns.Add(lotColumn1);
+            //dgvRunningLot.Columns.Add(lotColumn2);
         }
 
         private void ShowRunningNumbers()
@@ -125,36 +125,48 @@ namespace Machine
             string m = currentDate.Month.ToString();
             string y = currentDate.Year.ToString();
 
-            if (m.Length == 1) { m = "0" + m; }
-            string my = m + "-" + y;
+            frmMain.dbMain.GetLotRecordCountByDate(currentDate.ToString(frmMain.dbMain.DateFormat));
 
-            string recordDataDir = GDefine.AppPath + GDefine.RecordData + "\\" + my + "\\" + date;
-            List<string> lsLotNumber = new List<string>();
-            List<int> liCounter = new List<int>();
-            string[] records;
-            if (Directory.Exists(recordDataDir))
+            if (frmMain.dbMain.DataTable != null)
             {
-                records = Directory.GetDirectories(recordDataDir);
-                foreach (string record in records)
-                {
-                    string[] products = Directory.GetDirectories(record);
-                    foreach (string lot in products)
-                    {
-                        DirectoryInfo file = new DirectoryInfo(lot);
-                        int count = file.GetFiles().Length;
-                        lsLotNumber.Add(file.Name);
-                        liCounter.Add(count);
-                    }
-                }
-            }            
-
-            dgvRunningLot.RowCount = lsLotNumber.Count > 0 ? lsLotNumber.Count : 1;
-
-            for (int row = 0; row < lsLotNumber.Count; row++)
-            {
-                dgvRunningLot.Rows[row].Cells[0].Value = lsLotNumber[row];
-                dgvRunningLot.Rows[row].Cells[1].Value = liCounter[row];
+                dgvRunningLot.DataSource = frmMain.dbMain.DataTable;
             }
+
+            dgvRunningLot.Columns[0].HeaderText = "Lot Number";
+            dgvRunningLot.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvRunningLot.Columns[1].HeaderText = "Count";
+            dgvRunningLot.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //if (m.Length == 1) { m = "0" + m; }
+            //string my = m + "-" + y;
+
+            //string recordDataDir = GDefine.AppPath + GDefine.RecordData + "\\" + my + "\\" + date;
+            //List<string> lsLotNumber = new List<string>();
+            //List<int> liCounter = new List<int>();
+            //string[] records;
+            //if (Directory.Exists(recordDataDir))
+            //{
+            //    records = Directory.GetDirectories(recordDataDir);
+            //    foreach (string record in records)
+            //    {
+            //        string[] products = Directory.GetDirectories(record);
+            //        foreach (string lot in products)
+            //        {
+            //            DirectoryInfo file = new DirectoryInfo(lot);
+            //            int count = file.GetFiles().Length;
+            //            lsLotNumber.Add(file.Name);
+            //            liCounter.Add(count);
+            //        }
+            //    }
+            //}            
+
+            //dgvRunningLot.RowCount = lsLotNumber.Count > 0 ? lsLotNumber.Count : 1;
+
+            //for (int row = 0; row < lsLotNumber.Count; row++)
+            //{
+            //    dgvRunningLot.Rows[row].Cells[0].Value = lsLotNumber[row];
+            //    dgvRunningLot.Rows[row].Cells[1].Value = liCounter[row];
+            //}
         }
 
         public void AddToLog(string S)
@@ -369,6 +381,7 @@ namespace Machine
                 case eMcState.MC_INITIALIZED:
                     InvokeHelper.Enable(btn_Start, true);
                     InvokeHelper.Text(lbl_MachineState, "Init Done");
+                    TaskLotInfo.LotInfo.Hertz = "0";
                     if (EndLot)
                     {
                         TaskLotInfo.LotInfo.Activated = false;
@@ -480,6 +493,15 @@ namespace Machine
                 //        SetMcState(eMcState.MC_RUN_MANUAL);
                 //    }
                 //    break;
+                case eMcState.MC_RUN_TIMESUP:
+                    {
+                        DateTime dateTime = DateTime.Now;
+                        string D = dateTime.Date.ToString("dd-MM-yyyy");
+                        string T = dateTime.ToString("HH:mm:ss tt");
+                        TaskLotInfo.LotInfo.DateOut = D;
+                        TaskLotInfo.LotInfo.TimeOut = T;
+                    }
+                    break;
 
                 case eMcState.MC_RUNNING: break; //Add log purpose
             }
@@ -678,11 +700,31 @@ namespace Machine
             string D = dateTime.Date.ToString("dd-MM-yyyy");
             string T = dateTime.ToString("HH:mm:ss tt");
 
-            if (!TaskLotInfo.CheckLotRecordDataCount(txtDeviceID.Text, dateTime))
+            //if (!TaskLotInfo.CheckLotRecordDataCount(txtDeviceID.Text, dateTime))
+            //{
+            //    msgForm = new frmMessaging2();
+            //    msgForm.StartPosition = FormStartPosition.CenterParent;
+            //    msgForm.ShowMsg("Lot " + txtDeviceID.Text + " Has Run Out Of The Limit For The Grease Removing Process " + GDefine._iMaxCounter + "!" + (char)10 +
+            //        + (char)10 +
+            //        "Lot " + txtDeviceID.Text + " Telah Kehabisan Had Untuk Proses Penyingkiran Gris " + GDefine._iMaxCounter + "!", 
+            //        frmMessaging2.TMsgBtn.smbOK);
+            //    DialogResult dialogResult = msgForm.ShowDialog();
+            //    if (dialogResult == DialogResult.OK)
+            //    {
+            //        goto _Abort;
+            //    }
+            //}
+
+            if (!TaskLotInfo.CheckLotRecordCount(txtDeviceID.Text, dateTime))
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;
-                msgForm.ShowMsg("Lot " + txtDeviceID.Text + " Is Ran Out Of Today Limit Count " + GDefine._iMaxCounter + "!", frmMessaging2.TMsgBtn.smbOK);
+                msgForm.ShowMsg("Lot " + txtDeviceID.Text + " Has Run Out Of The Limit " + (char)10 + 
+                    "For The Grease Removing Process " + GDefine._iMaxCounter + "!" + (char)10 +
+                    (char)10 +
+                    "Lot " + txtDeviceID.Text + " Telah Kehabisan Had " + (char)10 + 
+                    " Untuk Proses Penyingkiran Gris " + GDefine._iMaxCounter + "!",
+                    frmMessaging2.TMsgBtn.smbOK);
                 DialogResult dialogResult = msgForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {
@@ -690,15 +732,33 @@ namespace Machine
                 }
             }
 
-            int iLotCount = TaskLotInfo.LotRecordDataCount(txtDeviceID.Text, dateTime);
+            //int iLotCount = TaskLotInfo.LotRecordDataCount(txtDeviceID.Text, dateTime);
+            int iLotCount = 0;
+
+            if (!TaskLotInfo.GetLotRecordCount(txtDeviceID.Text, dateTime, out iLotCount))
+            {
+                msgForm = new frmMessaging2();
+                msgForm.StartPosition = FormStartPosition.CenterParent;
+                msgForm.ShowMsg("Failed To Get DB Lot Record Count!",
+                    frmMessaging2.TMsgBtn.smbOK);
+                DialogResult dialogResult = msgForm.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    goto _Abort;
+                }
+            }
 
             TaskDeviceRecipe._LotInfo.InitialRun = iLotCount < 1;
 
             TaskLotInfo.LotInfo.LotNum = txtDeviceID.Text;
             TaskLotInfo.LotInfo.PartNum = txtDeviceID.Text.Substring(0, 3);
-            TaskLotInfo.LotInfo.HzCodeRun = TaskDeviceRecipe._LotInfo.InitialRun ? TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_1st : TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_2nd;
+            TaskLotInfo.LotInfo.HertzCode = TaskDeviceRecipe._LotInfo.InitialRun ? TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_1st : TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_2nd;
+            TaskLotInfo.LotInfo.Hertz = TaskBitCode.lBitCodes[TaskLotInfo.LotInfo.HertzCode].Description;
+            TaskLotInfo.LotInfo.RunCounter = 0;
             TaskLotInfo.LotInfo.DateIn = D;
             TaskLotInfo.LotInfo.TimeIn = T;
+
+            frmMain.dbMain.AddLotRecord(txtDeviceID.Text, dateTime.ToString(frmMain.dbMain.DateFormat), dateTime.ToString(frmMain.dbMain.TimeFormat),"", "");
 
             TaskLotInfo.LotInfo.Activated = true;
 
@@ -780,7 +840,7 @@ namespace Machine
                 lbl_McIdleTime.Text = TickConverter.Convert2DHMS(SM.McIdleTime, 1);                
 
                 if (SM.McState == eMcState.MC_RUNNING && SM.StartCount) SM.McProcessTime--;
-
+                lbl_McRunningHz.Text = TaskLotInfo.LotInfo.Hertz;
                 lbl_McProcessTime.Text = TickConverter.Convert2S(SM.McProcessTime);
 
                 #endregion
@@ -870,12 +930,15 @@ namespace Machine
                 return;
             }
 
-            if (!TaskLotInfo.CheckLotRecordDataShortly(txtDeviceID.Text, SM.LotNoCoolingPeriodInHour, SM.LotNoCoolingPeriodInMinute))
+            if (!TaskLotInfo.CheckLotRunShortly(txtDeviceID.Text, SM.LotNoCoolingPeriodInHour, SM.LotNoCoolingPeriodInMinute))
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;
-                msgForm.ShowMsg(txtDeviceID.Text + " Still Within Cooling Period " + SM.LotNoCoolingPeriodInHour + " H " + SM.LotNoCoolingPeriodInMinute + " M!" + (char)10 + 
-                    "Please Wait To Run This Lot!"
+                msgForm.ShowMsg("Lot " + txtDeviceID.Text + " Still Within Cooling Period " + (char)10 + 
+                    "For Grease Removing Process " + SM.LotNoCoolingPeriodInHour + " H " + SM.LotNoCoolingPeriodInMinute + " M!" + (char)10 +
+                     (char)10 +
+                    "Lot " + txtDeviceID.Text + " Masih Dalam Tempoh Bertenang " + (char)10 + 
+                    " Untuk Proses Penyingkiran Gris " + SM.LotNoCoolingPeriodInHour + " H " + SM.LotNoCoolingPeriodInMinute + " M!"
                     , frmMessaging2.TMsgBtn.smbOK);
                 DialogResult dialogResult = msgForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)

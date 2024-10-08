@@ -56,6 +56,7 @@
             this.lbl_Date = new System.Windows.Forms.Label();
             this.tmr_slider = new System.Windows.Forms.Timer(this.components);
             this.tmr_Main = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.pnl_Control.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -284,6 +285,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(18)))), ((int)(((byte)(76)))));
+            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.lbl_Welcome);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.btn_Close);
@@ -415,6 +417,18 @@
             this.tmr_Main.Interval = 10;
             this.tmr_Main.Tick += new System.EventHandler(this.tmr_Main_Tick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(18)))), ((int)(((byte)(76)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(196, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 7);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "MACHINE POWERED BY TTOT";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,6 +483,7 @@
         private System.Windows.Forms.Button btn_DeviceRecipe;
         private System.Windows.Forms.Label lbl_Recipe;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.Label label1;
     }
 }
 

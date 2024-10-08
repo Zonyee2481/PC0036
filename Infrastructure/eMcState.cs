@@ -26,5 +26,7 @@ namespace Infrastructure
         MC_RUN_MANUAL,
 
         MC_OPT_REQ,
+
+        MC_RUN_TIMESUP,
     };
 }

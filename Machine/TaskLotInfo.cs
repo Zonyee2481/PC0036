@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Core.Database;
 
 namespace Machine
 {
@@ -15,7 +16,9 @@ namespace Machine
             public bool Activated;
             public string LotNum;
             public string PartNum;
-            public int HzCodeRun;
+            public int HertzCode;
+            public string Hertz;
+            public int RunCounter;
             public string DateIn;
             public string TimeIn;
             public string DateOut;
@@ -31,13 +34,20 @@ namespace Machine
             int tD;
             int tM;
             int tY;
+            int tHour;
+            int tMin;
+            int tSec;
 
             tD = Convert.ToInt32(LotInfo.DateIn[0].ToString() + LotInfo.DateIn[1].ToString());
             tM = Convert.ToInt32(LotInfo.DateIn[3].ToString() + LotInfo.DateIn[4].ToString());
             tY = Convert.ToInt32(LotInfo.DateIn[6].ToString() + LotInfo.DateIn[7].ToString() +
                                  LotInfo.DateIn[8].ToString() + LotInfo.DateIn[9].ToString());
 
-            DateTime DTIn = new DateTime(tY, tM, tD);
+            tHour = Convert.ToInt32(LotInfo.TimeIn[0].ToString() + LotInfo.TimeIn[1].ToString());
+            tMin = Convert.ToInt32(LotInfo.TimeIn[3].ToString() + LotInfo.TimeIn[4].ToString());
+            tSec = Convert.ToInt32(LotInfo.TimeIn[6].ToString() + LotInfo.TimeIn[7].ToString());
+
+            DateTime DTIn = new DateTime(tY, tM, tD, tHour, tMin, tSec);
 
             string D = DTIn.Date.ToString("dd-MM-yyyy");
             string M = DTIn.Month.ToString();
@@ -60,7 +70,9 @@ namespace Machine
                 string Title;
                 Title = "Device ID" + "," +
                         "Lot Number" + "," +
-                        "Hz Code Running" + "," +
+                        "Hertz Number" + "," +
+                        "Hertz Running" + "," +
+                        "Run Number" + "," +
                         "Date/Time In" + "," +
                         "Date/Time Out";
 
@@ -69,23 +81,32 @@ namespace Machine
 
             string S;
 
-            string DO = DateTime.Now.Date.ToString("dd-MM-yyyy");
-            string TO = DateTime.Now.ToString("HH:mm:ss tt");
-
-            LotInfo.DateOut = DO;
-            LotInfo.TimeOut = TO;
-
             S = LotInfo.PartNum + "," +
                 LotInfo.LotNum + "," +
-                LotInfo.HzCodeRun + "," +
+                LotInfo.HertzCode + "," +
+                LotInfo.Hertz + "," +
+                LotInfo.RunCounter + "," +
                 LotInfo.DateIn + " / " + LotInfo.TimeIn + "," +
                 LotInfo.DateOut + " / " + LotInfo.TimeOut;
 
             if (!ELot)
             {
+                tD = Convert.ToInt32(LotInfo.DateOut[0].ToString() + LotInfo.DateOut[1].ToString());
+                tM = Convert.ToInt32(LotInfo.DateOut[3].ToString() + LotInfo.DateOut[4].ToString());
+                tY = Convert.ToInt32(LotInfo.DateOut[6].ToString() + LotInfo.DateOut[7].ToString() +
+                                     LotInfo.DateOut[8].ToString() + LotInfo.DateOut[9].ToString());
+
+                tHour = Convert.ToInt32(LotInfo.TimeOut[0].ToString() + LotInfo.TimeOut[1].ToString());
+                tMin = Convert.ToInt32(LotInfo.TimeOut[3].ToString() + LotInfo.TimeOut[4].ToString());
+                tSec = Convert.ToInt32(LotInfo.TimeOut[6].ToString() + LotInfo.TimeOut[7].ToString());
+
+                DateTime DTOut = new DateTime(tY, tM, tD, tHour, tMin, tSec);
+
+                frmMain.dbMain.UpdateLotRecord(LotInfo.LotNum, DTIn.Date.ToString(frmMain.dbMain.DateFormat) , DTIn.ToString(frmMain.dbMain.TimeFormat),
+                    DTOut.Date.ToString(frmMain.dbMain.DateFormat), DTOut.ToString(frmMain.dbMain.TimeFormat));
                 W.WriteLine(S);
                 W.Close();
-                SaveLotRecordData(DTIn);
+                //SaveLotRecordData(DTIn);
                 TempLotLine = S;
             }
             else
@@ -141,7 +162,7 @@ namespace Machine
 
             S = LotInfo.PartNum + (char)9 +
                 LotInfo.LotNum + (char)9 +
-                LotInfo.HzCodeRun + (char)9 +
+                LotInfo.HertzCode + (char)9 +
                 LotInfo.DateIn + " / " + LotInfo.TimeIn + (char)9 +
                 LotInfo.DateOut + " / " + LotInfo.TimeOut;
 
@@ -265,6 +286,55 @@ namespace Machine
                 var dir = new DirectoryInfo(MYDir);
                 dir.Delete(true);
             }
+        }
+
+        public static bool CheckLotRecordCount(string LotNumber, DateTime StartDate)
+        {
+            if (TaskDeviceRecipe._LotInfo._RecipeInfo.MasterProduct) { return true; }
+            int count = 0;
+            string startDate = StartDate.ToString(frmMain.dbMain.DateFormat);
+            if (!frmMain.dbMain.CountLotRecord(LotNumber, startDate, out count))
+            {
+                return false;
+            }
+            if (count >= GDefine._iMaxCounter)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool GetLotRecordCount(string LotNumber, DateTime StartDate, out int Count)
+        {
+            Count = 0;
+            string startDate = StartDate.ToString(frmMain.dbMain.DateFormat);
+            if (!frmMain.dbMain.CountLotRecord(LotNumber, startDate, out Count))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool CheckLotRunShortly(string LotNumber, int checkHour, int checkMinute)
+        {
+            DateTime current = DateTime.Now;
+            string[] startTime;
+            frmMain.dbMain.GetLotRecordStartTime(LotNumber, current.ToString(frmMain.dbMain.DateFormat), out startTime); 
+            if (frmMain.dbMain.DataTable.Rows.Count < 1) { return true; }
+            for (int i = 0; i < startTime.Length; i++)
+            {
+                int hour = Convert.ToInt32(startTime[i].Substring(0, 2));
+                int minute = Convert.ToInt32(startTime[i].Substring(3, 2));
+                int second = Convert.ToInt32(startTime[i].Substring(6, 2));
+                if (minute + checkMinute >= 60) { checkMinute = 0; checkHour = 1; }
+                DateTime checkTime = new DateTime(current.Year, current.Month, current.Day, (hour + checkHour), (minute + checkMinute), second);
+                if (current < checkTime)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Machine
 {
-    class TaskBitCode
+    public class TaskBitCode
     {
         public static int arrMax = 999;
         public static string[] asDeviceName = new string[arrMax];
