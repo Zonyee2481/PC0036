@@ -532,16 +532,16 @@ namespace Machine
             this.label4.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 139);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 23);
+            this.label4.Size = new System.Drawing.Size(82, 23);
             this.label4.TabIndex = 74;
-            this.label4.Text = "Hz:";
+            this.label4.Text = "Spin Hz:";
             // 
             // lbl_McRunningHz
             // 
             this.lbl_McRunningHz.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_McRunningHz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_McRunningHz.Font = new System.Drawing.Font("Times New Roman", 75.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_McRunningHz.ForeColor = System.Drawing.Color.MediumBlue;
+            this.lbl_McRunningHz.ForeColor = System.Drawing.Color.Purple;
             this.lbl_McRunningHz.Location = new System.Drawing.Point(10, 163);
             this.lbl_McRunningHz.Name = "lbl_McRunningHz";
             this.lbl_McRunningHz.Size = new System.Drawing.Size(663, 216);
@@ -568,9 +568,9 @@ namespace Machine
             this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 379);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 23);
+            this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 72;
-            this.label1.Text = "Time:";
+            this.label1.Text = "Spin Time:";
             // 
             // lblInvalid
             // 

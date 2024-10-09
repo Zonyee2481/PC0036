@@ -693,9 +693,11 @@ namespace Machine
             TaskLotInfo.LotInfo.PartNum = txtDeviceID.Text.Substring(0, 3);
             TaskLotInfo.LotInfo.HertzCode = TaskDeviceRecipe._LotInfo.InitialRun ? TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_1st : TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_2nd;
             TaskLotInfo.LotInfo.Hertz = TaskBitCode.lBitCodes[TaskLotInfo.LotInfo.HertzCode].Description;
-            TaskLotInfo.LotInfo.RunCounter = 0;
+            int count = 0;
+            frmMain.dbMain.CountLotRecordByDate(TaskLotInfo.LotInfo.LotNum, dateTime.ToString(frmMain.dbMain.DateFormat), out count);
+            TaskLotInfo.LotInfo.RunCounter = count + 1;
             TaskLotInfo.LotInfo.DateIn = D;
-            TaskLotInfo.LotInfo.TimeIn = T;
+            //TaskLotInfo.LotInfo.TimeIn = T;
 
             //frmMain.dbMain.AddLotRecord(txtDeviceID.Text, dateTime.ToString(frmMain.dbMain.DateFormat), dateTime.ToString(frmMain.dbMain.TimeFormat),"", "");
 
@@ -736,6 +738,9 @@ namespace Machine
                 MessageEventArg msg = new MessageEventArg();
                 msg.StationName = "GeneralControl";
                 frmMain.MainEvent.UITriggerEvent(EV_TYPE.WorkReq, msg);
+                DateTime dateTime = DateTime.Now;
+                string T = dateTime.ToString("HH:mm:ss tt");
+                TaskLotInfo.LotInfo.TimeIn = T;
             }
 
 //            if (TaskLotInfo.LotInfo.Activated && GetMcState() == eMcState.MC_RUN_MANUAL)

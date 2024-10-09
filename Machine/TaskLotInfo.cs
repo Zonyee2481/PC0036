@@ -71,7 +71,7 @@ namespace Machine
                 Title = "Device ID" + "," +
                         "Lot Number" + "," +
                         "Hertz Number" + "," +
-                        "Hertz Running" + "," +
+                        "Spin Hertz" + "," +
                         "Run Number" + "," +
                         "Date/Time In" + "," +
                         "Date/Time Out";
@@ -163,6 +163,7 @@ namespace Machine
             S = LotInfo.PartNum + (char)9 +
                 LotInfo.LotNum + (char)9 +
                 LotInfo.HertzCode + (char)9 +
+                LotInfo.Hertz + (char)9 +
                 LotInfo.DateIn + " / " + LotInfo.TimeIn + (char)9 +
                 LotInfo.DateOut + " / " + LotInfo.TimeOut;
 
