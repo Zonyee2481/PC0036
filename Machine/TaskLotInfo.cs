@@ -70,9 +70,9 @@ namespace Machine
                 string Title;
                 Title = "Device ID" + "," +
                         "Lot Number" + "," +
-                        "Hertz Number" + "," +
+                        "Spin Hertz Number" + "," +
                         "Spin Hertz" + "," +
-                        "Run Number" + "," +
+                        "Number of Run" + "," +
                         "Date/Time In" + "," +
                         "Date/Time Out";
 

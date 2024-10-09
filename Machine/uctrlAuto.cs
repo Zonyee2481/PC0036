@@ -319,8 +319,7 @@ namespace Machine
                     break;
                 case eMcState.MC_INITIALIZED:
                     InvokeHelper.Enable(btn_Start, true);
-                    InvokeHelper.Text(lbl_MachineState, "Init Done");
-                    TaskLotInfo.LotInfo.Hertz = "0";
+                    InvokeHelper.Text(lbl_MachineState, "Init Done");                    
                     if (EndLot)
                     {
                         TaskLotInfo.LotInfo.Activated = false;
@@ -328,6 +327,7 @@ namespace Machine
                         //PromptMessageOk("Lot Finished!");
                         EndLot = false;
                     }
+                    TaskLotInfo.LotInfo.Hertz = "0";
                     InvokeHelper.Enable(txtDeviceID, true);
                     InvokeHelper.Text(txtDeviceID, string.Empty);
                     InvokeHelper.Focus(txtDeviceID, true);
