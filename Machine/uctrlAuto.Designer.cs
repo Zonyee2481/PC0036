@@ -52,6 +52,9 @@ namespace Machine
             this.pnlLeftLeft = new System.Windows.Forms.Panel();
             this.gbMcPerformance = new System.Windows.Forms.GroupBox();
             this.pnlLotRecordData = new System.Windows.Forms.Panel();
+            this.pnlLotRecordDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpFindLotRecord = new System.Windows.Forms.DateTimePicker();
+            this.pnlLotRecordDataGridView = new System.Windows.Forms.Panel();
             this.dgvRunningLot = new System.Windows.Forms.DataGridView();
             this.lbl_McRunTime = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -69,9 +72,6 @@ namespace Machine
             this.lblInvalid = new System.Windows.Forms.Label();
             this.txtDeviceID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtpFindLotRecord = new System.Windows.Forms.DateTimePicker();
-            this.pnlLotRecordDataGridView = new System.Windows.Forms.Panel();
-            this.pnlLotRecordDateTimePicker = new System.Windows.Forms.Panel();
             this.pnlRight.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -85,12 +85,12 @@ namespace Machine
             this.pnlLeftLeft.SuspendLayout();
             this.gbMcPerformance.SuspendLayout();
             this.pnlLotRecordData.SuspendLayout();
+            this.pnlLotRecordDateTimePicker.SuspendLayout();
+            this.pnlLotRecordDataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRunningLot)).BeginInit();
             this.pnlMiddle.SuspendLayout();
             this.pnlLotInfo.SuspendLayout();
             this.gbLotInfo.SuspendLayout();
-            this.pnlLotRecordDataGridView.SuspendLayout();
-            this.pnlLotRecordDateTimePicker.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlRight
@@ -381,6 +381,32 @@ namespace Machine
             this.pnlLotRecordData.Size = new System.Drawing.Size(394, 452);
             this.pnlLotRecordData.TabIndex = 2;
             // 
+            // pnlLotRecordDateTimePicker
+            // 
+            this.pnlLotRecordDateTimePicker.Controls.Add(this.dtpFindLotRecord);
+            this.pnlLotRecordDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLotRecordDateTimePicker.Location = new System.Drawing.Point(0, 0);
+            this.pnlLotRecordDateTimePicker.Name = "pnlLotRecordDateTimePicker";
+            this.pnlLotRecordDateTimePicker.Size = new System.Drawing.Size(394, 35);
+            this.pnlLotRecordDateTimePicker.TabIndex = 159;
+            // 
+            // dtpFindLotRecord
+            // 
+            this.dtpFindLotRecord.Location = new System.Drawing.Point(66, 3);
+            this.dtpFindLotRecord.Name = "dtpFindLotRecord";
+            this.dtpFindLotRecord.Size = new System.Drawing.Size(256, 26);
+            this.dtpFindLotRecord.TabIndex = 71;
+            this.dtpFindLotRecord.ValueChanged += new System.EventHandler(this.dtpFindLotRecord_ValueChanged);
+            // 
+            // pnlLotRecordDataGridView
+            // 
+            this.pnlLotRecordDataGridView.Controls.Add(this.dgvRunningLot);
+            this.pnlLotRecordDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlLotRecordDataGridView.Location = new System.Drawing.Point(0, 35);
+            this.pnlLotRecordDataGridView.Name = "pnlLotRecordDataGridView";
+            this.pnlLotRecordDataGridView.Size = new System.Drawing.Size(394, 417);
+            this.pnlLotRecordDataGridView.TabIndex = 158;
+            // 
             // dgvRunningLot
             // 
             this.dgvRunningLot.AllowUserToAddRows = false;
@@ -561,6 +587,7 @@ namespace Machine
             // 
             // txtDeviceID
             // 
+            this.txtDeviceID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDeviceID.Font = new System.Drawing.Font("Times New Roman", 45F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDeviceID.Location = new System.Drawing.Point(177, 32);
             this.txtDeviceID.Name = "txtDeviceID";
@@ -578,32 +605,6 @@ namespace Machine
             this.label2.Size = new System.Drawing.Size(118, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Lot Number:";
-            // 
-            // dtpFindLotRecord
-            // 
-            this.dtpFindLotRecord.Location = new System.Drawing.Point(74, 3);
-            this.dtpFindLotRecord.Name = "dtpFindLotRecord";
-            this.dtpFindLotRecord.Size = new System.Drawing.Size(245, 26);
-            this.dtpFindLotRecord.TabIndex = 71;
-            this.dtpFindLotRecord.ValueChanged += new System.EventHandler(this.dtpFindLotRecord_ValueChanged);
-            // 
-            // pnlLotRecordDataGridView
-            // 
-            this.pnlLotRecordDataGridView.Controls.Add(this.dgvRunningLot);
-            this.pnlLotRecordDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlLotRecordDataGridView.Location = new System.Drawing.Point(0, 35);
-            this.pnlLotRecordDataGridView.Name = "pnlLotRecordDataGridView";
-            this.pnlLotRecordDataGridView.Size = new System.Drawing.Size(394, 417);
-            this.pnlLotRecordDataGridView.TabIndex = 158;
-            // 
-            // pnlLotRecordDateTimePicker
-            // 
-            this.pnlLotRecordDateTimePicker.Controls.Add(this.dtpFindLotRecord);
-            this.pnlLotRecordDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLotRecordDateTimePicker.Location = new System.Drawing.Point(0, 0);
-            this.pnlLotRecordDateTimePicker.Name = "pnlLotRecordDateTimePicker";
-            this.pnlLotRecordDateTimePicker.Size = new System.Drawing.Size(394, 35);
-            this.pnlLotRecordDateTimePicker.TabIndex = 159;
             // 
             // uctrlAuto
             // 
@@ -629,13 +630,13 @@ namespace Machine
             this.pnlLeftLeft.ResumeLayout(false);
             this.gbMcPerformance.ResumeLayout(false);
             this.pnlLotRecordData.ResumeLayout(false);
+            this.pnlLotRecordDateTimePicker.ResumeLayout(false);
+            this.pnlLotRecordDataGridView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRunningLot)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
             this.pnlLotInfo.ResumeLayout(false);
             this.gbLotInfo.ResumeLayout(false);
             this.gbLotInfo.PerformLayout();
-            this.pnlLotRecordDataGridView.ResumeLayout(false);
-            this.pnlLotRecordDateTimePicker.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

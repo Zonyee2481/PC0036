@@ -801,21 +801,7 @@ namespace Machine
 
         private void txtDeviceID_TextChanged(object sender, EventArgs e)
         {
-            //InvokeHelper.Visible(lblProdNotFound, false);
-
-            //if (!CheckDeviceRecipe(txtDeviceID.Text))
-            //{
-            //    bool visible = txtDeviceID.Text != string.Empty ? true : false;
-            //    InvokeHelper.Visible(lblProdNotFound, visible);
-            //    return;
-            //}
-
-            //if (!StartLot())
-            //{
-            //    return;
-            //}
-
-            //StartMcCtrl();
+           
         }
 
         private bool CheckValidLotNumberLength(string LotNumber)
