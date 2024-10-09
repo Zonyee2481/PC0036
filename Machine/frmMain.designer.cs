@@ -45,6 +45,7 @@
             this.btn_SlideIn = new System.Windows.Forms.Button();
             this.btn_SlideOut = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbl_Welcome = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Close = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.lbl_Date = new System.Windows.Forms.Label();
             this.tmr_slider = new System.Windows.Forms.Timer(this.components);
             this.tmr_Main = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.pnl_Control.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -298,6 +298,18 @@
             this.panel3.Size = new System.Drawing.Size(1272, 98);
             this.panel3.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(18)))), ((int)(((byte)(76)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(196, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 9);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "MACHINE POWERED BY TTOT";
+            // 
             // lbl_Welcome
             // 
             this.lbl_Welcome.AutoSize = true;
@@ -416,18 +428,6 @@
             this.tmr_Main.Enabled = true;
             this.tmr_Main.Interval = 10;
             this.tmr_Main.Tick += new System.EventHandler(this.tmr_Main_Tick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(18)))), ((int)(((byte)(76)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(196, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 7);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "MACHINE POWERED BY TTOT";
             // 
             // frmMain
             // 

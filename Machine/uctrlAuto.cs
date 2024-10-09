@@ -58,6 +58,7 @@ namespace Machine
             Page.Show();
 
             //SM.RecipeName = TaskDeviceRecipe._LotInfo.PartNum;
+            dtpFindLotRecord.Value = DateTime.Now;
             AutoPageShow = true;
         }
 
@@ -93,19 +94,6 @@ namespace Machine
             {
                 dgvSeqNum.Rows[row].Cells[0].Value = $"{totalModules[row]}";
             }
-
-            //DataGridViewTextBoxColumn lotColumn1 = new DataGridViewTextBoxColumn();
-            //lotColumn1.HeaderText = "Lot Number";
-            //lotColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
-            //lotColumn1.FillWeight = 1;
-
-            //DataGridViewTextBoxColumn lotColumn2 = new DataGridViewTextBoxColumn();
-            //lotColumn2.HeaderText = "Count";
-            //lotColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // or DataGridViewAutoSizeColumnMode.AllCellsExceptHeader
-            //lotColumn2.FillWeight = 1;
-
-            //dgvRunningLot.Columns.Add(lotColumn1);
-            //dgvRunningLot.Columns.Add(lotColumn2);
         }
 
         private void ShowRunningNumbers()
@@ -118,55 +106,6 @@ namespace Machine
                 if (listrunning[row] != "MC_ResumeReq")
                     dgvSeqNum.Rows[row].Cells[1].Value = $"{listrunning[row]}";
             }
-
-            DateTime currentDate = DateTime.Now;
-
-            string date = currentDate.ToString("dd-MM-yyyy");
-            string m = currentDate.Month.ToString();
-            string y = currentDate.Year.ToString();
-
-            frmMain.dbMain.GetLotRecordCountByDate(currentDate.ToString(frmMain.dbMain.DateFormat));
-
-            if (frmMain.dbMain.DataTable != null)
-            {
-                dgvRunningLot.DataSource = frmMain.dbMain.DataTable;
-            }
-
-            dgvRunningLot.Columns[0].HeaderText = "Lot Number";
-            dgvRunningLot.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            dgvRunningLot.Columns[1].HeaderText = "Count";
-            dgvRunningLot.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //if (m.Length == 1) { m = "0" + m; }
-            //string my = m + "-" + y;
-
-            //string recordDataDir = GDefine.AppPath + GDefine.RecordData + "\\" + my + "\\" + date;
-            //List<string> lsLotNumber = new List<string>();
-            //List<int> liCounter = new List<int>();
-            //string[] records;
-            //if (Directory.Exists(recordDataDir))
-            //{
-            //    records = Directory.GetDirectories(recordDataDir);
-            //    foreach (string record in records)
-            //    {
-            //        string[] products = Directory.GetDirectories(record);
-            //        foreach (string lot in products)
-            //        {
-            //            DirectoryInfo file = new DirectoryInfo(lot);
-            //            int count = file.GetFiles().Length;
-            //            lsLotNumber.Add(file.Name);
-            //            liCounter.Add(count);
-            //        }
-            //    }
-            //}            
-
-            //dgvRunningLot.RowCount = lsLotNumber.Count > 0 ? lsLotNumber.Count : 1;
-
-            //for (int row = 0; row < lsLotNumber.Count; row++)
-            //{
-            //    dgvRunningLot.Rows[row].Cells[0].Value = lsLotNumber[row];
-            //    dgvRunningLot.Rows[row].Cells[1].Value = liCounter[row];
-            //}
         }
 
         public void AddToLog(string S)
@@ -758,7 +697,7 @@ namespace Machine
             TaskLotInfo.LotInfo.DateIn = D;
             TaskLotInfo.LotInfo.TimeIn = T;
 
-            frmMain.dbMain.AddLotRecord(txtDeviceID.Text, dateTime.ToString(frmMain.dbMain.DateFormat), dateTime.ToString(frmMain.dbMain.TimeFormat),"", "");
+            //frmMain.dbMain.AddLotRecord(txtDeviceID.Text, dateTime.ToString(frmMain.dbMain.DateFormat), dateTime.ToString(frmMain.dbMain.TimeFormat),"", "");
 
             TaskLotInfo.LotInfo.Activated = true;
 
@@ -817,7 +756,7 @@ namespace Machine
                 MessageEventArg msg = new MessageEventArg();
                 msg.StationName = "GeneralControl";
                 frmMain.MainEvent.UITriggerEvent(EV_TYPE.FarProcComp, msg);
-                EndLot = true;
+                EndLot = true;                
             }
             tmrSignal.Start();
         }
@@ -959,6 +898,24 @@ namespace Machine
             }
 
             StartMcCtrl();
+        }
+
+        private void dtpFindLotRecord_ValueChanged(object sender, EventArgs e)
+        {
+            string pickerDate = dtpFindLotRecord.Value.ToString(frmMain.dbMain.DateFormat);
+
+            frmMain.dbMain.GetLotRecordCountByDate(pickerDate);
+
+            if (frmMain.dbMain.DataTable != null)
+            {
+                dgvRunningLot.DataSource = frmMain.dbMain.DataTable;
+            }
+
+            dgvRunningLot.Columns[0].HeaderText = "Lot Number";
+            dgvRunningLot.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvRunningLot.Columns[1].HeaderText = "Count";
+            dgvRunningLot.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

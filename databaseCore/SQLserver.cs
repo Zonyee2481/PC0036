@@ -385,7 +385,31 @@ namespace Core.Database
             }
         }
 
-        public bool CountLotRecord(string LotNumber, string StartDate, out int Count)
+        public bool CountLotRecord(string LotNumber, out int Count)
+        {
+            string sqlString;
+            Count = 0;
+            try
+            {
+                sqlString = "SELECT * FROM " + LotRecord;
+                sqlString = string.Format("{0} WHERE [LotNumber] = '{1}'", sqlString, LotNumber);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                ErrorMessage = "";
+                Count = DataTable.Rows.Count;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool CountLotRecordByDate(string LotNumber, string StartDate, out int Count)
         {
             string sqlString;
             Count = 0;

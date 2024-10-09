@@ -102,7 +102,7 @@ namespace Machine
 
                 DateTime DTOut = new DateTime(tY, tM, tD, tHour, tMin, tSec);
 
-                frmMain.dbMain.UpdateLotRecord(LotInfo.LotNum, DTIn.Date.ToString(frmMain.dbMain.DateFormat) , DTIn.ToString(frmMain.dbMain.TimeFormat),
+                frmMain.dbMain.AddLotRecord(LotInfo.LotNum, DTIn.Date.ToString(frmMain.dbMain.DateFormat) , DTIn.ToString(frmMain.dbMain.TimeFormat),
                     DTOut.Date.ToString(frmMain.dbMain.DateFormat), DTOut.ToString(frmMain.dbMain.TimeFormat));
                 W.WriteLine(S);
                 W.Close();
@@ -292,8 +292,7 @@ namespace Machine
         {
             if (TaskDeviceRecipe._LotInfo._RecipeInfo.MasterProduct) { return true; }
             int count = 0;
-            string startDate = StartDate.ToString(frmMain.dbMain.DateFormat);
-            if (!frmMain.dbMain.CountLotRecord(LotNumber, startDate, out count))
+            if (!frmMain.dbMain.CountLotRecord(LotNumber, out count))
             {
                 return false;
             }
@@ -308,7 +307,7 @@ namespace Machine
         {
             Count = 0;
             string startDate = StartDate.ToString(frmMain.dbMain.DateFormat);
-            if (!frmMain.dbMain.CountLotRecord(LotNumber, startDate, out Count))
+            if (!frmMain.dbMain.CountLotRecordByDate(LotNumber, startDate, out Count))
             {
                 return false;
             }
