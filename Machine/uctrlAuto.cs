@@ -325,6 +325,17 @@ namespace Machine
                         TaskLotInfo.LotInfo.Activated = false;
                         TaskLotInfo.SaveLotInfo(false);
                         //PromptMessageOk("Lot Finished!");
+                        if (dtpFindLotRecord.InvokeRequired)
+                        {
+                            dtpFindLotRecord.Invoke((MethodInvoker)delegate
+                            {
+                                dtpFindLotRecord.Value = DateTime.Now;
+                            });
+                        }
+                        else
+                        {
+                            dtpFindLotRecord.Value = DateTime.Now;
+                        }
                         EndLot = false;
                     }
                     TaskLotInfo.LotInfo.Hertz = "0";
