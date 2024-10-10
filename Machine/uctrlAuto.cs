@@ -441,6 +441,15 @@ namespace Machine
                         TaskLotInfo.LotInfo.TimeOut = T;
                     }
                     break;
+                case eMcState.MC_START_TIMER:
+                    {
+                        DateTime dateTime = DateTime.Now;
+                        string D = dateTime.Date.ToString("dd-MM-yyyy");
+                        string T = dateTime.ToString("HH:mm:ss tt");
+                        TaskLotInfo.LotInfo.DateIn = D;
+                        TaskLotInfo.LotInfo.TimeIn = T;
+                    }
+                    break;
 
                 case eMcState.MC_RUNNING: break; //Add log purpose
             }
@@ -696,7 +705,7 @@ namespace Machine
             int count = 0;
             frmMain.dbMain.CountLotRecordByDate(TaskLotInfo.LotInfo.LotNum, dateTime.ToString(frmMain.dbMain.DateFormat), out count);
             TaskLotInfo.LotInfo.RunCounter = count + 1;
-            TaskLotInfo.LotInfo.DateIn = D;
+            //TaskLotInfo.LotInfo.DateIn = D;
             //TaskLotInfo.LotInfo.TimeIn = T;
 
             //frmMain.dbMain.AddLotRecord(txtDeviceID.Text, dateTime.ToString(frmMain.dbMain.DateFormat), dateTime.ToString(frmMain.dbMain.TimeFormat),"", "");
@@ -738,9 +747,6 @@ namespace Machine
                 MessageEventArg msg = new MessageEventArg();
                 msg.StationName = "GeneralControl";
                 frmMain.MainEvent.UITriggerEvent(EV_TYPE.WorkReq, msg);
-                DateTime dateTime = DateTime.Now;
-                string T = dateTime.ToString("HH:mm:ss tt");
-                TaskLotInfo.LotInfo.TimeIn = T;
             }
 
 //            if (TaskLotInfo.LotInfo.Activated && GetMcState() == eMcState.MC_RUN_MANUAL)

@@ -186,6 +186,9 @@ namespace SeqServer
                                 {
                                     t = Environment.TickCount + (m_LotInfo.InitialRun ? m_LotInfo._RecipeInfo.TimeLimit_1st : m_LotInfo._RecipeInfo.TimeLimit_2nd);
                                     SM.StartCount = true;
+                                    m_MyFlag.MsgArg.StationName = "General Control";
+                                    m_MyFlag.MsgArg.MachineStatus = eMcState.MC_START_TIMER;
+                                    FireEvent2UI(m_MyFlag.MsgArg);
                                     m_RunSeq = RunSeq.CheckTimesUp;
                                 }
                                 break;
