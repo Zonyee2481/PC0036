@@ -419,6 +419,10 @@ namespace RegistryKeyTools
             try
             {
                 RegistryKey result = Registry.CurrentUser.OpenSubKey(registryPath);
+                if (result == null)
+                {
+                    return false;
+                }
                 return (result.GetValueNames().Contains("LicenseKey")); // Return true if license key already exist in location path
             }
             catch (Exception ex)
