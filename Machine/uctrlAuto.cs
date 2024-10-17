@@ -694,7 +694,7 @@ namespace Machine
             //int iLotCount = TaskLotInfo.LotRecordDataCount(txtDeviceID.Text, dateTime);
             int iLotCount = 0;
 
-            if (!TaskLotInfo.GetLotRecordCount(txtDeviceID.Text, dateTime, out iLotCount))
+            if (!TaskLotInfo.GetLotRecordCount(txtDeviceID.Text, out iLotCount))
             {
                 msgForm = new frmMessaging2();
                 msgForm.StartPosition = FormStartPosition.CenterParent;

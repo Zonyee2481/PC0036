@@ -433,6 +433,30 @@ namespace Core.Database
             }
         }
 
+        public bool CountLotRecordByLotNumber(string LotNumber, out int Count)
+        {
+            string sqlString;
+            Count = 0;
+            try
+            {
+                sqlString = "SELECT * FROM " + LotRecord;
+                sqlString = string.Format("{0} WHERE [LotNumber] = '{1}'", sqlString, LotNumber);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                ErrorMessage = "";
+                Count = DataTable.Rows.Count;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
         public bool GetLotRecordStartTime(string LotNumber, string StartDate, out string[] StartTime)
         {
             StartTime = new string[0];

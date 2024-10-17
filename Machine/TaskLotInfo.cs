@@ -304,11 +304,10 @@ namespace Machine
             return true;
         }
 
-        public static bool GetLotRecordCount(string LotNumber, DateTime StartDate, out int Count)
+        public static bool GetLotRecordCount(string LotNumber, out int Count)
         {
-            Count = 0;
-            string startDate = StartDate.ToString(frmMain.dbMain.DateFormat);
-            if (!frmMain.dbMain.CountLotRecordByDate(LotNumber, startDate, out Count))
+            Count = 0;           
+            if (!frmMain.dbMain.CountLotRecordByLotNumber(LotNumber, out Count))
             {
                 return false;
             }
