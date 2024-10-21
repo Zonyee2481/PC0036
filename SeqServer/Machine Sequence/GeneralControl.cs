@@ -149,7 +149,7 @@ namespace SeqServer
                                     TimesUp = false;
                                     StartCtrlRelay = false;
                                     StartBtnLED = false;
-                                    ClearBitCode();
+                                    //ClearBitCode();
                                     m_RunSeq = RunSeq.EOS;
                                 }
                                 break;
