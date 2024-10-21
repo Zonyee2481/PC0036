@@ -738,6 +738,10 @@ namespace Machine
             if (!Visible) return;
             lbl_Mode.Text = TaskIO.ReadBit_AutoMode() ? "Auto Mode" : "Manual Mode";
             lbl_Mode.BackColor = TaskIO.ReadBit_AutoMode() ? Color.Orange : Color.Blue;
+            lbl_HzCode_1.BackColor = TaskIO.OutBit(0, (int)Output.BITCODE_1, MotionIODevice.TOutputStatus.St) ? Color.Red : Color.Transparent;
+            lbl_HzCode_2.BackColor = TaskIO.OutBit(0, (int)Output.BITCODE_2, MotionIODevice.TOutputStatus.St) ? Color.Red : Color.Transparent;
+            lbl_HzCode_4.BackColor = TaskIO.OutBit(0, (int)Output.BITCODE_4, MotionIODevice.TOutputStatus.St) ? Color.Red : Color.Transparent;
+            lbl_HzCode_8.BackColor = TaskIO.OutBit(0, (int)Output.BITCODE_8, MotionIODevice.TOutputStatus.St) ? Color.Red : Color.Transparent;
             //lbl_Mode.Text = "Auto Mode";
             //lbl_Mode.BackColor = Color.Blue;
             ShowRunningNumbers();

@@ -72,6 +72,11 @@ namespace Machine
             this.lblInvalid = new System.Windows.Forms.Label();
             this.txtDeviceID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.lbl_HzCode_1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbl_HzCode_2 = new System.Windows.Forms.Label();
+            this.lbl_HzCode_4 = new System.Windows.Forms.Label();
+            this.lbl_HzCode_8 = new System.Windows.Forms.Label();
             this.pnlRight.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -91,11 +96,13 @@ namespace Machine
             this.pnlMiddle.SuspendLayout();
             this.pnlLotInfo.SuspendLayout();
             this.gbLotInfo.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlRight
             // 
             this.pnlRight.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlRight.Controls.Add(this.groupBox3);
             this.pnlRight.Controls.Add(this.groupBox2);
             this.pnlRight.Controls.Add(this.btn_SystemInit);
             this.pnlRight.Controls.Add(this.btn_LotInfo);
@@ -606,6 +613,63 @@ namespace Machine
             this.label2.TabIndex = 13;
             this.label2.Text = "Lot Number:";
             // 
+            // lbl_HzCode_1
+            // 
+            this.lbl_HzCode_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_1.Location = new System.Drawing.Point(8, 16);
+            this.lbl_HzCode_1.Name = "lbl_HzCode_1";
+            this.lbl_HzCode_1.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_1.TabIndex = 104;
+            this.lbl_HzCode_1.Text = "1";
+            this.lbl_HzCode_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbl_HzCode_8);
+            this.groupBox3.Controls.Add(this.lbl_HzCode_4);
+            this.groupBox3.Controls.Add(this.lbl_HzCode_2);
+            this.groupBox3.Controls.Add(this.lbl_HzCode_1);
+            this.groupBox3.Location = new System.Drawing.Point(7, 562);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(279, 49);
+            this.groupBox3.TabIndex = 105;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Hz Code";
+            // 
+            // lbl_HzCode_2
+            // 
+            this.lbl_HzCode_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_2.Location = new System.Drawing.Point(72, 16);
+            this.lbl_HzCode_2.Name = "lbl_HzCode_2";
+            this.lbl_HzCode_2.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_2.TabIndex = 105;
+            this.lbl_HzCode_2.Text = "2";
+            this.lbl_HzCode_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_HzCode_4
+            // 
+            this.lbl_HzCode_4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_4.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_4.Location = new System.Drawing.Point(136, 16);
+            this.lbl_HzCode_4.Name = "lbl_HzCode_4";
+            this.lbl_HzCode_4.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_4.TabIndex = 106;
+            this.lbl_HzCode_4.Text = "4";
+            this.lbl_HzCode_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_HzCode_8
+            // 
+            this.lbl_HzCode_8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_8.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_8.Location = new System.Drawing.Point(200, 16);
+            this.lbl_HzCode_8.Name = "lbl_HzCode_8";
+            this.lbl_HzCode_8.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_8.TabIndex = 107;
+            this.lbl_HzCode_8.Text = "8";
+            this.lbl_HzCode_8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // uctrlAuto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,6 +701,7 @@ namespace Machine
             this.pnlLotInfo.ResumeLayout(false);
             this.gbLotInfo.ResumeLayout(false);
             this.gbLotInfo.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -684,5 +749,10 @@ namespace Machine
         private System.Windows.Forms.DateTimePicker dtpFindLotRecord;
         private System.Windows.Forms.Panel pnlLotRecordDateTimePicker;
         private System.Windows.Forms.Panel pnlLotRecordDataGridView;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lbl_HzCode_1;
+        private System.Windows.Forms.Label lbl_HzCode_8;
+        private System.Windows.Forms.Label lbl_HzCode_4;
+        private System.Windows.Forms.Label lbl_HzCode_2;
     }
 }
