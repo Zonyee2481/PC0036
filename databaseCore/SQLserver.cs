@@ -510,7 +510,6 @@ namespace Core.Database
                 return false;
             }
         }
-
         #endregion
     }
 }

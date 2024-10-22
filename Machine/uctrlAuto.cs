@@ -917,6 +917,7 @@ namespace Machine
             string pickerDate = dtpFindLotRecord.Value.ToString(frmMain.dbMain.DateFormat);
 
             frmMain.dbMain.GetLotRecordCountByDate(pickerDate);
+            frmMain.dbMain.GetLotRecordCountByDate(pickerDate);
 
             if (frmMain.dbMain.DataTable != null)
             {
