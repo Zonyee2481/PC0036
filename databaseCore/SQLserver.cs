@@ -19,6 +19,7 @@ namespace Core.Database
             Conn = null;
             DataAdaptor = null;
             _Table = null;
+            LotNumbers = new List<string>();
         }
 
         public bool ConnectDatabase(string strConnection)
@@ -508,6 +509,61 @@ namespace Core.Database
             {
                 ErrorMessage = ex.Message;
                 return false;
+            }
+        }
+
+        public DataTable LotRecordCountByDate(string StartDate)
+        {
+            string sqlString;
+            DataTable table = new DataTable();
+            table.Columns.Add("LotNumber", typeof(string));
+            table.Columns.Add("Count", typeof(int));
+            try
+            {
+                #region Get Lot Number By Date
+                sqlString = "SELECT DISTINCT [LotNumber] FROM " + LotRecord;
+                sqlString = string.Format("{0} WHERE [StartDate]='{1}'", sqlString, StartDate);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                if (DataTable.Rows.Count <= 0) { ErrorMessage = ""; return table; }
+
+                LotNumbers = new List<string>(DataTable.Rows.Count);
+
+                // Add data into list with the data table
+                foreach (DataRow row in DataTable.Rows)
+                {
+                    LotNumbers.Add(row["LotNumber"].ToString());
+                }
+                #endregion
+
+                #region Get Lot Number Count From DB
+                foreach (string lotNumber in LotNumbers)
+                {
+                    sqlString = "SELECT [LotNumber], COUNT(*) AS LotRecordCount FROM " + LotRecord;
+                    sqlString = string.Format("{0} WHERE [LotNumber]='{1}' GROUP BY [LotNumber]", sqlString, lotNumber);
+
+                    Open();
+                    SQLExecuteQuery(sqlString);
+                    Close();
+
+                    foreach (DataRow row in DataTable.Rows)
+                    {
+                        table.Rows.Add(row.ItemArray);
+                    }
+                }
+                #endregion
+
+                ErrorMessage = "";
+
+                return table;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return table;
             }
         }
         #endregion

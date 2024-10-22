@@ -916,19 +916,18 @@ namespace Machine
         {
             string pickerDate = dtpFindLotRecord.Value.ToString(frmMain.dbMain.DateFormat);
 
-            frmMain.dbMain.GetLotRecordCountByDate(pickerDate);
-            frmMain.dbMain.GetLotRecordCountByDate(pickerDate);
+            DataTable table = frmMain.dbMain.LotRecordCountByDate(pickerDate);
 
-            if (frmMain.dbMain.DataTable != null)
+            if (table != null)
             {
-                dgvRunningLot.DataSource = frmMain.dbMain.DataTable;
+                dgvRunningLot.DataSource = table;
+
+                dgvRunningLot.Columns[0].HeaderText = "Lot Number";
+                dgvRunningLot.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                dgvRunningLot.Columns[1].HeaderText = "Number of Grease Removing";
+                dgvRunningLot.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-
-            dgvRunningLot.Columns[0].HeaderText = "Lot Number";
-            dgvRunningLot.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            dgvRunningLot.Columns[1].HeaderText = "Count";
-            dgvRunningLot.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

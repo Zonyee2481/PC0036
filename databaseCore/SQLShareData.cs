@@ -25,10 +25,12 @@ namespace Core.Database
         string dateFormat = "yyyy-MM-dd";
         string timeFormat = "HH:mm:ss";
         string[] tableData;
+        List<string> lotNumbers;
         SqlConnection _conn;
         SqlDataAdapter _dataAdaptor;
         DataTable _table;
         DataTable _errorTable;
+        DataTable _shareDataTable;
 
         public string SysLog { get { return sysLog; } }
         public string Err { get { return err; } }
@@ -36,10 +38,12 @@ namespace Core.Database
         public string DateFormat { get { return dateFormat; } }
         public string TimeFormat { get { return timeFormat; } }
         public string[] TableData { get { return tableData; } set { tableData = value; } }
+        public List<string> LotNumbers { get { return lotNumbers; } set { lotNumbers = value; } }
         public SqlConnection Conn { get { return _conn; } set { _conn = value; } }
         public SqlDataAdapter DataAdaptor { get { return _dataAdaptor; } set { _dataAdaptor = value; } }
         public DataTable _Table { get { return _table; } set { _table = value; } }
         public DataTable _ErrorTable { get { return _errorTable; } set { _errorTable = value; } }
+        public DataTable _ShareDataTable { get { return _shareDataTable; } set { _shareDataTable = value; } }
 
         /// <summary>
         /// Is Database connected the database
