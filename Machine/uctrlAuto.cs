@@ -851,6 +851,7 @@ namespace Machine
 
             string deviceID = string.Empty;
             InvokeHelper.Visible(lblInvalid, false);
+
 #if !SIMULATION
             if (!TaskIO.ReadBit_AutoMode())
             {
@@ -860,7 +861,27 @@ namespace Machine
                 InvokeHelper.Focus(txtDeviceID, true);
                 return;
             }
+
+            if (!TaskIO.ReadBit_McCoverOFF())
+            {
+                msgForm = new frmMessaging2();
+                msgForm.StartPosition = FormStartPosition.CenterParent;
+                msgForm.ShowMsg("Please Close Machine Cover After Chain Load Into " + (char)10 + 
+                    "The Grease Removing Machine! " + (char)10 +
+                     (char)10 +
+                    "Sila Tutupkan Penutup Mesin Selepas Rantai Masuk Dalam " + (char)10 + 
+                    "Penyingkiran Gris Mesin! "
+                    , frmMessaging2.TMsgBtn.smbOK);
+                DialogResult dialogResult = msgForm.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    InvokeHelper.Text(txtDeviceID, string.Empty);
+                    InvokeHelper.Focus(txtDeviceID, true);
+                    return;
+                }
+            }
 #endif
+
             if (!CheckValidLotNumberLength(txtDeviceID.Text))
             {
                 InvokeHelper.Text(lblInvalid, "** Invalid Lot Number Length! " + txtDeviceID.Text + " **");

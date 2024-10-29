@@ -24,7 +24,7 @@ namespace MotionIODevice.IO
             inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 0, 1, 0x01, "DIO0", "AUTO"));
             inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 1, 1, 0x02, "DIO1", "START_TIMER"));
             inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 2, 1, 0x04, "DIO2", "END_LOT"));
-            inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 3, 1, 0x08, "DIO3", "SPARE"));
+            inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 3, 1, 0x08, "DIO3", "MC_COVER_OFF"));
             inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 4, 1, 0x010, "DIO4", "SPARE"));
             inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 5, 1, 0x020, "DIO5", "SPARE"));
             inputList.Add(new IO.TInput((int)TotalModule.GeneralControl, 0, 6, 1, 0x40, "DIO6", "SPARE"));
@@ -37,7 +37,7 @@ namespace MotionIODevice.IO
             outputList.Add(new IO.TOutput((int)TotalModule.GeneralControl, 0, 12, 2, 0x010, "DIO12", "BITCODE_8"));
             outputList.Add(new IO.TOutput((int)TotalModule.GeneralControl, 0, 13, 2, 0x020, "DIO13", "START_CONTROL_RELAY"));
             outputList.Add(new IO.TOutput((int)TotalModule.GeneralControl, 0, 14, 2, 0x40, "DIO14", "START_BUTTON_LED"));
-            outputList.Add(new IO.TOutput((int)TotalModule.GeneralControl, 0, 15, 2, 0x80, "DIO15", "SPARE"));
+            outputList.Add(new IO.TOutput((int)TotalModule.GeneralControl, 0, 15, 2, 0x80, "DIO15", "BARCODE_SCAN_READY"));
             #endregion
         }
 

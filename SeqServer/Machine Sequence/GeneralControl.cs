@@ -76,6 +76,7 @@ namespace SeqServer
             BITCODE_8,
             START_CONTROL_RELAY,
             START_BUTTON_LED,
+            BARCODE_SCAN_READY,
         }
 
         private enum TimeOut
@@ -146,6 +147,7 @@ namespace SeqServer
                                     FireEvent2UI(m_MyFlag.MsgArg);
                                     SM.McProcessTime = 0;
                                     SM.McRunningHz = 0;
+                                    BarcodeScanReady = false;
                                     TimesUp = false;
                                     StartCtrlRelay = false;
                                     StartBtnLED = false;
@@ -169,6 +171,7 @@ namespace SeqServer
                                 break;
                             case RunSeq.TurnOnStartControl:
                                 {
+                                    BarcodeScanReady = true;
                                     StartCtrlRelay = true;
                                     StartBtnLED = true;
                                     SM.McProcessTime = m_LotInfo.InitialRun ? (m_LotInfo._RecipeInfo.TimeLimit_1st / 1000) : (m_LotInfo._RecipeInfo.TimeLimit_2nd / 1000);
@@ -323,6 +326,14 @@ namespace SeqServer
             set
             {
                 OutBit(OUT.TIMESUP.ToString(), (TOutputStatus)(value ? 1 : 0));
+            }
+        }
+
+        private bool BarcodeScanReady
+        {
+            set
+            {
+                OutBit(OUT.BARCODE_SCAN_READY.ToString(), (TOutputStatus)(value ? 1 : 0));
             }
         }
 #endregion

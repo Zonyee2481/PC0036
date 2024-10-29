@@ -14,7 +14,7 @@ namespace Machine
     {
         private static List<IBoardIO> motionBoards;
         private static int auto, startTimer, endLot;
-        private static int timesUp, bitCode_1, bitCode_2, bitCode_4, bitCode_8, startCtrlRelay, startBtnLED;
+        private static int timesUp, bitCode_1, bitCode_2, bitCode_4, bitCode_8, startCtrlRelay, startBtnLED, barcodeScanReady;
         public static string ErrMsg = "";
 
         public static bool OffBuzzer = true;
@@ -73,6 +73,11 @@ namespace Machine
             return motionBoards[0].ReadBit((int)Input.AUTO);
         }
 
+        public static bool ReadBit_McCoverOFF()
+        {
+            return motionBoards[0].ReadBit((int)Input.MC_COVER_OFF);
+        }
+
         public static bool ReadBit_StartTimer()
         {
             return motionBoards[0].ReadBit((int)Input.START_TIMER);
@@ -126,7 +131,12 @@ namespace Machine
         public static void StartButtonLED(bool On)
         {
             OutBit(startBtnLED, On ? TOutputStatus.Hi : TOutputStatus.Lo);
-        }     
+        }
+
+        public static void BarcodeScanReady(bool On)
+        {
+            OutBit(barcodeScanReady, On ? TOutputStatus.Hi : TOutputStatus.Lo);
+        }
 
         public static bool Delay(int msdelay)
         {

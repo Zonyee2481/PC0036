@@ -31,6 +31,11 @@ namespace Machine
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uctrlAuto));
             this.pnlRight = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbl_HzCode_8 = new System.Windows.Forms.Label();
+            this.lbl_HzCode_4 = new System.Windows.Forms.Label();
+            this.lbl_HzCode_2 = new System.Windows.Forms.Label();
+            this.lbl_HzCode_1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbl_Mode = new System.Windows.Forms.Label();
             this.btn_SystemInit = new System.Windows.Forms.Button();
@@ -72,12 +77,8 @@ namespace Machine
             this.lblInvalid = new System.Windows.Forms.Label();
             this.txtDeviceID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbl_HzCode_1 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lbl_HzCode_2 = new System.Windows.Forms.Label();
-            this.lbl_HzCode_4 = new System.Windows.Forms.Label();
-            this.lbl_HzCode_8 = new System.Windows.Forms.Label();
             this.pnlRight.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -96,7 +97,6 @@ namespace Machine
             this.pnlMiddle.SuspendLayout();
             this.pnlLotInfo.SuspendLayout();
             this.gbLotInfo.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlRight
@@ -113,6 +113,63 @@ namespace Machine
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(295, 838);
             this.pnlRight.TabIndex = 106;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbl_HzCode_8);
+            this.groupBox3.Controls.Add(this.lbl_HzCode_4);
+            this.groupBox3.Controls.Add(this.lbl_HzCode_2);
+            this.groupBox3.Controls.Add(this.lbl_HzCode_1);
+            this.groupBox3.Location = new System.Drawing.Point(7, 562);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(279, 49);
+            this.groupBox3.TabIndex = 105;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Hz Code";
+            // 
+            // lbl_HzCode_8
+            // 
+            this.lbl_HzCode_8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_8.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_8.Location = new System.Drawing.Point(200, 16);
+            this.lbl_HzCode_8.Name = "lbl_HzCode_8";
+            this.lbl_HzCode_8.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_8.TabIndex = 107;
+            this.lbl_HzCode_8.Text = "210 : 8";
+            this.lbl_HzCode_8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_HzCode_4
+            // 
+            this.lbl_HzCode_4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_4.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_4.Location = new System.Drawing.Point(136, 16);
+            this.lbl_HzCode_4.Name = "lbl_HzCode_4";
+            this.lbl_HzCode_4.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_4.TabIndex = 106;
+            this.lbl_HzCode_4.Text = "209 : 4";
+            this.lbl_HzCode_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_HzCode_2
+            // 
+            this.lbl_HzCode_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_2.Location = new System.Drawing.Point(72, 16);
+            this.lbl_HzCode_2.Name = "lbl_HzCode_2";
+            this.lbl_HzCode_2.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_2.TabIndex = 105;
+            this.lbl_HzCode_2.Text = "208 : 2";
+            this.lbl_HzCode_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_HzCode_1
+            // 
+            this.lbl_HzCode_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_HzCode_1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_HzCode_1.Location = new System.Drawing.Point(8, 16);
+            this.lbl_HzCode_1.Name = "lbl_HzCode_1";
+            this.lbl_HzCode_1.Size = new System.Drawing.Size(58, 23);
+            this.lbl_HzCode_1.TabIndex = 104;
+            this.lbl_HzCode_1.Text = "207 : 1";
+            this.lbl_HzCode_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
@@ -613,63 +670,6 @@ namespace Machine
             this.label2.TabIndex = 13;
             this.label2.Text = "Lot Number:";
             // 
-            // lbl_HzCode_1
-            // 
-            this.lbl_HzCode_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_HzCode_1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbl_HzCode_1.Location = new System.Drawing.Point(8, 16);
-            this.lbl_HzCode_1.Name = "lbl_HzCode_1";
-            this.lbl_HzCode_1.Size = new System.Drawing.Size(58, 23);
-            this.lbl_HzCode_1.TabIndex = 104;
-            this.lbl_HzCode_1.Text = "1";
-            this.lbl_HzCode_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lbl_HzCode_8);
-            this.groupBox3.Controls.Add(this.lbl_HzCode_4);
-            this.groupBox3.Controls.Add(this.lbl_HzCode_2);
-            this.groupBox3.Controls.Add(this.lbl_HzCode_1);
-            this.groupBox3.Location = new System.Drawing.Point(7, 562);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(279, 49);
-            this.groupBox3.TabIndex = 105;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Hz Code";
-            // 
-            // lbl_HzCode_2
-            // 
-            this.lbl_HzCode_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_HzCode_2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbl_HzCode_2.Location = new System.Drawing.Point(72, 16);
-            this.lbl_HzCode_2.Name = "lbl_HzCode_2";
-            this.lbl_HzCode_2.Size = new System.Drawing.Size(58, 23);
-            this.lbl_HzCode_2.TabIndex = 105;
-            this.lbl_HzCode_2.Text = "2";
-            this.lbl_HzCode_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_HzCode_4
-            // 
-            this.lbl_HzCode_4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_HzCode_4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbl_HzCode_4.Location = new System.Drawing.Point(136, 16);
-            this.lbl_HzCode_4.Name = "lbl_HzCode_4";
-            this.lbl_HzCode_4.Size = new System.Drawing.Size(58, 23);
-            this.lbl_HzCode_4.TabIndex = 106;
-            this.lbl_HzCode_4.Text = "4";
-            this.lbl_HzCode_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_HzCode_8
-            // 
-            this.lbl_HzCode_8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_HzCode_8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbl_HzCode_8.Location = new System.Drawing.Point(200, 16);
-            this.lbl_HzCode_8.Name = "lbl_HzCode_8";
-            this.lbl_HzCode_8.Size = new System.Drawing.Size(58, 23);
-            this.lbl_HzCode_8.TabIndex = 107;
-            this.lbl_HzCode_8.Text = "8";
-            this.lbl_HzCode_8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // uctrlAuto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -682,6 +682,7 @@ namespace Machine
             this.Name = "uctrlAuto";
             this.Size = new System.Drawing.Size(1374, 838);
             this.pnlRight.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -701,7 +702,6 @@ namespace Machine
             this.pnlLotInfo.ResumeLayout(false);
             this.gbLotInfo.ResumeLayout(false);
             this.gbLotInfo.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

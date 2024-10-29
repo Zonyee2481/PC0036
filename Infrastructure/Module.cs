@@ -15,6 +15,7 @@ namespace Infrastructure
         AUTO,
         START_TIMER,
         END_LOT,
+        MC_COVER_OFF,
         #endregion
     }
 
@@ -30,6 +31,7 @@ namespace Infrastructure
         BITCODE_8,
         START_CONTROL_RELAY,
         START_BUTTON_LED,
+        BARCODE_SCAN_READY,
         #endregion
     }
     #endregion
