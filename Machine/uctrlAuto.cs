@@ -714,7 +714,7 @@ namespace Machine
             TaskLotInfo.LotInfo.HertzCode = TaskDeviceRecipe._LotInfo.InitialRun ? TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_1st : TaskDeviceRecipe._LotInfo._RecipeInfo.RunHz_2nd;
             TaskLotInfo.LotInfo.Hertz = TaskBitCode.lBitCodes[TaskLotInfo.LotInfo.HertzCode].Description;
             int count = 0;
-            frmMain.dbMain.CountLotRecordByDate(TaskLotInfo.LotInfo.LotNum, dateTime.ToString(frmMain.dbMain.DateFormat), out count);
+            frmMain.dbMain.CountLotRecordByLotNumber(TaskLotInfo.LotInfo.LotNum, out count);
             TaskLotInfo.LotInfo.RunCounter = count + 1;
             //TaskLotInfo.LotInfo.DateIn = D;
             //TaskLotInfo.LotInfo.TimeIn = T;

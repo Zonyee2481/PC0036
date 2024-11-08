@@ -521,7 +521,7 @@ namespace Core.Database
             try
             {
                 #region Get Lot Number By Date
-                sqlString = "SELECT DISTINCT [LotNumber] FROM " + LotRecord;
+                sqlString = "SELECT [LotNumber] FROM " + LotRecord;
                 sqlString = string.Format("{0} WHERE [StartDate]='{1}'", sqlString, StartDate);
 
                 Open();
@@ -539,8 +539,10 @@ namespace Core.Database
                 }
                 #endregion
 
+                List<string> uniqueLotNumbers = LotNumbers.Distinct().ToList();
+
                 #region Get Lot Number Count From DB
-                foreach (string lotNumber in LotNumbers)
+                foreach (string lotNumber in uniqueLotNumbers)
                 {
                     sqlString = "SELECT [LotNumber], COUNT(*) AS LotRecordCount FROM " + LotRecord;
                     sqlString = string.Format("{0} WHERE [LotNumber]='{1}' GROUP BY [LotNumber]", sqlString, lotNumber);

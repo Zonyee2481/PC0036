@@ -56,7 +56,8 @@ namespace Machine
                     arr[0] = counter.ToString();
                     int S, M, H; double SS;
                     arr[1] = TaskDeviceRecipe.asDeviceID[i].ToString();
-                    arr[2] = TaskDeviceRecipe.aiRunHz_1st[i].ToString();
+                    //arr[2] = TaskDeviceRecipe.aiRunHz_1st[i].ToString(); //asBitCodeDescription
+                    arr[2] = TaskBitCode.asBitCodeDescription[TaskDeviceRecipe.aiRunHz_1st[i]];
                     timeSpan = TimeSpan.FromMilliseconds(TaskDeviceRecipe.adTimeLimit_1st[i]);
                     SS = timeSpan.TotalSeconds;
                     S = timeSpan.Seconds;
@@ -64,7 +65,8 @@ namespace Machine
                     H = timeSpan.Hours;
                     //arr[3] = H + " H " + M + " M " + S + " S ";
                     arr[3] = SS + " S ";
-                    arr[4] = TaskDeviceRecipe.aiRunHz_2nd[i].ToString();
+                    //arr[4] = TaskDeviceRecipe.aiRunHz_2nd[i].ToString();
+                    arr[4] = TaskBitCode.asBitCodeDescription[TaskDeviceRecipe.aiRunHz_2nd[i]];
                     timeSpan = TimeSpan.FromMilliseconds(TaskDeviceRecipe.adTimeLimit_2nd[i]);
                     SS = timeSpan.TotalSeconds;
                     S = timeSpan.Seconds;
@@ -114,9 +116,11 @@ namespace Machine
                     form._bEdit = true;
                     form._bNew = false;
                     form._sDeviceID = lv_DeviceRecipeList.Items[i].SubItems[1].Text;
-                    form._iRunHz_1st = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);
+                    //form._iRunHz_1st = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[2].Text);
+                    form._iRunHz_1st = TaskDeviceRecipe.aiRunHz_1st[i];
                     form._iTimeLimit_1st = Convert.ToInt32(TaskDeviceRecipe.adTimeLimit_1st[i]);
-                    form._iRunHz_2nd = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[4].Text);
+                    //form._iRunHz_2nd = Convert.ToInt32(lv_DeviceRecipeList.Items[i].SubItems[4].Text);
+                    form._iRunHz_2nd = TaskDeviceRecipe.aiRunHz_2nd[i];
                     form._iTimeLimit_2nd = Convert.ToInt32(TaskDeviceRecipe.adTimeLimit_2nd[i]);
                     form._bMasterProduct = TaskDeviceRecipe.abMasterProduct[i];
                     form.ShowDialog();
