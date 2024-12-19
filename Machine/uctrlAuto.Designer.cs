@@ -31,6 +31,7 @@ namespace Machine
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uctrlAuto));
             this.pnlRight = new System.Windows.Forms.Panel();
+            this.btn_Reset = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbl_HzCode_8 = new System.Windows.Forms.Label();
             this.lbl_HzCode_4 = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@ namespace Machine
             this.lblInvalid = new System.Windows.Forms.Label();
             this.txtDeviceID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btn_Reset = new System.Windows.Forms.Button();
             this.pnlRight.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -115,6 +115,23 @@ namespace Machine
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(295, 838);
             this.pnlRight.TabIndex = 106;
+            // 
+            // btn_Reset
+            // 
+            this.btn_Reset.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btn_Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_Reset.FlatAppearance.BorderSize = 0;
+            this.btn_Reset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
+            this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Reset.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btn_Reset.Location = new System.Drawing.Point(4, 206);
+            this.btn_Reset.Name = "btn_Reset";
+            this.btn_Reset.Size = new System.Drawing.Size(290, 55);
+            this.btn_Reset.TabIndex = 75;
+            this.btn_Reset.Text = "Reset";
+            this.btn_Reset.UseVisualStyleBackColor = false;
+            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
             // groupBox3
             // 
@@ -671,22 +688,6 @@ namespace Machine
             this.label2.Size = new System.Drawing.Size(118, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Lot Number:";
-            // 
-            // btn_Reset
-            // 
-            this.btn_Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_Reset.FlatAppearance.BorderSize = 0;
-            this.btn_Reset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
-            this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Reset.ForeColor = System.Drawing.Color.Orange;
-            this.btn_Reset.Location = new System.Drawing.Point(4, 206);
-            this.btn_Reset.Name = "btn_Reset";
-            this.btn_Reset.Size = new System.Drawing.Size(290, 55);
-            this.btn_Reset.TabIndex = 75;
-            this.btn_Reset.Text = "Reset";
-            this.btn_Reset.UseVisualStyleBackColor = true;
-            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
             // 
             // uctrlAuto
             // 
