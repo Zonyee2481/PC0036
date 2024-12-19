@@ -265,6 +265,7 @@ namespace Machine
         #region Machine Status Control
         public bool Initialized = false;
         public bool EndLot = false;
+        public bool Reset = false;
         private void OnMcStateChanged(eMcState iMcState)
         {
             var mcState = (eMcState)iMcState;
@@ -320,9 +321,8 @@ namespace Machine
                 case eMcState.MC_INITIALIZED:
                     InvokeHelper.Enable(btn_Start, true);
                     InvokeHelper.Text(lbl_MachineState, "Init Done");                    
-                    if (EndLot)
-                    {
-                        TaskLotInfo.LotInfo.Activated = false;
+                    if (EndLot && !Reset)
+                    {                        
                         TaskLotInfo.SaveLotInfo(false);
                         //PromptMessageOk("Lot Finished!");
                         if (dtpFindLotRecord.InvokeRequired)
@@ -338,6 +338,8 @@ namespace Machine
                         }
                         EndLot = false;
                     }
+                    TaskLotInfo.LotInfo.Activated = false;
+                    Reset = false;
                     TaskLotInfo.LotInfo.Hertz = "0";
                     InvokeHelper.Enable(txtDeviceID, true);
                     InvokeHelper.Text(txtDeviceID, string.Empty);
@@ -949,6 +951,20 @@ namespace Machine
                 dgvRunningLot.Columns[1].HeaderText = "Number of Grease Removing";
                 dgvRunningLot.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+        }
+
+        private void btn_Reset_Click(object sender, EventArgs e)
+        {
+            string message = "Do You Want To Reset The Barcode?" + (char)10 +
+                "Adakah Anda Mahu Menetapkan Semula Kod Bar Itu?";
+            DialogResult result = PromptMessageOkCancel(message);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+            Reset = true;
+            SetMcState(eMcState.MC_INITIALIZING);
+            frmMain.MainEvent.UITriggerEvent(EV_TYPE.InitSeq);
         }
     }
 }

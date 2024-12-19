@@ -387,6 +387,14 @@ namespace SeqServer
             }
         }
 
+        //internal override void OnNewItemReq(object sender, EventArgs args)
+        //{
+        //    lock (m_SyncEvent)
+        //    {
+        //        m_RunSeq = RunSeq.Init;
+        //    }
+        //}
+
         internal override void OnKill(object sender, EventArgs args)
         {
             lock (m_SyncEvent)

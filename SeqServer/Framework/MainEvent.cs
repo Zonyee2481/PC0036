@@ -49,6 +49,7 @@ namespace SeqServer
             SubscribeEventOnManualSeq();
             SubscribeEventOnTriggerStartBtn();
             SubscribeEventOnEndLot();
+            //SubscribeEventOnReset();
         }
 
         private void PublishEvent()
@@ -132,6 +133,12 @@ namespace SeqServer
             m_EventPool.Subscribe(EV_TYPE.FarProcComp,
                 new EventHandler(m_BaseSequence[(int)TotalModule.GeneralControl].OnFarProcComp));
         }
+
+        //private void SubscribeEventOnReset()
+        //{
+        //    m_EventPool.Subscribe(EV_TYPE.WorkReq,
+        //        new EventHandler(m_BaseSequence[(int)TotalModule.GeneralControl].OnNewItemReq));
+        //}
 
         #endregion
 
