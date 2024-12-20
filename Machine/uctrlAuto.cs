@@ -338,6 +338,7 @@ namespace Machine
                         }
                         EndLot = false;
                     }
+                    //InvokeHelper.Enable(btn_Reset, true);
                     TaskLotInfo.LotInfo.Activated = false;
                     Reset = false;
                     TaskLotInfo.LotInfo.Hertz = "0";
@@ -569,6 +570,7 @@ namespace Machine
                         //    return;
                         //}
                         InvokeHelper.Enable(txtDeviceID, false);
+                        //InvokeHelper.Enable(btn_Reset, false);
                         AddToLog($"Start Click");
                         SetMcState(eMcState.MC_RUNNING);
                         frmMain.MainEvent.UITriggerEvent(EV_TYPE.BeginSeq);
