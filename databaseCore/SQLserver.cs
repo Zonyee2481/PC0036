@@ -228,6 +228,36 @@ namespace Core.Database
             }
         }
 
+        public bool GetPageAccessLevel(out int[] pageAccessLevel)
+        {
+            string sqlString;
+            pageAccessLevel = new int[0];
+            try
+            {
+                sqlString = "SELECT * FROM [Page] ORDER BY Id ASC";
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                pageAccessLevel = new int[DataTable.Rows.Count];
+
+                for (int i = 0; i < DataTable.Rows.Count; i++)
+                {
+                    pageAccessLevel[i] = Convert.ToInt32(DataTable.Rows[i]["UserLevel"]);
+                }
+
+                ErrorMessage = "";
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
         #region DB Log
         /// <summary>
         /// Initial the SysLogTable
