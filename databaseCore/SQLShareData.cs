@@ -22,6 +22,8 @@ namespace Core.Database
         string sysLog = "[dbo].[SysLog]";
         string err = "[dbo].[Error]";
         string lotRecord = "[dbo].[LotRecord]";
+        string user = "[dbo].[User]";
+        string page = "[dbo].[Page]";
         string dateFormat = "yyyy-MM-dd";
         string timeFormat = "HH:mm:ss";
         string[] tableData;
@@ -35,6 +37,8 @@ namespace Core.Database
         public string SysLog { get { return sysLog; } }
         public string Err { get { return err; } }
         public string LotRecord { get { return lotRecord; } set { lotRecord = value; } }
+        public string User { get { return user; } set { user = value; } }
+        public string Page { get { return page; } set { page = value; } }
         public string DateFormat { get { return dateFormat; } }
         public string TimeFormat { get { return timeFormat; } }
         public string[] TableData { get { return tableData; } set { tableData = value; } }

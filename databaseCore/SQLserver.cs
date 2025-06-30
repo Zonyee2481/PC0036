@@ -228,13 +228,14 @@ namespace Core.Database
             }
         }
 
+        #region Function for User/Page Access
         public bool GetPageAccessLevel(out int[] pageAccessLevel)
         {
             string sqlString;
             pageAccessLevel = new int[0];
             try
             {
-                sqlString = "SELECT * FROM [Page] ORDER BY Id ASC";
+                sqlString = "SELECT * FROM " + Page + " ORDER BY Id ASC";
 
                 Open();
                 SQLExecuteQuery(sqlString);
@@ -257,6 +258,235 @@ namespace Core.Database
                 return false;
             }
         }
+
+        public bool UserLogin(string BadgeNumber, string Password)
+        {
+            string sqlString;
+
+            try
+            {
+                sqlString = "SELECT * FROM " + User;
+                sqlString = string.Format("{0} WHERE [BadgeNumber]='{1}' AND [UserPassword]='{2}'", sqlString, BadgeNumber, Password);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                if (DataTable.Rows.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    this.ErrorMessage = string.Empty;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool GetUserLoginInfo(string BadgeNumber, string Password, out string Username, out int UserLevel)
+        {
+            string sqlString;
+            Username = string.Empty;
+            UserLevel = 0;
+            try
+            {
+                sqlString = "SELECT * From " + User;
+                sqlString = string.Format("{0} WHERE [BadgeNumber]='{1}' AND [UserPassword]='{2}'", sqlString, BadgeNumber, Password);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                if (DataTable.Rows.Count <= 0)
+                {
+                    ErrorMessage = string.Format("{0} not found from database!", BadgeNumber);
+                    Username = string.Empty;
+                    UserLevel = 0;
+                    return false;
+                }
+                else
+                {
+                    Username = DataTable.Rows[0]["UserName"].ToString();
+                    UserLevel = Convert.ToInt32(DataTable.Rows[0]["UserLevel"]);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool CheckUserAccountExist(string BadgeNumber)
+        {
+            string sqlString;
+            try
+            {
+                sqlString = "SELECT * From " + User;
+                sqlString = String.Format("{0} WHERE [BadgeNumber]='{1}' ORDER BY [Id] ASC", sqlString, BadgeNumber);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                return DataTable.Rows.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool GetPageDataTable()
+        {
+            string sqlString;
+            try
+            {
+                sqlString = "SELECT * FROM " + Page + " ORDER BY Id ASC";
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                if (DataTable.Rows.Count <= 0)
+                {
+                    ErrorMessage = string.Format("Page data table not found from database!");
+                    return false;
+                }
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool GetUserDataTable()
+        {
+            string sqlString;
+            try
+            {
+                sqlString = "SELECT * FROM " + User + " ORDER BY Id ASC";
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                if (DataTable.Rows.Count <= 0)
+                {
+                    ErrorMessage = string.Format("Access level data table not found from database!");
+                    return false;
+                }
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool AddUser(string BadgeNumber, string UserName, string Password, string UserLevel)
+        {
+            string sqlString;
+            try
+            {
+                sqlString = string.Format("INSERT INTO " + User + " VALUES ('{0}', '{1}', '{2}', '{3}')",
+                                           BadgeNumber, UserName, Password, UserLevel);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool UpdateUser(string BadgeNumber, string UserName, string Password, string UserLevel, string CurrentBadgeNumber)
+        {
+            string sqlString;
+            try
+            {
+                sqlString = string.Format("UPDATE " + User + " SET [BadgeNumber]='{0}', [UserName]='{1}', [UserPassword]='{2}', [UserLevel]='{3}' WHERE [BadgeNumber]='{4}'",
+                                           BadgeNumber, UserName, Password, UserLevel, CurrentBadgeNumber);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool DeleteUser(string Id, string BadgeNumber)
+        {
+            string sqlString;
+            try
+            {
+                sqlString = string.Format("DELETE FROM " + User + " WHERE [Id]='{0}' AND [BadgeNumber]='{1}' ", Id, BadgeNumber);
+
+                this.Open();
+                this.SQLExecuteQuery(sqlString);
+                this.Close();
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool UpdatePage(int PageId, string AccessLevel)
+        {
+            string sqlString;
+            try
+            {
+                sqlString = string.Format("UPDATE " + Page + " SET [UserLevel]='{0}' WHERE [Id]='{1}'",
+                                           AccessLevel, PageId);
+
+                Open();
+                SQLExecuteQuery(sqlString);
+                Close();
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return false;
+            }
+        }
+        #endregion
+
 
         #region DB Log
         /// <summary>
